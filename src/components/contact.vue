@@ -9,22 +9,22 @@
       <el-row class="join">
         <h1 class="join_title">咨询/加入我们/设计提案</h1>
         <el-row class="contact_text">
-          <el-col class="item" :span="24">邮箱：</el-col>
-          <el-col class="item" :span="24">电话：</el-col>
+          <el-col class="item" :span="24">邮箱：{{email}}</el-col>
+          <el-col class="item" :span="24">电话：{{phone}}</el-col>
         </el-row>
       </el-row>
       <el-row class="join">
         <h1 class="join_title">购买</h1>
         <el-row class="contact_text">
-          <el-col class="item" :span="24">零售电话:</el-col>
-          <el-col class="item" :span="24">工程购买:</el-col>
+          <el-col class="item" :span="24">零售电话:{{buy}}</el-col>
+          <el-col class="item" :span="24">工程购买:{{eng_buy}}</el-col>
         </el-row>
       </el-row>
       <el-row class="join">
         <h1 class="join_title">合作</h1>
         <el-row class="contact_text">
-          <el-col class="item" :span="24">商务合作:</el-col>
-          <el-col class="item" :span="24">媒体合作:</el-col>
+          <el-col class="item" :span="24">商务合作:{{bussiness}}</el-col>
+          <el-col class="item" :span="24">媒体合作:{{media}}</el-col>
         </el-row>
       </el-row>
       <el-row class="join">
@@ -45,10 +45,53 @@
 </template>
 <script>
 import NavComponent from "./Nav";
+import {requestConfigs} from '../api/api';
 export default {
   name: "seriesDetail",
   components: {
     NavComponent
+  },
+  data(){
+    return {
+      bussiness: "",
+      buy: "",
+      email: "",
+      eng_buy: "",
+      ins_bg: "",
+      ins_title: "",
+      media: "",
+      phone: "",
+      wechat_bg: "",
+      wechat_title: "",
+      weibo_bg: "",
+      weibo_title: ""
+    }
+  },
+  methods:{
+    getConfigs(){
+      requestConfigs().then((res) => {
+          console.log(res)
+          let data = res.data;
+           console.log(data)
+           if(data){
+             this.buy = data.buy,
+             this.bussiness = data.bussiness,
+             this.email = data.email,
+             this.eng_buy = data.eng_buy,
+             this.ins_bg = data.ins_bg,
+             this.ins_title = data.ins_title,
+             this.media = data.media,
+             this.phone = data.phone,
+             this.wechat_bg = data.wechat_bg,
+             this.wechat_title = data.wechat_title,
+             this.weibo_bg = data.weibo_bg,
+             this.weibo_title = data.weibo_title;
+           }
+        });
+    }
+  },
+  mounted:function(){
+    this.getConfigs()
   }
 };
 </script>
