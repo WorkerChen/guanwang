@@ -11,9 +11,9 @@
           <div class="nav col-lg-2 col-lg-offset-6 col-xs-offset-0 col-sm-offset-3">
             <div class="lang">
               <span class="glyphicon glyphicon-align-justify icon" v-on:click="menu" id="icon"></span>
-              <a>中</a>
+              <a @click="changeType('zh')">中</a>
               <a>/</a>
-              <a>EN</a>
+              <a @click="changeType('en')">EN</a>
             </div>
           </div>
         </div>
@@ -34,22 +34,22 @@
               <div class="float_nav" v-if="float_nav_show">
                 <div class="float_item">
                   <router-link to="/series">
-                    <div class="item">产品</div>
+                    <div class="item">{{$t('nav.product')}}</div>
                   </router-link>
                   <router-link to="/projuct">
-                    <div class="item">项目</div>
+                    <div class="item">{{$t('nav.project')}}</div>
                   </router-link>
                   <router-link to="/dynamic">
-                    <div class="item">动态</div>
+                    <div class="item">{{$t('nav.moments')}}</div>
                   </router-link>
                   <router-link to="/dataRoot">
-                    <div class="item">资料</div>
+                    <div class="item">{{$t('nav.data')}}</div>
                   </router-link>
                   <router-link to="/contact">
-                    <div class="item">联络</div>
+                    <div class="item">{{$t('nav.contact')}}</div>
                   </router-link>
                   <router-link to="/about">
-                    <div class="item">我们</div>
+                    <div class="item">{{$t('nav.about')}}</div>
                   </router-link>
                 </div>
               </div>
@@ -108,6 +108,10 @@ export default {
     },
     float_navShow: function() {
       this.float_nav_show = !this.float_nav_show;
+    },
+    changeType(type){
+      localStorage.setItem('locale',type)
+      this.$i18n.locale = type;
     }
   },
   components: {

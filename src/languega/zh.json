@@ -1,0 +1,15 @@
+{
+    "nav" : {
+        "product":"产品",
+        "project":"项目",
+        "moments":"动态",
+        "data":"资料",
+        "contact":"联络",
+        "about":"我们"   
+       },
+    "footer" : {
+        "about":"关于我们",
+        "contact":"联络我们",
+        "join":"加入我们"
+    }
+  }

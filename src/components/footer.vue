@@ -5,13 +5,13 @@
         <div class="row">
           <div class="footer_item">
             <div>
-              <router-link to="/about">关于我们</router-link>
+              <router-link to="/about">{{$t('footer.about')}}</router-link>
             </div>
             <div>
-              <router-link to="/contact">联络我们</router-link>
+              <router-link to="/contact">{{$t('footer.contact')}}</router-link>
             </div>
             <div>
-              <router-link to="/contact">加入我们</router-link>
+              <router-link to="/contact">{{$t('footer.join')}}</router-link>
             </div>
             <div>
               <router-link to="#">info@ns-space.cn</router-link>

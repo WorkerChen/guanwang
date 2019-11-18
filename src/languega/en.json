@@ -1,0 +1,15 @@
+{
+    "nav" : {
+        "product":"Product",
+        "project":"Project",
+        "moments":"Journal",
+        "data":"Downloads",
+        "contact":"Contact",
+        "about":"About"   
+       },
+       "footer" : {
+           "about":"About us",
+           "contact":"Contact us",
+           "join":"Join us"
+       }
+  }

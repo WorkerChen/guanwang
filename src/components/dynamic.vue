@@ -3,27 +3,52 @@
     <el-row class="content">
       <NavComponent></NavComponent>
       <h1 class="detail_title">动态</h1>
-      <el-row :gutter="16" type="flex" class="show_detail">
-        <el-col :span="24">
+      <el-row :gutter="16" type="flex" class="show_detail" >
+        <el-col :span="24" v-for="item in list" v-bind:key="item.id">
+          <!-- <router-link to="/dynamic/dynDetail"> -->
+            <img v-bind:src="item.cover" alt @click="gotoDetail(item.id)"/>
+          <!-- </router-link> -->
+        </el-col>
+        <!-- <el-col :span="24">
           <router-link to="/dynamic/dynDetail">
             <img src="../../static/img/zhuan33001.jpg" alt />
           </router-link>
-        </el-col>
-        <el-col :span="24">
-          <router-link to="/dynamic/dynDetail">
-            <img src="../../static/img/zhuan33001.jpg" alt />
-          </router-link>
-        </el-col>
+        </el-col> -->
       </el-row>
     </el-row>
   </div>
 </template>
 <script>
 import NavComponent from "./Nav";
+import {requestMoments} from '../api/api'; 
 export default {
   name: "dynamic",
   components: {
     NavComponent
+  },
+  data(){
+    return {
+      count:0,
+      limit:10,
+      currentPage: 1,
+      list:[]
+    }
+  },
+  methods:{
+    getList(){
+      var allParams = '?page='+ this.currentPage + '&limit=' + this.limit;
+        requestMoments(allParams).then((res) => {
+          this.list=res.data.data;
+          this.count=res.data.count
+        });
+    },
+    gotoDetail(id){
+      console.log(id);
+      this.$router.push({ name: 'dynDetail',params:{id:id}});
+    }
+  },
+  mounted:function(){
+    this.getList();
   }
 };
 </script>

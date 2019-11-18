@@ -3,22 +3,23 @@
     <transition name="fade">
       <div class="nav_item" v-if="navShow">
         <router-link to="/series">
-          <div class="item">产品</div>
+          <div class="item">{{$t('nav.product')}}</div>
         </router-link>
         <router-link to="/projuct">
-          <div class="item">项目</div>
+          <div class="item">{{$t('nav.project')}}</div>
         </router-link>
         <router-link to="/dynamic">
-          <div class="item">动态</div>
+          <div class="item">{{$t('nav.moments')}}</div>
         </router-link>
         <router-link to="/dataRoot">
-          <div class="item">资料</div>
+          <div class="item">{{$t('nav.data')}}</div>
         </router-link>
         <router-link to="/contact">
-          <div class="item">联络</div>
+          <div class="item">{{$t('nav.contact')}}</div>
         </router-link>
         <router-link to="/about">
-          <div class="item">我们</div>
+          <div class="item">{{$t('nav.about')}}</div>
+          
         </router-link>
       </div>
     </transition>

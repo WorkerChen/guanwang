@@ -49,7 +49,7 @@ axios.interceptors.response.use(
 	})
 
 
-let hosturl ='http://192.168.0.106/HomePage/public/api'
+let hosturl ='http://111.230.135.20/api'
 
 export default hosturl
 
@@ -57,3 +57,7 @@ export default hosturl
 export const requestConfigs = params => { return axios.get(`${hosturl}/configs`, params).then(res => res.data) }//
 
 export const requestDocument = params => { return axios.get(`${hosturl}/document`+`${params}`).then(res => res.data) }//
+
+export const requestMoments = params => { return axios.get(`${hosturl}/moments`+`${params}`).then(res => res.data) }//
+
+export const requestMoment = params => { return axios.get(`${hosturl}/moment`+`${params}`).then(res => res.data) }//
