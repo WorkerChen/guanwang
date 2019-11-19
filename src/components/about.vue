@@ -9,8 +9,7 @@
       <el-row></el-row>
       <el-row>
         <el-col class="col_img">
-          
-          <div v-html='detail'></div>
+          <div v-html="detail"></div>
           <!-- <img src="../../static/img/box.jpg" alt /> -->
         </el-col>
       </el-row>
@@ -19,33 +18,33 @@
 </template>
 <script>
 import NavComponent from "./Nav";
-import {requestDocument} from '../api/api';
+import { requestDocument } from "../api/api";
 export default {
   name: "seriesDetail",
   components: {
     NavComponent
   },
-  data(){
+  data() {
     return {
-      detail:''
+      detail: ""
+    };
+  },
+  methods: {
+    getDocument() {
+      var allParams = "?code=about_cn";
+      requestDocument(allParams).then(res => {
+        console.log(res);
+        let data = res.data;
+        console.log(data);
+        if (data) {
+          this.detail = data.detail;
+        }
+      });
     }
   },
-  methods:{
-    getDocument(){
-      var allParams='?code=about_cn';
-      requestDocument(allParams).then((res) => {
-          console.log(allParams)
-          let data = res.data;
-           console.log(data)
-           if(data){
-             this.detail = data.detail;
-           }
-        });
-    }
-  },
-  mounted: function () {
-      this.getDocument();
-    }
+  mounted: function() {
+    this.getDocument();
+  }
 };
 </script>
 <style scoped>

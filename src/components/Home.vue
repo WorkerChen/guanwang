@@ -4,15 +4,9 @@
     <el-row>
       <NavComponent></NavComponent>
       <el-col :span="24">
-        <el-carousel class="banner" arrow="never" height="750px">
-          <el-carousel-item>
-            <img src="../../static/img/banner1.jpg" />
-          </el-carousel-item>
-          <el-carousel-item>
-            <img src="../../static/img/banner2.jpg" />
-          </el-carousel-item>
-          <el-carousel-item>
-            <img src="../../static/img/banner3.jpg" />
+        <el-carousel class="banner" arrow="never" height="750px" >
+          <el-carousel-item v-for="item in banner_herf">
+            <img :src="item.href" />
           </el-carousel-item>
         </el-carousel>
       </el-col>
@@ -106,11 +100,30 @@
 
 <script >
 import NavComponent from "./Nav";
+import { requestBanners } from "../api/api";
 export default {
   name: "Home",
-  methods: {},
+  data() {
+    return {
+      // Banner
+      banner_herf: []
+    };
+  },
+  methods: {
+    getBanners() {
+      // banner
+      var allParams = "?language=1&limit=10&page=1";
+      requestBanners(allParams).then(res => {
+        console.log(res.data.data);
+        this.banner_herf = res.data.data;
+      });
+    }
+  },
   components: {
     NavComponent
+  },
+  mounted() {
+    this.getBanners();
   }
 };
 </script>
@@ -145,7 +158,7 @@ export default {
 
 .img_pro {
   display: block;
-  clear: both;
+  padding: 0 !important;
 }
 .img_pro img {
   width: 100%;
@@ -235,7 +248,14 @@ a {
   height: 100%;
   clear: both;
 }
-
+.el-carousel__item {
+  width: 100%;
+  height: 100%;
+}
+.el-carousel__item img {
+  width: 100%;
+  height: 100%;
+}
 @media screen and (max-width: 1675px) and (min-width: 1920px) {
   .el-carousel__container {
     height: 800px;
