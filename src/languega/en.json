@@ -29,5 +29,8 @@
        },
        "moments":{
            "name":"Journal"
+       },
+       "data":{
+           "name":"Downloads"
        }
   }

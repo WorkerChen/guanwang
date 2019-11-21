@@ -71,3 +71,7 @@ export const requestTypes = params => { return axios.get(`${hosturl}/types` + `$
 export const requestType = params => { return axios.get(`${hosturl}/type` + `${params}`).then(res => res.data) }
 
 export const requestProduct = params => { return axios.get(`${hosturl}/product` + `${params}`).then(res => res.data) }
+
+export const requestDatas = params => { return axios.get(`${hosturl}/data/documents` + `${params}`).then(res => res.data) }
+
+export const requestData = params => { return axios.get(`${hosturl}/data/document` + `${params}`).then(res => res.data) }

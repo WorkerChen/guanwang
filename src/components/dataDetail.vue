@@ -2,10 +2,10 @@
   <div>
     <el-row class="content">
       <NavComponent></NavComponent>
-      <h1 class="detail_title">目录册</h1>
-      <el-row :gutter="16" type="flex" class="show_detail">
-        <el-col :span="8" class="data_img">
-          <div class="mask">
+      <h1 class="detail_title">{{title}}</h1>
+      <el-row :gutter="16" type="flex"  v-html="detail">
+        <!-- <el-col :span="8" class="data_img">
+          <div class="mask">class="show_detail"
             <div class="mask_text">123</div>
           </div>
           <img src="../../static/img/box.jpg" alt />
@@ -36,18 +36,44 @@
         </el-col>
         <el-col :span="8" class="data_img">
           <img src="../../static/img/box.jpg" alt />
-        </el-col>
+        </el-col> -->
       </el-row>
     </el-row>
   </div>
 </template>
 <script>
 import NavComponent from "./Nav";
+import {requestData} from '../api/api';
 export default {
   name: "seriesDetail",
   components: {
     NavComponent
-  }
+  },
+  data(){
+    return {
+      id:0,
+      title:'',
+      detail:'',
+    }
+  },
+  methods:{
+    getList(){
+      console.log(this.$route.params.id);
+      var allParams = '?id='+ this.$route.params.id;
+        requestData(allParams).then((res) => {
+          console.log(res)
+          this.title = res.data.title;
+          this.detail = res.data.detail;
+        });
+    },
+    // gotoDetail(id){
+    //   console.log(id);
+    //   this.$router.push({ name: 'dynDetail',params:{id:id}});
+    // }
+  },
+  mounted:function(){
+    this.getList();
+  },
 };
 </script>
 <style scoped>

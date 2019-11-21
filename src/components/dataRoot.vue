@@ -2,34 +2,14 @@
   <div>
     <el-row class="content">
       <NavComponent></NavComponent>
-      <h1 class="data_title">资料</h1>
+      <h1 class="data_title">{{$t('data.name')}}</h1>
       <el-row type="flex" :gutter="16" class="showImg">
-        <el-col :span="12" class="data_img">
-          <router-link to="/dataRoot/dataDetail">
+        <el-col :span="12" class="data_img" v-for="item in list" v-bind:key="item.id">
+          <router-link :to="{ name: 'DataDetail', params: { id: item.id }}">
             <div class="mask">
-              <div class="mask_text">123</div>
+              <div class="mask_text">{{item.title}}</div>
             </div>
-            <img src="../../static/img/box.jpg" alt />
-          </router-link>
-        </el-col>
-        <el-col :span="12" class="data_img">
-          <router-link to="/dataRoot/dataDetail">
-            <img src="../../static/img/box.jpg" alt />
-          </router-link>
-        </el-col>
-        <el-col :span="12" class="data_img">
-          <router-link to="/dataRoot/dataDetail">
-            <img src="../../static/img/box.jpg" alt />
-          </router-link>
-        </el-col>
-        <el-col :span="12" class="data_img">
-          <router-link to="/dataRoot/dataDetail">
-            <img src="../../static/img/box.jpg" alt />
-          </router-link>
-        </el-col>
-        <el-col :span="12" class="data_img">
-          <router-link to="/dataRoot/dataDetail">
-            <img src="../../static/img/box.jpg" alt />
+            <img v-bind:src="item.cover" alt />
           </router-link>
         </el-col>
       </el-row>
@@ -38,11 +18,43 @@
 </template>
 <script>
 import NavComponent from "./Nav";
+import {requestDatas} from '../api/api';
 export default {
   name: "seriesDetail",
   components: {
     NavComponent
-  }
+  },
+  data(){
+    return {
+      count:0,
+      limit:10,
+      currentPage: 1,
+      list:[]
+    }
+  },
+  methods:{
+    getList(){
+      var language = this.$i18n.locale=="zh"?"1":"2";
+      var allParams = '?page='+ this.currentPage + '&limit=' + this.limit+"&language="+language;
+        requestDatas(allParams).then((res) => {
+          this.list=res.data.data;
+          this.count=res.data.count
+        });
+    },
+    gotoDetail(id){
+      console.log(id);
+      this.$router.push({ name: 'dynDetail',params:{id:id}});
+    }
+  },
+  mounted:function(){
+    this.getList();
+  },
+  created() {
+    // 控制是否显示导航栏
+    this.$bus.on("ChangeLocation", val => {
+      this.getList();
+    });
+  },
 };
 </script>
 <style scoped>
