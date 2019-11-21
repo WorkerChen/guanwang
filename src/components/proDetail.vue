@@ -100,10 +100,26 @@
 </template>
 <script>
 import NavComponent from "./Nav";
+import {requestProduct} from '../api/api';
 export default {
   name: "proDetail",
   components: {
     NavComponent
+  },
+  methods:{
+    getProduct(){
+      console.log(this.$route.params.id);
+      var allParams = '?id='+ this.$route.params.id;
+        requestProduct(allParams).then((res) => {
+          console.log(res.data);
+          this.title = res.data.title;
+          this.detail = res.data.description;
+          this.list = res.data.products;
+        });
+    }
+  },
+  mounted:function(){
+    this.getProduct();
   }
 };
 </script>

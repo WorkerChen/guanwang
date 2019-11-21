@@ -112,6 +112,7 @@ export default {
     changeType(type){
       localStorage.setItem('locale',type)
       this.$i18n.locale = type;
+      this.$bus.emit("ChangeLocation",type);
     }
   },
   components: {

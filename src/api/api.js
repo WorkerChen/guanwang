@@ -65,3 +65,9 @@ export const requestMoments = params => { return axios.get(`${hosturl}/moments` 
 export const requestMoment = params => { return axios.get(`${hosturl}/moment` + `${params}`).then(res => res.data) } //
 
 export const requestBanners = params => { return axios.get(`${hosturl}/banners` + `${params}`).then(res => res.data) }
+
+export const requestTypes = params => { return axios.get(`${hosturl}/types` + `${params}`).then(res => res.data) }
+
+export const requestType = params => { return axios.get(`${hosturl}/type` + `${params}`).then(res => res.data) }
+
+export const requestProduct = params => { return axios.get(`${hosturl}/product` + `${params}`).then(res => res.data) }

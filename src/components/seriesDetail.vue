@@ -4,67 +4,63 @@
     <el-row class="content">
       <nav-component></nav-component>
       <el-row :span="24">
-        <h1>系列名</h1>
+        <h1>{{title}}</h1>
       </el-row>
 
-      <el-row class="text" :xs="24">
-        <p>独有的特色系列，从天然石材获取的灵感。</p>
-        <p>在纹理中洞见时间的沉积，没有开端，也没有终点。</p>
-        <p>在有迹可循的动向之中，或是停留，或是变化。</p>
-        <p>尘埃从别处破碎，又在此刻凝聚，我们探寻另一种存在。</p>
+      <!-- <el-row class="text" :xs="24" v-html="detail">
+        
+      </el-row> -->
+      <el-row v-html="detail">
+        <!-- <div ></div> -->
       </el-row>
 
       <el-row class="show_pic" type="flex" :gutter="16">
-        <el-col class="series_img" :span="8">
-          <router-link to="/proDetail">
+
+
+
+
+        <el-col class="series_img" :span="8" v-for="item in list" v-bind:key="item.id">
+          <router-link :to="{ name: 'proDetail', params: { id: item.id }}">
             <div class="mask">
-              <div class="mask_text">123</div>
+              <div class="mask_text">{{item.title}}</div>
             </div>
-            <img src="../../static/img/dingzhi1.jpg" alt />
-          </router-link>
+            <img v-bind:src="item.cover" alt  />
+             </router-link>
         </el-col>
-        <el-col :span="8" class="series_img">
-          <router-link to="/proDetail">
-            <div class="mask">
-              <div class="mask_text">123</div>
-            </div>
-            <img src="../../static/img/dingzhi1.jpg" alt />
-          </router-link>
-        </el-col>
-        <el-col :span="8" class="series_img">
-          <router-link to="/proDetail">
-            <div class="mask">
-              <div class="mask_text">123</div>
-            </div>
-            <img src="../../static/img/dingzhi1.jpg" alt />
-          </router-link>
-        </el-col>
-        <el-col :span="8" class="series_img">
-          <router-link to="/proDetail">
-            <div class="mask">
-              <div class="mask_text">123</div>
-            </div>
-            <img src="../../static/img/dingzhi1.jpg" alt />
-          </router-link>
-        </el-col>
-        <el-col :span="8" class="series_img">
-          <router-link to="/proDetail">
-            <div class="mask">
-              <div class="mask_text">123</div>
-            </div>
-            <img src="../../static/img/dingzhi1.jpg" alt />
-          </router-link>
-        </el-col>
+        
       </el-row>
     </el-row>
   </div>
 </template>
 <script>
 import NavComponent from "./Nav";
+import {requestType} from '../api/api';
 export default {
   name: "seriesDetail",
   components: {
     NavComponent
+  },
+  data(){
+    return {
+      title:'',
+      detail:'',
+      list:[]
+    }
+  },
+  methods:{
+    getType(){
+      console.log(this.$route.params.id);
+      var allParams = '?id='+ this.$route.params.id;
+        requestType(allParams).then((res) => {
+          console.log(res.data);
+          this.title = res.data.title;
+          this.detail = res.data.description;
+          this.list = res.data.products;
+        });
+    }
+  },
+  mounted:function(){
+    this.getType();
   }
 };
 </script>

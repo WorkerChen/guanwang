@@ -11,5 +11,23 @@
         "about":"关于我们",
         "contact":"联络我们",
         "join":"加入我们"
+    },
+    "contact" : {
+        "name" : "联络我们",
+        "join" : "咨询/加入我们/设计提案",
+        "buy" : "购买",
+        "media": "商务&媒体合作",
+        "wechat":"微信公众号",
+        "ins":"Instagram",
+        "weibo":"微博"
+    },
+    "product" : {
+        "name":"全系列产品"
+    },
+    "about":{
+        "name":"关于我们"
+    },
+    "moments":{
+        "name":"动态"
     }
   }

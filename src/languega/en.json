@@ -11,5 +11,23 @@
            "about":"About us",
            "contact":"Contact us",
            "join":"Join us"
+       },
+       "contact" : {
+           "name" : "Contact us",
+           "join" : "Inquiry/Join us/Design proposal",
+           "buy" : "Purchase",
+           "media": "Business & Press",
+           "wechat":"Wechat",
+           "ins":"Instagram",
+           "weibo":"Weibo"
+       },
+       "product" : {
+           "name":"All collections"
+       },
+       "about":{
+           "name":"About us"
+       },
+       "moments":{
+           "name":"Journal"
        }
   }

@@ -4,7 +4,7 @@
     <el-row class="content">
       <nav-component></nav-component>
       <el-row>
-        <h1 class="detail_title">关于我们</h1>
+        <h1 class="detail_title">{{$t('about.name')}}</h1>
       </el-row>
       <el-row></el-row>
       <el-row>
@@ -31,7 +31,8 @@ export default {
   },
   methods: {
     getDocument() {
-      var allParams = "?code=about_cn";
+      var language = this.$i18n.locale;
+      var allParams = language=="zh"?"?code=about_cn":"?code=about_en";
       requestDocument(allParams).then(res => {
         console.log(res);
         let data = res.data;
@@ -40,11 +41,18 @@ export default {
           this.detail = data.detail;
         }
       });
-    }
+    },
+    
   },
   mounted: function() {
     this.getDocument();
-  }
+  },
+  created() {
+    // 控制是否显示导航栏
+    this.$bus.on("ChangeLocation", val => {
+      this.getDocument();
+    });
+  },
 };
 </script>
 <style scoped>

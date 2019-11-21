@@ -4,24 +4,24 @@
     <el-row class="content">
       <nav-component></nav-component>
       <el-row>
-        <h1 class="detail_title">联络我们</h1>
+        <h1 class="detail_title">{{$t('contact.name')}}</h1>
       </el-row>
       <el-row class="join">
-        <h1 class="join_title">咨询/加入我们/设计提案</h1>
+        <h1 class="join_title">{{$t('contact.join')}}</h1>
         <el-row class="contact_text">
           <el-col class="item" :span="24">邮箱：{{email}}</el-col>
           <el-col class="item" :span="24">电话：{{phone}}</el-col>
         </el-row>
       </el-row>
       <el-row class="join">
-        <h1 class="join_title">购买</h1>
+        <h1 class="join_title">{{$t('contact.buy')}}</h1>
         <el-row class="contact_text">
           <el-col class="item" :span="24">零售电话:{{buy}}</el-col>
           <el-col class="item" :span="24">工程购买:{{eng_buy}}</el-col>
         </el-row>
       </el-row>
       <el-row class="join">
-        <h1 class="join_title">合作</h1>
+        <h1 class="join_title">{{$t('contact.media')}}</h1>
         <el-row class="contact_text">
           <el-col class="item" :span="24">商务合作:{{bussiness}}</el-col>
           <el-col class="item" :span="24">媒体合作:{{media}}</el-col>
@@ -30,13 +30,13 @@
       <el-row class="join">
         <el-row class="way">
           <el-col :span="8" :xs="24">
-            <i class="iconfont icon-weixin icon"></i>微信公众号
+            <i class="iconfont icon-weixin icon"></i>{{$t('contact.wechat')}}
           </el-col>
           <el-col :span="8" :xs="24">
-            <i class="iconfont icon-ins icon"></i>Instagram
+            <i class="iconfont icon-ins icon"></i>{{$t('contact.ins')}}
           </el-col>
           <el-col :span="8" :xs="24">
-            <i class="iconfont icon-weibo icon"></i>微博
+            <i class="iconfont icon-weibo icon"></i>{{$t('contact.weibo')}}
           </el-col>
         </el-row>
       </el-row>

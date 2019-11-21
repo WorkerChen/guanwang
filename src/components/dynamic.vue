@@ -2,7 +2,7 @@
   <div>
     <el-row class="content">
       <NavComponent></NavComponent>
-      <h1 class="detail_title">动态</h1>
+      <h1 class="detail_title">{{$t('moments.name')}}</h1>
       <el-row :gutter="16" type="flex" class="show_detail" >
         <el-col :span="24" v-for="item in list" v-bind:key="item.id">
           <!-- <router-link to="/dynamic/dynDetail"> -->
@@ -36,7 +36,8 @@ export default {
   },
   methods:{
     getList(){
-      var allParams = '?page='+ this.currentPage + '&limit=' + this.limit;
+      var language = this.$i18n.locale=="zh"?"1":"2";
+      var allParams = '?page='+ this.currentPage + '&limit=' + this.limit+"&language="+language;
         requestMoments(allParams).then((res) => {
           this.list=res.data.data;
           this.count=res.data.count
@@ -49,7 +50,13 @@ export default {
   },
   mounted:function(){
     this.getList();
-  }
+  },
+  created() {
+    // 控制是否显示导航栏
+    this.$bus.on("ChangeLocation", val => {
+      this.getList();
+    });
+  },
 };
 </script>
 <style scoped>

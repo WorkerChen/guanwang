@@ -2,55 +2,67 @@
   <div>
     <el-row class="content">
       <nav-component></nav-component>
-      <el-row class="series_title">全系列产品</el-row>
+      <el-row class="series_title">{{$t('product.name')}}</el-row>
       <el-row class="series_pic" type="flex" justify="center" :gutter="10">
-        <el-col class="series_img" :span="12">
-          <router-link to="/series/SeriesType">
+        <el-col class="series_img" :span="12" v-for="item in list" v-bind:key="item.id">
+          <router-link :to="{ name: 'SeriesType', params: { id: item.id }}">
             <div class="mask">
-              <div class="mask_text">123</div>
+              <div class="mask_text">{{item.title}}</div>
             </div>
-
-            <img src="../../static/img/series_one.jpg" alt />
-          </router-link>
+            <img v-bind:src="item.image" alt  />
+             </router-link>
         </el-col>
-        <el-col :span="12" class="series_img">
-          <router-link to="/series/SeriesType">
-            <div class="mask">
-              <div class="mask_text">123</div>
-            </div>
-
-            <img src="../../static/img/series_two.jpg" alt />
-          </router-link>
-        </el-col>
-        <el-col :span="12" class="series_img">
-          <router-link to="/series/SeriesType">
-            <div class="mask">
-              <div class="mask_text">123</div>
-            </div>
-
-            <img src="../../static/img/series_three.jpg" alt />
-          </router-link>
-        </el-col>
-        <el-col :span="12" class="series_img">
+        <!-- <el-col :span="12" class="series_img">
           <router-link to="/series/SeriesType">
             <div class="mask">
               <div class="mask_text">123</div>
             </div>
             <img src="../../static/img/series_four.jpg" alt />
           </router-link>
-        </el-col>
+        </el-col> -->
       </el-row>
     </el-row>
   </div>
 </template>
 <script>
 import NavComponent from "./Nav";
-
+import {requestTypes} from '../api/api'; 
 export default {
   name: "Series",
 
   components: {
     NavComponent
+  },
+  data(){
+    return {
+      count:0,
+      limit:10,
+      currentPage: 1,
+      list:[]
+    }
+  },
+  methods:{
+    getList(){
+      var language = this.$i18n.locale=="zh"?"1":"2";
+      var allParams = '?page='+ this.currentPage + '&limit=' + this.limit+"&language="+language;
+        requestTypes(allParams).then((res) => {
+          this.list=res.data.data;
+          this.count=res.data.count
+        });
+    },
+    gotoDetail(id){
+      console.log(id);
+      this.$router.push({ name: 'SeriesType',params:{id:id}});
+    }
+  },
+  created() {
+    // 控制是否显示导航栏
+    this.$bus.on("ChangeLocation", val => {
+      this.getList();
+    });
+  },
+  mounted:function(){
+    this.getList();
   }
 };
 </script>
