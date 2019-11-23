@@ -71,6 +71,7 @@ export default {};
   font-size: 18px !important;
   color: #e1dedb;
   width: 100%;
+  bottom: 0;
 }
 
 .router-link-active {

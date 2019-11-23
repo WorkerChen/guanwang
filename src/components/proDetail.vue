@@ -6,37 +6,40 @@
       <el-row>
         <!-- 产品标题 -->
         <el-col class="content_header">
-          <el-col class="pro_title" :span="24">灰 GY1001</el-col>
-          <el-col class="pro_type" :span="24">灯具</el-col>
+          <el-col class="pro_title" :span="24">{{title}}</el-col>
+          <el-col class="pro_type" :span="24">{{type}}</el-col>
         </el-col>
         <!-- 产品内容 -->
         <el-col>
           <el-col :span="8" class="pro_img" :xs="24">
-            <img src="../../static/img/pro_one.jpg" alt />
+            <img v-bind:src="cover" alt />
           </el-col>
           <el-col :span="12" :offset="4" class="pro_left" :xs="{span:24,offset:0}">
             <el-row class="item_one">
               <h1 class="item_title">主要材料</h1>
-              <el-col class="item">混泥土、大理石</el-col>
+              <el-col class="item">{{material}}</el-col>
             </el-row>
 
             <el-row class="item_one">
               <h1 class="item_title">规格</h1>
-              <el-col class="item" :span="9" :md="24" :sm="24" :xs="24">
-                <el-col class="item">尺寸：600 x 600 mm</el-col>
-                <el-col class="item">重量：</el-col>
-                <el-col class="item">光源：</el-col>
-                <el-col class="item">电压：</el-col>
+              <el-col class="text" :span="18">
+                <el-col v-for="item in categories" class="item">
+                  <div class="title">{{item.title}}:</div>
+                  <div class="details">
+                    <span>123123</span>
+                    <span>123123</span>
+                  </div>
+                </el-col>
               </el-col>
               <el-col
                 class="pro_img"
-                :span="7"
+                :span="6"
                 :offset="8"
                 :md="{offset:0}"
                 :sm="{offset:0}"
                 :xs="{offset:0}"
               >
-                <img src="../../static/img/box.jpg" alt />
+                <img v-bind:src="categories_cover" alt />
               </el-col>
             </el-row>
 
@@ -46,52 +49,38 @@
 
             <el-row class="item_one">
               <h1 class="item_title">使用区域</h1>
-              <el-col class="item">室内：</el-col>
-              <el-col class="item">室外：</el-col>
+              <el-col class="areas" v-for="item in areas">
+                <div class="areas_title">{{item.title}}：</div>
+                <div class="araes_img">
+                  <img v-bind:src="item.icon" alt />
+                </div>
+              </el-col>
             </el-row>
 
             <el-row class="item_one">
               <h1 class="item_title">类似产品</h1>
               <el-row :gutter="5" class="pro_like" type="flex">
-                <el-col :span="4" :xs="8">
-                  <img src="../../static/img/pro_like.jpg" alt />
-                </el-col>
-                <el-col :span="4" :xs="8">
-                  <img src="../../static/img/pro_like.jpg" alt />
-                </el-col>
-                <el-col :span="4" :xs="8">
-                  <img src="../../static/img/pro_like.jpg" alt />
-                </el-col>
-                <el-col :span="4" :xs="8">
-                  <img src="../../static/img/pro_like.jpg" alt />
-                </el-col>
-                <el-col :span="4" :xs="8">
-                  <img src="../../static/img/pro_like.jpg" alt />
-                </el-col>
-                <el-col :span="4" :xs="8">
-                  <img src="../../static/img/pro_like.jpg" alt />
+                <el-col :span="4" :xs="8" v-for="item in proLink">
+                  <div class="proLink">
+                    <img v-bind:src="item" alt />
+                  </div>
                 </el-col>
               </el-row>
             </el-row>
 
             <el-row class="item_one">
-              <router-link to="#" class="pro_down">下载图片</router-link>
-              <router-link to="#" class="pro_down">下载技术参数表</router-link>
+              <a :href="cover" class="pro_down">下载图片</a>
+              <a :href="parameter" class="pro_down">下载技术参数表</a>
               <el-col class="pro_text">
                 对于价格、可用性、起订量、货期和销售条款等请
-                <router-link to="#" class="pro_link">联络我们</router-link>
+                <router-link to="/contact" class="pro_link">联络我们</router-link>
               </el-col>
             </el-row>
           </el-col>
         </el-col>
         <el-col class="pro_pic">
-          <el-col>
-            <img src="../../static/img/pic.jpg" alt />
-          </el-col>
-        </el-col>
-        <el-col class="pro_pic">
-          <el-col>
-            <img src="../../static/img/pic.jpg" alt />
+          <el-col v-for="item in image">
+            <img v-bind:src="item.href" alt />
           </el-col>
         </el-col>
       </el-row>
@@ -100,25 +89,63 @@
 </template>
 <script>
 import NavComponent from "./Nav";
-import {requestProduct} from '../api/api';
+import { requestProduct } from "../api/api";
+import { requestType } from "../api/api";
+
 export default {
   name: "proDetail",
+  data() {
+    return {
+      title: "暂无数据",
+      detail: "暂无数据",
+      image: [],
+      type: "",
+      cover: "",
+      material: "",
+      areas: [],
+      categories: [],
+      categories_cover: "",
+      parameter: "",
+      proLink: []
+    };
+  },
   components: {
     NavComponent
   },
-  methods:{
-    getProduct(){
-      console.log(this.$route.params.id);
-      var allParams = '?id='+ this.$route.params.id;
-        requestProduct(allParams).then((res) => {
-          console.log(res.data);
-          this.title = res.data.title;
-          this.detail = res.data.description;
-          this.list = res.data.products;
+  methods: {
+    getProduct() {
+      var allParams = "?id=" + this.$route.params.id;
+      requestProduct(allParams).then(res => {
+        this.title = res.data.title;
+        this.detail = res.data.description;
+        this.image = res.data.pictures;
+        this.cover = res.data.cover;
+        this.type = res.data.type.title;
+        this.material = res.data.material;
+        for (var i = 0; i < res.data.areas.length; i++) {
+          this.areas.push({
+            title: res.data.areas[i].title,
+            icon: res.data.areas[i].icon
+          });
+        }
+        this.categories = res.data.categories;
+        this.categories_cover = res.data.category_cover;
+        this.parameter = res.data.parameter;
+        console.log(res.data.type_id);
+        var allParams2 = "?id=" + res.data.type_id;
+        requestType(allParams2).then(res => {
+          for (var i = 0; i < 7; i++) {
+            if (res.data.products[i].id != this.$route.params.id) {
+              if (res.data.products[i].cover != "") {
+                this.proLink.push(res.data.products[i].cover);
+              }
+            }
+          }
         });
+      });
     }
   },
-  mounted:function(){
+  mounted: function() {
     this.getProduct();
   }
 };
@@ -148,6 +175,7 @@ export default {
   color: #868379;
   font-weight: 600;
 }
+
 .pro_img img {
   width: 100%;
 }
@@ -157,7 +185,8 @@ export default {
 }
 .pro_pic img {
   width: 100%;
-  height: 100%;
+
+  height: 500px;
 }
 
 .content .pro_left {
@@ -176,6 +205,9 @@ export default {
   padding-bottom: 2vw;
   font-weight: bolder;
 }
+.item_one::after {
+  clear: both;
+}
 
 .content .pro_left .item_one .item {
   font-size: 1vw;
@@ -193,8 +225,53 @@ export default {
 .pro_link {
   color: #fec402;
 }
-
+.areas {
+  display: inline-block;
+  margin-right: 40px;
+  width: 176px;
+  height: 112px;
+}
+.araes_img {
+  margin-top: 20px;
+  width: 176px;
+  height: 112px;
+}
+.araes_img img {
+  width: 100%;
+  height: 100%;
+}
+.text {
+  float: left;
+}
+.title {
+  float: left;
+}
+.title::after {
+  content: "";
+  clear: both;
+}
+.details {
+  float: left;
+}
+.details::after {
+  content: "";
+  clear: both;
+}
+.details span {
+  display: block;
+}
+.proLink {
+  width: 80px;
+  height: 80px;
+}
+.proLink img {
+  width: 100%;
+  height: 100%;
+}
 @media screen and (max-width: 778px) {
+  .content {
+    padding: 0;
+  }
   .pro_down,
   .pro_text {
     line-height: 5vw;
@@ -210,6 +287,16 @@ export default {
   }
   .pro_like img {
     margin-bottom: 10px;
+  }
+  .areas {
+    display: block;
+    height: 100%;
+  }
+  .araes_img {
+    margin: 0;
+  }
+  .pro_img {
+    float: none;
   }
 }
 </style>

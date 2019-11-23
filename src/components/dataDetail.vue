@@ -3,77 +3,51 @@
     <el-row class="content">
       <NavComponent></NavComponent>
       <h1 class="detail_title">{{title}}</h1>
-      <el-row :gutter="16" type="flex"  v-html="detail">
-        <!-- <el-col :span="8" class="data_img">
-          <div class="mask">class="show_detail"
+      <el-row :gutter="16" type="flex">
+        <el-col :span="8" class="data_img">
+          <div class="mask">
             <div class="mask_text">123</div>
           </div>
-          <img src="../../static/img/box.jpg" alt />
+          <img v-bind:src="cover" alt />
         </el-col>
-        <el-col :span="8" class="data_img">
-          <img src="../../static/img/box.jpg" alt />
-        </el-col>
-        <el-col :span="8" class="data_img">
-          <img src="../../static/img/box.jpg" alt />
-        </el-col>
-        <el-col :span="8" class="data_img">
-          <img src="../../static/img/box.jpg" alt />
-        </el-col>
-        <el-col :span="8" class="data_img">
-          <img src="../../static/img/box.jpg" alt />
-        </el-col>
-        <el-col :span="8" class="data_img">
-          <img src="../../static/img/box.jpg" alt />
-        </el-col>
-        <el-col :span="8" class="data_img">
-          <img src="../../static/img/box.jpg" alt />
-        </el-col>
-        <el-col :span="8" class="data_img">
-          <img src="../../static/img/box.jpg" alt />
-        </el-col>
-        <el-col :span="8" class="data_img">
-          <img src="../../static/img/box.jpg" alt />
-        </el-col>
-        <el-col :span="8" class="data_img">
-          <img src="../../static/img/box.jpg" alt />
-        </el-col> -->
       </el-row>
     </el-row>
   </div>
 </template>
 <script>
 import NavComponent from "./Nav";
-import {requestData} from '../api/api';
+import { requestData } from "../api/api";
 export default {
   name: "seriesDetail",
   components: {
     NavComponent
   },
-  data(){
+  data() {
     return {
-      id:0,
-      title:'',
-      detail:'',
-    }
+      id: 0,
+      title: "",
+      detail: ""
+    };
   },
-  methods:{
-    getList(){
+  methods: {
+    getList() {
       console.log(this.$route.params.id);
-      var allParams = '?id='+ this.$route.params.id;
-        requestData(allParams).then((res) => {
-          console.log(res)
-          this.title = res.data.title;
-          this.detail = res.data.detail;
-        });
-    },
+      var allParams = "?id=" + this.$route.params.id;
+      requestData(allParams).then(res => {
+        console.log(res);
+        this.title = res.data.title;
+        this.detail = res.data.detail;
+        this.cover = res.data.cover;
+      });
+    }
     // gotoDetail(id){
     //   console.log(id);
     //   this.$router.push({ name: 'dynDetail',params:{id:id}});
     // }
   },
-  mounted:function(){
+  mounted: function() {
     this.getList();
-  },
+  }
 };
 </script>
 <style scoped>
@@ -84,25 +58,20 @@ export default {
 .content .detail_title {
   color: #a19d91;
   font-size: 2vw;
-  padding: 6vw 0;
+  padding: 4vw 0;
   text-align: left;
   font-weight: bolder;
 }
 .content .show_detail {
   flex-wrap: wrap;
 }
-.content .show_detail img {
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-}
+
 .mask {
   position: absolute;
   top: 0;
   left: 0;
-  border: 7.5px solid #ffffff;
   border-top: 0;
-  border-bottom: 1vw solid #ffffff;
+  padding: 0 !important;
   right: 0;
   bottom: 0;
   background: #000000;
@@ -124,7 +93,15 @@ export default {
   transition: all 1.5s ease-in-out;
 }
 .data_img {
+  width: 400px;
+  height: 400px;
   position: relative;
-  padding-bottom: 1vw;
+  overflow: hidden;
+  padding: 0 !important;
+  margin-bottom: 1vw;
+}
+.data_img img {
+  width: 100%;
+  height: 100%;
 }
 </style>

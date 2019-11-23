@@ -75,3 +75,7 @@ export const requestProduct = params => { return axios.get(`${hosturl}/product` 
 export const requestDatas = params => { return axios.get(`${hosturl}/data/documents` + `${params}`).then(res => res.data) }
 
 export const requestData = params => { return axios.get(`${hosturl}/data/document` + `${params}`).then(res => res.data) }
+
+export const requesProject = params => { return axios.get(`${hosturl}/projects` + `${params}`).then(res => res.data) }
+
+export const requestProject = params => { return axios.get(`${hosturl}/project` + `${params}`).then(res => res.data) }

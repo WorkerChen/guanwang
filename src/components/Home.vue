@@ -4,7 +4,7 @@
     <el-row>
       <NavComponent></NavComponent>
       <el-col :span="24">
-        <el-carousel class="banner" arrow="never" height="750px" >
+        <el-carousel class="banner" arrow="never" height="750px">
           <el-carousel-item v-for="item in banner_herf">
             <img :src="item.href" />
           </el-carousel-item>
@@ -136,6 +136,7 @@ export default {
 }
 .banner {
   margin-bottom: 182px;
+  clear: both;
 }
 .el-carousel__container {
   height: 750px;

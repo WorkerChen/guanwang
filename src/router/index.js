@@ -11,6 +11,9 @@ import seriesDetail from '@/components/seriesDetail'
 import DataRoot from '@/components/dataRoot'
 import DataDetail from '@/components/dataDetail'
 import Projuct from '@/components/projuct'
+
+import ProjectDetail from '@/components/projectDetail'
+
 import dynamic from '@/components/dynamic'
 import dynDetail from '@/components/dynDetail'
 
@@ -45,6 +48,11 @@ export default new Router({
         path: '/projuct',
         name: 'Projuct',
         component: Projuct
+    }, {
+        path: '/projuct/ProjectDetail',
+        name: 'ProjectDetail',
+        component: ProjectDetail
+
     }, {
         path: '/dataRoot',
         name: 'DataRoot',

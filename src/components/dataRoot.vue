@@ -5,7 +5,7 @@
       <h1 class="data_title">{{$t('data.name')}}</h1>
       <el-row type="flex" :gutter="16" class="showImg">
         <el-col :span="12" class="data_img" v-for="item in list" v-bind:key="item.id">
-          <router-link :to="{ name: 'DataDetail', params: { id: item.id }}">
+          <router-link :to="{ name: 'DataDetail', params: { id: item.id }}" class="link_img">
             <div class="mask">
               <div class="mask_text">{{item.title}}</div>
             </div>
@@ -18,35 +18,41 @@
 </template>
 <script>
 import NavComponent from "./Nav";
-import {requestDatas} from '../api/api';
+import { requestDatas } from "../api/api";
 export default {
   name: "seriesDetail",
   components: {
     NavComponent
   },
-  data(){
+  data() {
     return {
-      count:0,
-      limit:10,
+      count: 0,
+      limit: 10,
       currentPage: 1,
-      list:[]
-    }
+      list: []
+    };
   },
-  methods:{
-    getList(){
-      var language = this.$i18n.locale=="zh"?"1":"2";
-      var allParams = '?page='+ this.currentPage + '&limit=' + this.limit+"&language="+language;
-        requestDatas(allParams).then((res) => {
-          this.list=res.data.data;
-          this.count=res.data.count
-        });
+  methods: {
+    getList() {
+      var language = this.$i18n.locale == "zh" ? "1" : "2";
+      var allParams =
+        "?page=" +
+        this.currentPage +
+        "&limit=" +
+        this.limit +
+        "&language=" +
+        language;
+      requestDatas(allParams).then(res => {
+        this.list = res.data.data;
+        this.count = res.data.count;
+      });
     },
-    gotoDetail(id){
+    gotoDetail(id) {
       console.log(id);
-      this.$router.push({ name: 'dynDetail',params:{id:id}});
+      this.$router.push({ name: "dynDetail", params: { id: id } });
     }
   },
-  mounted:function(){
+  mounted: function() {
     this.getList();
   },
   created() {
@@ -54,7 +60,7 @@ export default {
     this.$bus.on("ChangeLocation", val => {
       this.getList();
     });
-  },
+  }
 };
 </script>
 <style scoped>
@@ -91,6 +97,10 @@ export default {
   width: 100%;
   height: 100%;
 }
+.link_img {
+  width: 100%;
+  height: 100%;
+}
 .mask_text {
   color: #ffffff;
   position: absolute;
@@ -107,6 +117,7 @@ export default {
 .data_img {
   position: relative;
 }
+
 @media screen and (max-width: 778px) {
   .content .data_title {
     font-size: 20px;

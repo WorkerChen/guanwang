@@ -9,57 +9,57 @@
 
       <!-- <el-row class="text" :xs="24" v-html="detail">
         
-      </el-row> -->
-      <el-row v-html="detail">
+      </el-row>-->
+      <el-row v-html="detail" class="type_detail">
         <!-- <div ></div> -->
       </el-row>
 
       <el-row class="show_pic" type="flex" :gutter="16">
-
-
-
-
         <el-col class="series_img" :span="8" v-for="item in list" v-bind:key="item.id">
-          <router-link :to="{ name: 'proDetail', params: { id: item.id }}">
+          <router-link
+            :to="{ name: 'proDetail', params: { id: item.id,title ,Did}}"
+            class="link_img"
+          >
             <div class="mask">
               <div class="mask_text">{{item.title}}</div>
             </div>
-            <img v-bind:src="item.cover" alt  />
-             </router-link>
+            <img v-bind:src="item.cover" alt />
+          </router-link>
         </el-col>
-        
       </el-row>
     </el-row>
   </div>
 </template>
 <script>
 import NavComponent from "./Nav";
-import {requestType} from '../api/api';
+import { requestType } from "../api/api";
 export default {
   name: "seriesDetail",
   components: {
     NavComponent
   },
-  data(){
+  data() {
     return {
-      title:'',
-      detail:'',
-      list:[]
-    }
+      title: "",
+      detail: "",
+      list: [],
+      Did: ""
+    };
   },
-  methods:{
-    getType(){
+  methods: {
+    getType() {
       console.log(this.$route.params.id);
-      var allParams = '?id='+ this.$route.params.id;
-        requestType(allParams).then((res) => {
-          console.log(res.data);
-          this.title = res.data.title;
-          this.detail = res.data.description;
-          this.list = res.data.products;
-        });
+      var allParams = "?id=" + this.$route.params.id;
+      this.Did = this.$route.params.id;
+      requestType(allParams).then(res => {
+        console.log(res.data);
+        this.title = res.data.title;
+        this.detail = res.data.description;
+        this.list = res.data.products;
+      });
     }
   },
-  mounted:function(){
+  mounted: function() {
     this.getType();
   }
 };
@@ -102,6 +102,12 @@ export default {
   color: #a19d91;
   font-weight: bolder;
 }
+.content .type_detail {
+  padding: 40px 0;
+  padding-left: 255px;
+  line-height: 40px;
+  color: #a19d91;
+}
 .content .text {
   padding: 0 12vw 3vw 12vw;
 }
@@ -119,6 +125,10 @@ export default {
   position: relative;
 }
 img {
+  width: 100%;
+  height: 100%;
+}
+.link_img {
   width: 100%;
   height: 100%;
 }
