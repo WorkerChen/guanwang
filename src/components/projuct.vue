@@ -1,8 +1,17 @@
 <template name="component-name">
   <div>
     <nav-component></nav-component>
-
-    <div class="container">
+    <div class="content">
+      <h1 class="pro_title">项目</h1>
+      <div class="pro_item">
+        <div class="item" v-for="item in list" :key="item.id">
+          <router-link :to="{name: 'ProjectDetail', params: { id: item.id }}" class="img_link">
+            <img v-bind:src="item.cover" />
+          </router-link>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="container">
       <div class="row">
         <h1 class="detail_title">项目</h1>
       </div>
@@ -13,7 +22,7 @@
           </router-link>
         </div>
       </div>
-    </div>
+    </div>-->
     <!-- <el-row class="content">
       <NavComponent></NavComponent>
       <h1 class="detail_title">项目</h1>
@@ -78,35 +87,29 @@ export default {
   }
 };
 </script>
-<style scoped>
-.detail_title {
-  color: #a19d91;
-  font-size: 3vw;
-  padding: 3vw;
-  margin-top: 12px;
-  text-align: center;
-  font-weight: bolder;
-}
-
-.show_detail {
-  flex-wrap: wrap;
-}
-.img_link {
-  height: 600px;
-}
-.img_link img {
-  padding-bottom: 4vw;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-}
-@media screen and (max-width: 778px) {
-  .detail_title {
-    font-size: 20px;
-    padding: 20px;
+<style scoped lang="less">
+.content {
+  padding: 0 15rem;
+  margin-top: 5.1rem;
+  .pro_title {
+    width: 100%;
+    text-align: center;
+    font-size: 2.6rem;
+    color: #86837a;
+    font-weight: bolder;
   }
-  .img_link {
-    height: 300px;
+  .pro_item {
+    margin-top: 7rem;
+    width: 100%;
+    .item {
+      width: 100%;
+      height: 28rem;
+      margin-bottom: 1.1rem;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
 }
 </style>

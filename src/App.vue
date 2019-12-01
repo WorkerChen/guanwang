@@ -18,7 +18,24 @@ export default {
     headerComponent,
     footerComponent
   },
-  methods: {}
+  methods: {
+    fun(doc, win) {
+      var docEl = doc.documentElement,
+        resizeEvt =
+          "orientationchange" in window ? "orientationchange" : "resize",
+        recalc = function() {
+          var clientWidth = docEl.clientWidth;
+          if (!clientWidth) return;
+          docEl.style.fontSize = 20 * (clientWidth / 1920) + "px";
+        };
+      if (!doc.addEventListener) return;
+      win.addEventListener(resizeEvt, recalc, false);
+      doc.addEventListener("DOMContentLoaded", recalc, false);
+    }
+  },
+  mounted() {
+    this.fun(document, window);
+  }
 };
 </script>
 
@@ -32,45 +49,6 @@ a {
 #app {
   font-family: "huipu", "huipu2", "huipu3", "huipu4", "huipu5";
   text-align: left;
-  color: #2c3e50;
   overflow: hidden;
-}
-body,
-p,
-ul,
-li,
-ol,
-dl,
-dd,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-td,
-input,
-textarea,
-select,
-option {
-  margin: 0;
-  padding: 0;
-}
-
-ul,
-ol,
-li {
-  list-style: none;
-}
-a {
-  text-decoration: none;
-  display: block;
-}
-img {
-  border: none;
-  display: block;
-}
-.router-link-active {
-  text-decoration: none;
 }
 </style>

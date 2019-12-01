@@ -1,6 +1,21 @@
 <template>
   <div>
-    <el-row class="content">
+    <nav-component></nav-component>
+
+    <div class="content">
+      <h1 class="series_title">全系列产品</h1>
+      <div class="series_item">
+        <div class="item" v-for="item in list" v-bind:key="item.id">
+          <router-link :to="{ name: 'SeriesType', params: { id: item.id }}">
+            <div class="mask">
+              <div class="mask_text">{{item.title}}</div>
+            </div>
+            <img v-bind:src="item.image" alt />
+          </router-link>
+        </div>
+      </div>
+    </div>
+    <!-- <el-row class="content">
       <nav-component></nav-component>
       <el-row class="series_title">{{$t('product.name')}}</el-row>
       <el-row class="series_pic" type="flex" justify="center" :gutter="10">
@@ -9,50 +24,49 @@
             <div class="mask">
               <div class="mask_text">{{item.title}}</div>
             </div>
-            <img v-bind:src="item.image" alt  />
-             </router-link>
-        </el-col>
-        <!-- <el-col :span="12" class="series_img">
-          <router-link to="/series/SeriesType">
-            <div class="mask">
-              <div class="mask_text">123</div>
-            </div>
-            <img src="../../static/img/series_four.jpg" alt />
+            <img v-bind:src="item.image" alt />
           </router-link>
-        </el-col> -->
+        </el-col>
       </el-row>
-    </el-row>
+    </el-row>-->
   </div>
 </template>
 <script>
 import NavComponent from "./Nav";
-import {requestTypes} from '../api/api'; 
+import { requestTypes } from "../api/api";
 export default {
   name: "Series",
 
   components: {
     NavComponent
   },
-  data(){
+  data() {
     return {
-      count:0,
-      limit:10,
+      count: 0,
+      limit: 10,
       currentPage: 1,
-      list:[]
-    }
+      list: []
+    };
   },
-  methods:{
-    getList(){
-      var language = this.$i18n.locale=="zh"?"1":"2";
-      var allParams = '?page='+ this.currentPage + '&limit=' + this.limit+"&language="+language;
-        requestTypes(allParams).then((res) => {
-          this.list=res.data.data;
-          this.count=res.data.count
-        });
+  methods: {
+    getList() {
+      var language = this.$i18n.locale == "zh" ? "1" : "2";
+      var allParams =
+        "?page=" +
+        this.currentPage +
+        "&limit=" +
+        this.limit +
+        "&language=" +
+        language;
+      requestTypes(allParams).then(res => {
+        this.list = res.data.data;
+        this.count = res.data.count;
+        console.log(this.list);
+      });
     },
-    gotoDetail(id){
+    gotoDetail(id) {
       console.log(id);
-      this.$router.push({ name: 'SeriesType',params:{id:id}});
+      this.$router.push({ name: "SeriesType", params: { id: id } });
     }
   },
   created() {
@@ -61,66 +75,73 @@ export default {
       this.getList();
     });
   },
-  mounted:function(){
+  mounted: function() {
     this.getList();
   }
 };
 </script>
-<style scoped>
-.mask {
-  position: absolute;
-  top: 0;
-  left: 0;
-  border: 7.5px solid #ffffff;
-  border-top: 0;
-  border-bottom: 0;
-  right: 0;
-  bottom: 0;
-  background: #000000;
-  opacity: 0;
-  width: 100%;
-  height: 100%;
-}
-.mask_text {
-  color: #ffffff;
-  position: absolute;
-  font-size: 3vw;
-  left: 50%;
-  top: 50%;
-  transform: translateX(-50%) translateY(-50%);
-}
-.series_img:hover .mask {
-  opacity: 0.5;
-  transition: all 1.5s ease-in-out;
-}
+<style scoped lang="less">
 .content {
-  padding: 0vw 16vw;
-  margin-top: 0;
-}
-.content .series_title {
-  text-align: center;
-  font-size: 3vw;
-  font-weight: bolder;
-  color: #86837a;
-  padding: 3vw 0;
-}
-.series_pic {
-  flex-wrap: wrap;
-}
-.series_img {
-  position: relative;
-  margin-bottom: 1vw;
-}
+  width: 96rem;
+  padding: 0 15rem;
+  margin-top: 5.1rem;
+  .series_title {
+    width: 100%;
+    text-align: center;
+    color: #86837a;
+    font-size: 2.6rem;
+    font-weight: bold;
+  }
+  .series_item {
+    margin-top: 5rem;
+    .item {
+      display: inline-block;
+      width: 32rem;
+      height: 28rem;
+      margin-right: 1rem;
+      margin-bottom: 1rem;
+      position: relative;
 
-img {
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
+      &:nth-child(even) {
+        margin-right: 0;
+      }
+      &:hover .mask {
+        display: block;
+        opacity: 0.5;
+        animation: fade 2s;
+      }
+      .mask {
+        transition: all 2s;
+        display: none;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        position: absolute;
+        opacity: 0.6;
+        .mask_text {
+          width: 100%;
+          height: 100%;
+          display: block;
+          font-size: 2.2rem;
+          font-weight: bolder;
+          text-align: center;
+          line-height: 28rem;
+          color: #fff;
+        }
+      }
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
 }
-@media screen and (max-width: 778px) {
-  .content .series_title {
-    font-size: 20px;
-    padding: 20px;
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.5;
   }
 }
 </style>

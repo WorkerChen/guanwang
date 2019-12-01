@@ -1,66 +1,95 @@
 <template>
   <div>
-    <el-row class="content">
-      <NavComponent></NavComponent>
+    <NavComponent></NavComponent>
+    <div class="content">
+      <h1 class="dyn_title">{{title}}</h1>
+      <div class="dyn_item">
+        <div class="text" v-html="detail"></div>
+        <div class="item_img">
+          <div class="item">
+            <img :src="cover" alt />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <el-row class="content">
       <h1 class="data_title">{{title}}</h1>
       <el-row class="showImg">
         <el-col :span="24">
           <div v-html="detail"></div>
         </el-col>
-        <!-- <el-col :span="24">
-          <img src="../../static/img/box.jpg" alt />
-        </el-col> -->
+        
       </el-row>
-    </el-row>
+    </el-row>-->
+    <!-- <el-col :span="24">
+          <img src="../../static/img/box.jpg" alt />
+    </el-col>-->
   </div>
 </template>
 <script>
 import NavComponent from "./Nav";
 
-import {requestMoment} from '../api/api'; 
+import { requestMoment } from "../api/api";
 export default {
   name: "seriesDetail",
   components: {
     NavComponent
   },
-  data(){
+  data() {
     return {
-      id:0,
-      title:'',
-      detail:'',
-    }
+      id: 0,
+      title: "",
+      detail: "",
+      cover: ""
+    };
   },
-  methods:{
-    getMoment(){
+  methods: {
+    getMoment() {
       console.log(this.$route.params.id);
-      var allParams = '?id='+ this.$route.params.id;
-        requestMoment(allParams).then((res) => {
-          console.log(res.data);
-          this.title = res.data.title;
-          this.detail = res.data.detail;
-        });
+      var allParams = "?id=" + this.$route.params.id;
+      requestMoment(allParams).then(res => {
+        console.log(res.data);
+        this.title = res.data.title;
+        this.detail = res.data.detail;
+        this.cover = res.data.cover;
+      });
     }
   },
-  mounted:function(){
+  mounted: function() {
     this.getMoment();
   }
 };
 </script>
-<style scoped>
+<style scoped lang="less">
 .content {
-  margin-top: 0;
-  padding: 0 16vw;
-}
-.content .data_title {
-  text-align: left;
-  padding: 3vw 0;
-  font-weight: bolder;
-  font-size: 2vw;
-  color: #86837a;
-}
-
-.content .showImg img {
-  width: 100%;
-  height: 100%;
+  padding: 0 15rem;
+  width: 96rem;
+  margin-top: 5.1rem;
+  .dyn_title {
+    font-size: 2.5rem;
+    color: #86837a;
+    font-weight: bolder;
+  }
+  .dyn_item {
+    width: 100%;
+    margin-top: 2.4rem;
+    .text {
+      padding: 0 13.4rem;
+      display: inline-block;
+      margin: 0 auto;
+    }
+    .item_img {
+      margin-top: 5rem;
+      width: 100%;
+      .item {
+        width: 100%;
+        height: 100%;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
 }
 </style>

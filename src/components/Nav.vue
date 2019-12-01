@@ -19,7 +19,6 @@
         </router-link>
         <router-link to="/about">
           <div class="item">{{$t('nav.about')}}</div>
-          
         </router-link>
       </div>
     </transition>
@@ -47,11 +46,12 @@ export default {
   position: absolute;
   z-index: 999;
   background-color: #e6e7e7;
-  width: 246px;
-  height: 750px;
+  width: 13.5rem;
+  height: 45rem;
   overflow: hidden;
   opacity: 0.9;
   right: 0;
+  top: 9.4rem;
 }
 .fade-enter-active {
   animation: openNav 0.8s ease-in-out;
@@ -75,10 +75,10 @@ export default {
 }
 
 .nav_item .item {
-  text-indent: 60px;
-  line-height: 100px;
+  text-indent: 3rem;
+  line-height: 5rem;
   color: #868379;
-  font-size: 25px;
+  font-size: 1.2rem;
   cursor: pointer;
   opacity: 1;
 }
@@ -90,33 +90,6 @@ export default {
   background-color: #cccccc;
 }
 
-@media screen and (max-width: 1200px) {
-  .nav_item {
-    width: 180px;
-    height: 600px;
-  }
-
-  .nav_item {
-    width: 166px;
-    height: 600px;
-  }
-  .nav_item .item {
-    font-size: 18px;
-    text-indent: 50px;
-    line-height: 50px;
-  }
-}
-@media screen and (max-width: 778px) {
-  .nav_item {
-    width: 80px;
-    height: 300px;
-  }
-  .nav_item .item {
-    font-size: 14px;
-    text-indent: 33px;
-    line-height: 30px;
-  }
-}
 a {
   text-decoration: none;
 }

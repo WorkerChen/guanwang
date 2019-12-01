@@ -1,8 +1,57 @@
 <template>
   <div>
+    <nav-component></nav-component>
+
+    <div class="content">
+      <h1 class="con_title">{{$t('contact.name')}}</h1>
+      <div class="con_item">
+        <div class="item">
+          <div class="item_title">{{$t('contact.join')}}</div>
+          <div class="item_text">
+            <div class="text">邮箱：{{email}}</div>
+            <div class="text">电话：{{phone}}</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item_title">{{$t('contact.buy')}}</div>
+          <div class="item_text">
+            <div class="text">零售电话:{{buy}}</div>
+            <div class="text">工程购买:{{eng_buy}}</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item_title">{{$t('contact.media')}}</div>
+          <div class="item_text">
+            <div class="text">商务合作:{{bussiness}}</div>
+            <div class="text">媒体合作:{{media}}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="con_icon">
+        <div class="icon_item wechat">
+          <i class="iconfont icon-weixin icon"></i>
+          {{$t('contact.wechat')}}
+          <img src="../../static/img/WeChat.jpg" />
+        </div>
+        <div class="icon_item">
+          <a href="https://www.instagram.com/ningsheng_/" target="_blank">
+            <i class="iconfont icon-ins icon"></i>
+            {{$t('contact.ins')}}
+          </a>
+        </div>
+        <div class="icon_item">
+          <a href="https://weibo.com/ningshengspace" target="_blank">
+            <i class="iconfont icon-weibo icon"></i>
+            {{$t('contact.weibo')}}
+          </a>
+        </div>
+      </div>
+    </div>
     <!-- 内容 -->
-    <el-row class="content">
-      <nav-component></nav-component>
+    <!-- <el-row class="content">
       <el-row>
         <h1 class="detail_title">{{$t('contact.name')}}</h1>
       </el-row>
@@ -40,18 +89,18 @@
           </el-col>
         </el-row>
       </el-row>
-    </el-row>
+    </el-row>-->
   </div>
 </template>
 <script>
 import NavComponent from "./Nav";
-import {requestConfigs} from '../api/api';
+import { requestConfigs } from "../api/api";
 export default {
   name: "seriesDetail",
   components: {
     NavComponent
   },
-  data(){
+  data() {
     return {
       bussiness: "",
       buy: "",
@@ -65,95 +114,104 @@ export default {
       wechat_title: "",
       weibo_bg: "",
       weibo_title: ""
+    };
+  },
+  methods: {
+    getConfigs() {
+      requestConfigs().then(res => {
+        console.log(res);
+        let data = res.data;
+        console.log(data);
+        if (data) {
+          (this.buy = data.buy),
+            (this.bussiness = data.bussiness),
+            (this.email = data.email),
+            (this.eng_buy = data.eng_buy),
+            (this.ins_bg = data.ins_bg),
+            (this.ins_title = data.ins_title),
+            (this.media = data.media),
+            (this.phone = data.phone),
+            (this.wechat_bg = data.wechat_bg),
+            (this.wechat_title = data.wechat_title),
+            (this.weibo_bg = data.weibo_bg),
+            (this.weibo_title = data.weibo_title);
+        }
+      });
     }
   },
-  methods:{
-    getConfigs(){
-      requestConfigs().then((res) => {
-          console.log(res)
-          let data = res.data;
-           console.log(data)
-           if(data){
-             this.buy = data.buy,
-             this.bussiness = data.bussiness,
-             this.email = data.email,
-             this.eng_buy = data.eng_buy,
-             this.ins_bg = data.ins_bg,
-             this.ins_title = data.ins_title,
-             this.media = data.media,
-             this.phone = data.phone,
-             this.wechat_bg = data.wechat_bg,
-             this.wechat_title = data.wechat_title,
-             this.weibo_bg = data.weibo_bg,
-             this.weibo_title = data.weibo_title;
-           }
-        });
-    }
-  },
-  mounted:function(){
-    this.getConfigs()
+  mounted: function() {
+    this.getConfigs();
   }
 };
 </script>
-<style scoped>
+<style scoped lang="less">
 .content {
-  padding: 0vw 16vw;
-  margin-top: 0;
-}
-.content .detail_title {
-  color: #a19d91;
-  font-size: 3vw;
-  text-align: center;
-  font-weight: bolder;
-  padding: 3vw 0;
-}
-.content .join {
-  padding-bottom: 3vw;
-}
-.content .join .join_title {
-  color: #a19d91;
-  font-size: 1.5vw;
-  text-align: left;
-  font-weight: bolder;
-}
-.content .contact_text {
-  padding: 1vw 0;
-}
-.content .item {
-  font-size: 1vw;
-  color: #a19d91;
-  font-weight: 400;
-  line-height: 2vw;
-}
-.icon {
-  font-size: 2vw;
-  color: #000;
-  vertical-align: middle;
-  padding-right: 1vw;
-  cursor: pointer;
-}
-.way {
-  color: #a19d91;
-}
+  width: 96rem;
+  padding: 0 15rem;
+  margin-top: 5.1rem;
+  .con_title {
+    width: 100%;
+    text-align: center;
+    color: #86837a;
+    font-size: 2.6rem;
+    font-weight: bold;
+  }
+  .con_item {
+    width: 100%;
 
-@media screen and (max-width: 778px) {
-  .content .detail_title {
-    font-size: 20px;
-    padding: 20px;
-  }
-  .content .join .join_title {
-    margin-top: 18px;
-    font-size: 18px;
-  }
-  .content .contact_text {
-    padding-top: 2.5vw;
-  }
-  .content .item {
-    line-height: 20px;
-  }
+    margin-top: 7rem;
 
-  .way {
-    line-height: 30px;
+    .item_title {
+      font-size: 2rem;
+      color: #86837a;
+      font-weight: 600;
+    }
+    .item {
+      margin-top: 4.5rem;
+      color: #86837a;
+      font-size: 1rem;
+      .item_text {
+        margin-top: 3rem;
+
+        .text {
+          line-height: 2.4rem;
+        }
+      }
+    }
+  }
+  .con_icon {
+    margin-top: 7.6rem;
+    display: flex;
+    height: 18.3rem;
+
+    .icon_item {
+      width: 33%;
+      color: #86837a;
+      line-height: 3rem;
+      font-size: 1rem;
+      height: 3rem;
+      cursor: pointer;
+
+      .iconfont {
+        font-size: 3rem;
+        vertical-align: middle;
+        margin-right: 0.8rem;
+        color: #86837b;
+      }
+      a {
+        text-decoration: none;
+        color: #86837b;
+      }
+    }
+    .wechat {
+      &:hover img {
+        display: block;
+      }
+      img {
+        width: 11.5rem;
+        display: none;
+      }
+    }
   }
 }
 </style>

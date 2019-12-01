@@ -1,14 +1,33 @@
 <template>
   <div>
     <!-- 内容 -->
-    <el-row class="content">
-      <nav-component></nav-component>
+    <nav-component></nav-component>
+    <div class="content">
+      <div class="pro_title">{{title}}</div>
+      <div class="pro_detail">
+        <div class="pro_text" v-html="detail"></div>
+        <div class="pro_img">
+          <div class="item">
+            <router-link to="#">
+              <img :src="cover" alt />
+            </router-link>
+          </div>
+        </div>
+        <div class="pro_use">
+          <div class="user_title">使用的产品</div>
+          <div class="user_img">
+            <div class="item" v-for="item in product_img">
+              <img v-bind:src="item" alt />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <el-row class="content">
       <el-row>
         <h1 class="detail_title">{{title}}</h1>
       </el-row>
-      <el-row v-html="detail" class="type_detail">
-        <!-- <div ></div> -->
-      </el-row>
+      <el-row v-html="detail" class="type_detail"></el-row>
       <el-row class="series_pic" type="flex" justify="center" :gutter="10">
         <el-col class="series_img" :span="24">
           <router-link to="#" class="link_img">
@@ -25,7 +44,7 @@
           </div>
         </div>
       </div>
-    </el-row>
+    </el-row>-->
   </div>
 </template>
  
@@ -57,10 +76,11 @@ export default {
       requestProject(allParams).then(res => {
         this.title = res.data.title;
         this.cover = res.data.cover;
-        this.detail = res.data.title;
+        this.detail = res.data.detail;
         console.log(res.data.products);
         for (var i = 0; i < res.data.products.length; i++) {
           var product_id = res.data.products[i].product_id;
+          console.log(product_id);
           var allParams = "?id=" + product_id;
           requestProduct(allParams).then(res => {
             this.product_img.push(res.data.cover);
@@ -75,8 +95,41 @@ export default {
   }
 };
 </script>
+<style scoped lang="less">
+.content {
+  padding: 0 15rem;
+  width: 96rem;
+  margin-top: 5.1rem;
+  .pro_title {
+    font-size: 2.5rem;
+    color: #86837a;
+    font-weight: bolder;
+  }
+  .pro_detail {
+    width: 100%;
+    margin-top: 2.4rem;
+    .pro_text {
+      padding: 0 13.4rem;
+      display: inline-block;
+      margin: 0 auto;
+    }
+    .pro_img {
+      margin-top: 5rem;
+      width: 100%;
+      .item {
+        width: 100%;
+        height: 100%;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+}
+</style>
 <style scoped>
-.content .detail_title {
+/* .content .detail_title {
   color: #a19d91;
   font-size: 28px;
   text-align: left;
@@ -183,5 +236,5 @@ img {
     padding-left: 0 !important;
     text-align: center;
   }
-}
+} */
 </style>

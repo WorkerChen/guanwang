@@ -1,17 +1,34 @@
 <template>
   <div>
     <!-- 内容 -->
+    <nav-component></nav-component>
+    <div class="content">
+      <h1 class="detail_title">{{title}}</h1>
+      <div class="detail_item">
+        <div class="item_text" v-html="detail"></div>
+        <div class="item_img">
+          <div class="img" v-for="item in list" v-bind:key="item.id">
+            <router-link
+              :to="{ name: 'proDetail', params: { id: item.id,title ,Did}}"
+              class="link_img"
+            >
+              <div class="mask">
+                <div class="mask_text">{{item.title}}</div>
+              </div>
+              <img v-bind:src="item.cover" alt />
+            </router-link>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 
     <el-row class="content">
-      <nav-component></nav-component>
       <el-row :span="24">
         <h1>{{title}}</h1>
       </el-row>
 
-      <!-- <el-row class="text" :xs="24" v-html="detail">
         
-      </el-row>-->
       <el-row v-html="detail" class="type_detail">
-        <!-- <div ></div> -->
       </el-row>
 
       <el-row class="show_pic" type="flex" :gutter="16">
@@ -27,7 +44,7 @@
           </router-link>
         </el-col>
       </el-row>
-    </el-row>
+    </el-row>-->
   </div>
 </template>
 <script>
@@ -64,8 +81,80 @@ export default {
   }
 };
 </script>
+<style scoped lang="less">
+.content {
+  padding: 0 15rem;
+  width: 96rem;
+  margin-top: 5.1rem;
+  .detail_title {
+    font-size: 2.5rem;
+    color: #86837a;
+    font-weight: bolder;
+  }
+  .detail_item {
+    width: 100%;
+    margin-top: 2.4rem;
+    .item_text {
+      padding: 0 13.4rem;
+      display: inline-block;
+      margin: 0 auto;
+    }
+    .item_img {
+      margin-top: 5rem;
+      .img {
+        display: inline-block;
+        width: 20rem;
+        height: 20rem;
+        margin-right: 2rem;
+        margin-bottom: 2rem;
+        position: relative;
+        overflow: hidden;
+        &:nth-child(3n + 3) {
+          margin-right: 0;
+        }
+        &:hover .mask {
+          display: block;
+          opacity: 0.5;
+          animation: fade 2s;
+        }
+        .mask {
+          transition: all 2s;
+          display: none;
+          width: 100%;
+          height: 100%;
+          background: #000;
+          position: absolute;
+          opacity: 0.6;
+          .mask_text {
+            width: 100%;
+            height: 100%;
+            display: block;
+            font-size: 2.2rem;
+            font-weight: bolder;
+            text-align: center;
+            line-height: 20rem;
+            color: #fff;
+          }
+        }
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+}
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+</style>
 <style scoped>
-.mask {
+/* .mask {
   position: absolute;
   top: 0;
   left: 0;
@@ -131,5 +220,5 @@ img {
 .link_img {
   width: 100%;
   height: 100%;
-}
+} */
 </style>

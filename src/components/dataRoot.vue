@@ -1,7 +1,20 @@
 <template>
   <div>
-    <el-row class="content">
-      <NavComponent></NavComponent>
+    <NavComponent></NavComponent>
+    <div class="content">
+      <div class="data_title">资源</div>
+      <div class="data_item">
+        <div class="item" v-for="item in list" v-bind:key="item.id">
+          <router-link :to="{ name: 'DataDetail', params: { id: item.id }}" class="link_img">
+            <div class="mask">
+              <div class="mask_text">{{item.title}}</div>
+            </div>
+            <img v-bind:src="item.cover" alt />
+          </router-link>
+        </div>
+      </div>
+    </div>
+    <!-- <el-row class="content">
       <h1 class="data_title">{{$t('data.name')}}</h1>
       <el-row type="flex" :gutter="16" class="showImg">
         <el-col :span="12" class="data_img" v-for="item in list" v-bind:key="item.id">
@@ -13,7 +26,7 @@
           </router-link>
         </el-col>
       </el-row>
-    </el-row>
+    </el-row>-->
   </div>
 </template>
 <script>
@@ -63,65 +76,60 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style scoped lang="less">
 .content {
-  padding: 0 16vw;
-  margin-top: 0;
-}
-.content .data_title {
-  text-align: center;
-  padding: 3vw 0;
-  font-weight: bolder;
-  font-size: 3vw;
-  color: #86837a;
-}
-.content .showImg {
-  flex-wrap: wrap;
-}
-.content .showImg img {
-  padding-bottom: 1vw;
-  width: 100%;
-  height: 100%;
-}
-.mask {
-  position: absolute;
-  top: 0;
-  left: 0;
-  border: 7.5px solid #ffffff;
-  border-top: 0;
-  border-bottom: 1vw solid #ffffff;
-  right: 0;
-  bottom: 0;
-  background: #000000;
-  opacity: 0;
-  width: 100%;
-  height: 100%;
-}
-.link_img {
-  width: 100%;
-  height: 100%;
-}
-.mask_text {
-  color: #ffffff;
-  position: absolute;
-  font-size: 4vw;
-  left: 50%;
-  top: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  overflow: hidden;
-}
-.data_img:hover .mask {
-  opacity: 0.5;
-  transition: all 1.5s ease-in-out;
-}
-.data_img {
-  position: relative;
-}
+  padding: 0 15rem;
+  margin-top: 5.1rem;
+  .data_title {
+    width: 100%;
+    text-align: center;
+    font-size: 2.6rem;
+    color: #86837a;
+    font-weight: bolder;
+  }
+  .data_item {
+    width: 100%;
+    margin-top: 7rem;
+    .item {
+      display: inline-block;
+      width: 32rem;
+      height: 28rem;
+      margin-right: 1rem;
+      margin-bottom: 1rem;
+      position: relative;
 
-@media screen and (max-width: 778px) {
-  .content .data_title {
-    font-size: 20px;
-    padding: 20px;
+      &:nth-child(even) {
+        margin-right: 0;
+      }
+      &:hover .mask {
+        display: block;
+        opacity: 0.5;
+        animation: fade 2s;
+      }
+      .mask {
+        transition: all 2s;
+        display: none;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        position: absolute;
+        opacity: 0.6;
+        .mask_text {
+          width: 100%;
+          height: 100%;
+          display: block;
+          font-size: 2.2rem;
+          font-weight: bolder;
+          text-align: center;
+          line-height: 28rem;
+          color: #fff;
+        }
+      }
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
 }
 </style>

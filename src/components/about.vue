@@ -1,7 +1,17 @@
 <template>
   <div>
     <!-- 内容 -->
-    <el-row class="content">
+    <nav-component></nav-component>
+    <div class="content">
+      <h1 class="about_title">{{$t('about.name')}}</h1>
+      <div class="about_text">
+        <div v-html="detail">{{detail}}</div>
+      </div>
+      <div class="about_img">
+        <!-- 图片 -->
+      </div>
+    </div>
+    <!-- <el-row class="content">
       <nav-component></nav-component>
       <el-row>
         <h1 class="detail_title">{{$t('about.name')}}</h1>
@@ -10,10 +20,12 @@
       <el-row>
         <el-col class="col_img">
           <div v-html="detail"></div>
-          <!-- <img src="../../static/img/box.jpg" alt /> -->
+          
         </el-col>
       </el-row>
     </el-row>
+    </div>-->
+    <!-- <img src="../../static/img/box.jpg" alt /> -->
   </div>
 </template>
 <script>
@@ -32,7 +44,7 @@ export default {
   methods: {
     getDocument() {
       var language = this.$i18n.locale;
-      var allParams = language=="zh"?"?code=about_cn":"?code=about_en";
+      var allParams = language == "zh" ? "?code=about_cn" : "?code=about_en";
       requestDocument(allParams).then(res => {
         console.log(res);
         let data = res.data;
@@ -41,8 +53,7 @@ export default {
           this.detail = data.detail;
         }
       });
-    },
-    
+    }
   },
   mounted: function() {
     this.getDocument();
@@ -52,29 +63,35 @@ export default {
     this.$bus.on("ChangeLocation", val => {
       this.getDocument();
     });
-  },
+  }
 };
 </script>
-<style scoped>
+<style scoped lang="less">
 .content {
-  padding: 0vw 16vw;
-  margin-top: 0;
-}
-.content .detail_title {
-  color: #a19d91;
-  font-size: 3vw;
-  text-align: center;
-  font-weight: bolder;
-  padding: 3vw 0;
-}
-.content .col_img img {
-  width: 100%;
-  height: 100%;
-}
-@media screen and (max-width: 778px) {
-  .content .detail_title {
-    font-size: 20px;
-    padding: 20px;
+  padding: 0 23.8rem;
+  margin-top: 2.5rem;
+
+  .about_title {
+    color: #868379;
+    display: inline-block;
+    margin: 0 auto;
+    font-size: 2.5rem;
+    width: 10rem;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+  }
+  .about_text {
+    width: 100%;
+    font-size: 1rem;
+    margin-top: 6rem;
+    color: #868379;
+    line-height: 2rem;
+    font-weight: 500;
+  }
+  .about_img {
+    margin-top: 5rem;
+    width: 100%;
   }
 }
 </style>

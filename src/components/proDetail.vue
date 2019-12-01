@@ -1,15 +1,58 @@
 <template>
   <div>
     <!-- 内容 -->
-    <el-row class="content">
-      <Nav-component></Nav-component>
+    <Nav-component></Nav-component>
+    <div class="content">
+      <h1 class="pro_title">{{title}}</h1>
+      <h1 class="pro_type">{{type}}</h1>
+      <div class="detail_item">
+        <div class="detail_img">
+          <img v-bind:src="cover" alt />
+        </div>
+        <div class="detail_text">
+          <div class="material">
+            <h1 class="mater_title">主要材料</h1>
+            <div class="mater_value">{{material}}</div>
+          </div>
+          <div class="cate">
+            <div class="cate_title">规格</div>
+            <div class="cate_item">
+              <div v-for="item in categories" class="item">
+                <div class="title">{{item.title}}：</div>
+                <div class="details">
+                  <span v-for="value in item.details">{{value.title}}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="cate_img">
+              <img v-bind:src="categories_cover" alt />
+            </div>
+            <div class="other">其他规格尺寸和厚度可根据要求定制</div>
+          </div>
+          <!-- 使用区域 -->
+          <div class="areas">
+            <h1 class="areas_title">使用区域</h1>
+            <div class="areas_item"></div>
+          </div>
+
+          <div class="likes">
+            <div class="likes_title">类似产品</div>
+            <div class="likes_item">
+              <div class="item" v-for="item in proLink">
+                <img v-bind:src="item" alt />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <el-row class="content">
       <el-row>
-        <!-- 产品标题 -->
         <el-col class="content_header">
           <el-col class="pro_title" :span="24">{{title}}</el-col>
           <el-col class="pro_type" :span="24">{{type}}</el-col>
         </el-col>
-        <!-- 产品内容 -->
         <el-col>
           <el-col :span="8" class="pro_img" :xs="24">
             <img v-bind:src="cover" alt />
@@ -84,7 +127,7 @@
           </el-col>
         </el-col>
       </el-row>
-    </el-row>
+    </el-row>-->
   </div>
 </template>
 <script>
@@ -150,153 +193,125 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style scoped lang="less">
 .content {
-  width: 100%;
-  margin-top: 0;
-  padding: 0 16vw;
-}
-
-.content .content_header {
-  width: 100%;
-  height: 100%;
-  text-align: left;
-  padding: 4vw 0;
-}
-
-.content .content_header .pro_title {
-  font-size: 2vw;
-  color: #868379;
-  font-weight: bolder;
-}
-
-.content .content_header .pro_type {
-  font-size: 1.5vw;
-  color: #868379;
-  font-weight: 600;
-}
-
-.pro_img img {
-  width: 100%;
-}
-.pro_pic {
-  margin: 0;
-  padding: 0;
-}
-.pro_pic img {
-  width: 100%;
-
-  height: 500px;
-}
-
-.content .pro_left {
-  color: #86837a;
-}
-.pro_like {
-  flex-wrap: wrap;
-}
-
-.content .pro_left .item_one {
-  padding-bottom: 4vw;
-}
-
-.content .pro_left .item_one .item_title {
-  font-size: 2vw;
-  padding-bottom: 2vw;
-  font-weight: bolder;
-}
-.item_one::after {
-  clear: both;
-}
-
-.content .pro_left .item_one .item {
-  font-size: 1vw;
-}
-.pro_down {
-  color: #fec402;
-  display: block;
-  line-height: 2vw;
-  font-size: 1vw;
-}
-.pro_text {
-  font-size: 1vw;
-  line-height: 2vw;
-}
-.pro_link {
-  color: #fec402;
-}
-.areas {
-  display: inline-block;
-  margin-right: 40px;
-  width: 176px;
-  height: 112px;
-}
-.araes_img {
-  margin-top: 20px;
-  width: 176px;
-  height: 112px;
-}
-.araes_img img {
-  width: 100%;
-  height: 100%;
-}
-.text {
-  float: left;
-}
-.title {
-  float: left;
-}
-.title::after {
-  content: "";
-  clear: both;
-}
-.details {
-  float: left;
-}
-.details::after {
-  content: "";
-  clear: both;
-}
-.details span {
-  display: block;
-}
-.proLink {
-  width: 80px;
-  height: 80px;
-}
-.proLink img {
-  width: 100%;
-  height: 100%;
-}
-@media screen and (max-width: 778px) {
-  .content {
-    padding: 0;
+  width: 96rem;
+  padding: 0 15rem;
+  margin-top: 5.1rem;
+  .pro_title {
+    width: 100%;
+    color: #86837a;
+    font-size: 2.6rem;
+    font-weight: bold;
   }
-  .pro_down,
-  .pro_text {
-    line-height: 5vw;
+  .pro_type {
+    width: 100%;
+    color: #86837a;
+    font-size: 1rem;
+    margin-top: 2rem;
+    text-indent: 3px;
   }
-  .content .content_header .pro_title {
-    font-size: 20px;
-  }
-  .content .content_header .pro_type {
-    font-size: 18px;
-  }
-  .content .pro_left .item_one .item_title {
-    margin-top: 20px;
-  }
-  .pro_like img {
-    margin-bottom: 10px;
-  }
-  .areas {
-    display: block;
-    height: 100%;
-  }
-  .araes_img {
-    margin: 0;
-  }
-  .pro_img {
-    float: none;
+  .detail_item {
+    margin-top: 2.5rem;
+    display: flex;
+    .detail_img {
+      width: 22.3rem;
+      height: 22.3rem;
+      display: inline-block;
+      margin-right: 10.8rem;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .detail_text {
+      display: inline-block;
+      width: 33rem;
+      &::after {
+        clear: both;
+        overflow: hidden;
+        height: 68.5rem;
+      }
+      h1 {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .material {
+        width: 100%;
+        .mater_title {
+          font-size: 2rem;
+          color: #86837a;
+          font-weight: bold;
+        }
+        .mater_value {
+          font-size: 1rem;
+          margin-top: 1.4rem;
+          color: #86837a;
+        }
+      }
+      .cate {
+        margin-top: 3rem;
+        .cate_title {
+          font-size: 2rem;
+          color: #86837a;
+          font-weight: bold;
+        }
+        .cate_item {
+          display: inline-block;
+          margin-top: 1.4rem;
+          position: relative;
+          .item {
+            width: 100%;
+            margin-bottom: 3rem;
+            font-size: 1rem;
+            color: #86837a;
+            .title {
+              display: inline-block;
+              vertical-align: top;
+            }
+            .details {
+              display: inline-block;
+              span {
+                width: 100%;
+                display: block;
+              }
+            }
+          }
+        }
+
+        .cate_img {
+          float: right;
+          display: inline-block;
+          width: 8.4rem;
+          height: 8.4rem;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        .other {
+          color: #86837a;
+          font-size: 1rem;
+        }
+      }
+    }
+    .areas {
+      margin-top: 3rem;
+      .areas_title {
+        font-size: 2rem;
+        color: #86837a;
+        font-weight: bold;
+      }
+    }
+    .likes {
+      margin-top: 3rem;
+      .likes_title {
+        font-size: 2rem;
+        color: #86837a;
+        font-weight: bold;
+      }
+    }
   }
 }
 </style>
