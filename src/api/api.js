@@ -51,7 +51,7 @@ axios.interceptors.response.use(
     })
 
 
-let hosturl = 'http://111.230.135.20/api'
+let hosturl = 'http://ns.ns-space.cn/api'
 
 export default hosturl
 
