@@ -23,9 +23,15 @@
             <span>粤ICP备19135826号-1</span>
           </div>
           <div class="icon">
-            <i class="iconfont">&#xe628;</i>
-            <i class="iconfont">&#xe639;</i>
-            <i class="iconfont">&#xe63d;</i>
+            <a href="../../static/img/WeChat.jpg" target="_blank">
+              <i class="iconfont">&#xe628;</i>
+            </a>
+            <a href="https://www.instagram.com/ningsheng_/" target="_blank">
+              <i class="iconfont">&#xe639;</i>
+            </a>
+            <a href="https://weibo.com/ningshengspace" target="_blank">
+              <i class="iconfont">&#xe63d;</i>
+            </a>
           </div>
         </div>
       </el-footer>
@@ -109,9 +115,13 @@ export default {};
       position: absolute;
       bottom: 0;
       right: 0;
-      .iconfont {
-        font-size: 2rem;
-        cursor: pointer;
+      a {
+        color: #e1dedb;
+        text-decoration: none;
+        .iconfont {
+          font-size: 2rem;
+          cursor: pointer;
+        }
       }
     }
   }

@@ -40,10 +40,29 @@
             <div class="likes_title">类似产品</div>
             <div class="likes_item">
               <div class="item" v-for="item in proLink">
-                <img v-bind:src="item" alt />
+                <img v-bind:src="item.cover" alt />
               </div>
             </div>
           </div>
+
+          <div class="down_img">
+            <a :href="cover" target="_blank">点击下载图片</a>
+          </div>
+
+          <div class="down_excel">
+            <a :href="parameter">下载参数表</a>
+          </div>
+
+          <div class="contact">
+            对于价格、可用性、起订量、货期和销售条款
+            等请
+            <a href="/contact">联络我们</a>
+          </div>
+        </div>
+      </div>
+      <div class="pic_img" v-for="item in image">
+        <div class="item_img">
+          <img :src="item.href" alt />
         </div>
       </div>
     </div>
@@ -174,16 +193,11 @@ export default {
         this.categories = res.data.categories;
         this.categories_cover = res.data.category_cover;
         this.parameter = res.data.parameter;
-        console.log(res.data.type_id);
-        var allParams2 = "?id=" + res.data.type_id;
+
+        var allParams2 = "?id=" + this.$route.params.type_id;
+        console.log(allParams2);
         requestType(allParams2).then(res => {
-          for (var i = 0; i < 7; i++) {
-            if (res.data.products[i].id != this.$route.params.id) {
-              if (res.data.products[i].cover != "") {
-                this.proLink.push(res.data.products[i].cover);
-              }
-            }
-          }
+          this.proLink = res.data.products;
         });
       });
     }
@@ -310,6 +324,46 @@ export default {
         font-size: 2rem;
         color: #86837a;
         font-weight: bold;
+      }
+      .item {
+        margin-top: 2.2rem;
+        width: 4rem;
+        height: 4rem;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+    .down_img {
+      margin-top: 2.5rem;
+      a {
+        color: #fecc3f;
+      }
+    }
+    .down_excel {
+      margin-top: 2rem;
+      a {
+        color: #fecc3f;
+      }
+    }
+    .contact {
+      margin-top: 2rem;
+      a {
+        color: #fecc3f;
+      }
+    }
+  }
+  .pic_img {
+    display: block;
+    width: 100%;
+
+    margin-top: 7.8rem;
+    .item_img {
+      height: 37.5rem;
+      img {
+        width: 100%;
+        height: 100%;
       }
     }
   }

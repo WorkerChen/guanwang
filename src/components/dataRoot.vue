@@ -132,4 +132,12 @@ export default {
     }
   }
 }
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
 </style>

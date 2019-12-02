@@ -42,7 +42,7 @@
 import NavComponent from "./Nav";
 import { requestType } from "../api/api";
 export default {
-  name: "seriesDetail",
+  name: "seriesType",
   components: {
     NavComponent
   },

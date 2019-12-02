@@ -9,7 +9,7 @@
         <div class="item_img">
           <div class="img" v-for="item in list" v-bind:key="item.id">
             <router-link
-              :to="{ name: 'proDetail', params: { id: item.id,title ,Did}}"
+              :to="{ name: 'proDetail', params: { id: item.id,title ,type_id}}"
               class="link_img"
             >
               <div class="mask">
@@ -60,19 +60,19 @@ export default {
       title: "",
       detail: "",
       list: [],
-      Did: ""
+      type_id: ""
     };
   },
   methods: {
     getType() {
       console.log(this.$route.params.id);
       var allParams = "?id=" + this.$route.params.id;
-      this.Did = this.$route.params.id;
       requestType(allParams).then(res => {
         console.log(res.data);
         this.title = res.data.title;
         this.detail = res.data.description;
         this.list = res.data.products;
+        this.type_id = res.data.id;
       });
     }
   },

@@ -46,12 +46,12 @@ export default {
   position: absolute;
   z-index: 999;
   background-color: #e6e7e7;
-  width: 13.5rem;
+  width: 12.5rem;
   height: 45rem;
   overflow: hidden;
   opacity: 0.9;
   right: 0;
-  top: 9.4rem;
+  top: 7.2rem;
 }
 .fade-enter-active {
   animation: openNav 0.8s ease-in-out;

@@ -7,9 +7,6 @@
       <div class="about_text">
         <div v-html="detail">{{detail}}</div>
       </div>
-      <div class="about_img">
-        <!-- 图片 -->
-      </div>
     </div>
     <!-- <el-row class="content">
       <nav-component></nav-component>
@@ -46,9 +43,8 @@ export default {
       var language = this.$i18n.locale;
       var allParams = language == "zh" ? "?code=about_cn" : "?code=about_en";
       requestDocument(allParams).then(res => {
-        console.log(res);
         let data = res.data;
-        console.log(data);
+
         if (data) {
           this.detail = data.detail;
         }

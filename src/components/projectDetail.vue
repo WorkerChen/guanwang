@@ -13,14 +13,14 @@
             </router-link>
           </div>
         </div>
-        <div class="pro_use">
+        <!-- <div class="pro_use">
           <div class="user_title">使用的产品</div>
           <div class="user_img">
             <div class="item" v-for="item in product_img">
               <img v-bind:src="item" alt />
             </div>
           </div>
-        </div>
+        </div>-->
       </div>
     </div>
     <!-- <el-row class="content">

@@ -3,7 +3,9 @@
     <div class="wrapper">
       <div class="header">
         <div class="logo_img">
-          <img src="../../static/img/logo.png" alt />
+          <router-link to="/">
+            <img src="../../static/img/logo.png" alt />
+          </router-link>
         </div>
         <div class="Nav">
           <div class="Nav_item">
@@ -182,10 +184,8 @@ export default {
   width: 100%;
 
   .header {
-    padding: 2.2rem 5.5rem;
+    padding: 1.2rem 4.5rem;
     width: 100%;
-    height: 9.5rem;
-    height: 9.5rem;
     display: inline-block;
     overflow: hidden;
 

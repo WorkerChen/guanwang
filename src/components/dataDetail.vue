@@ -1,7 +1,8 @@
 <template name="component-name">
   <div>
+    <NavComponent></NavComponent>
+
     <el-row class="content">
-      <NavComponent></NavComponent>
       <h1 class="detail_title">{{title}}</h1>
       <el-row :gutter="16" type="flex">
         <el-col :span="8" class="data_img">

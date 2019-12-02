@@ -23,27 +23,29 @@
           <div class="text">我们以工艺为起点，突破固有的经验，尝试将各种材料相结合，开发创新而实用的建筑材料及其衍生品。对探索的渴望将引领我们不断发现。</div>
         </div>
         <div class="series_flex">
-          <div class="flex_img">
-            <div class="mask">
-              <div class="mask_text">实验品</div>
+          <router-link :to="{ name: 'SeriesType', params: { id: top.id }}">
+            <div class="flex_img">
+              <div class="mask">
+                <div class="mask_text">实验品</div>
+              </div>
+              <img :src="top.image" />
             </div>
-            <img src="../../static/img/shiyang.jpg" />
-          </div>
+          </router-link>
 
           <div class="flex_img">
             <div class="mask">
               <div class="mask_text">新品</div>
             </div>
-            <img src="../../static/img/shiyang.jpg" />
+            <img :src="new_cover" />
           </div>
         </div>
         <div class="other">
-          <div class="other_img">
-            <img src="../../static/img/zhuan33001.jpg" />
+          <div class="other_img" v-for="item in adverts">
+            <img :src="item.href" />
           </div>
-          <div class="other_img">
+          <!-- <div class="other_img">
             <img src="../../static/img/fang021.jpg" alt />
-          </div>
+          </div>-->
         </div>
       </div>
     </div>
@@ -53,12 +55,20 @@
 <script >
 import NavComponent from "./Nav";
 import { requestBanners } from "../api/api";
+import { requestAdvers } from "../api/api";
+import { requestTop } from "../api/api";
+import { requestNew } from "../api/api";
+
 export default {
   name: "Home",
   data() {
     return {
       // Banner
-      banner_herf: []
+      banner_herf: [],
+      adverts: [],
+      top: [],
+      new: [],
+      new_cover: []
     };
   },
   methods: {
@@ -68,6 +78,17 @@ export default {
       requestBanners(allParams).then(res => {
         console.log(res.data.data);
         this.banner_herf = res.data.data;
+      });
+      requestAdvers(allParams).then(res => {
+        this.adverts = res.data.data;
+      });
+      requestTop(allParams).then(res => {
+        this.top = res.data;
+      });
+      var allParams_new = "?language=1&limit=10&page=1&newer=1";
+      requestNew(allParams_new).then(res => {
+        this.new = res.data.data;
+        this.new_cover = res.data.data[0].cover;
       });
     }
   },
@@ -90,7 +111,7 @@ export default {
 }
 .product {
   padding: 0 15rem;
-  width: 100%;
+  width: 96rem;
 
   margin-top: 9.4rem;
   .series_img {
@@ -172,9 +193,13 @@ export default {
     margin-top: 8.8rem;
     width: 100%;
     .other_img {
-      width: 100%;
+      height: 30rem;
       &:nth-child(odd) {
-        margin-bottom: 10rem;
+        margin-bottom: 3rem;
+      }
+      img {
+        width: 100%;
+        height: 100%;
       }
     }
   }

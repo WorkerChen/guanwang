@@ -79,3 +79,9 @@ export const requestData = params => { return axios.get(`${hosturl}/data/documen
 export const requesProject = params => { return axios.get(`${hosturl}/projects` + `${params}`).then(res => res.data) }
 
 export const requestProject = params => { return axios.get(`${hosturl}/project` + `${params}`).then(res => res.data) }
+
+export const requestAdvers = params => { return axios.get(`${hosturl}/adverts` + `${params}`).then(res => res.data) }
+
+export const requestTop = params => { return axios.get(`${hosturl}/top/type` + `${params}`).then(res => res.data) }
+
+export const requestNew = params => { return axios.get(`${hosturl}/products` + `${params}`).then(res => res.data) }
