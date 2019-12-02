@@ -21,6 +21,8 @@ import dynDetail from '@/components/dynDetail'
 import About from '@/components/about'
 import Contact from '@/components/contact'
 
+import New from '@/components/new'
+
 Vue.use(Router)
 
 export default new Router({
@@ -77,5 +79,9 @@ export default new Router({
         path: '/Contact',
         name: 'Contact',
         component: Contact
+    }, {
+        path: '/new',
+        name: 'New',
+        component: New
     }]
 })

@@ -33,6 +33,7 @@
           </router-link>
 
           <div class="flex_img">
+            <router-link to="/new"></router-link>
             <div class="mask">
               <div class="mask_text">新品</div>
             </div>
