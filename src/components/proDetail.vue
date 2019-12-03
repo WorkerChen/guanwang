@@ -61,7 +61,7 @@
             <div class="likes_title">类似产品</div>
             <div class="likes_item">
               <div class="item" v-for="item in proLink">
-                <img :src="item.cover" />
+                <img v-bind:src="item.cover" :data-id="item.id" @click="Likes($event)" />
               </div>
             </div>
           </div>
@@ -220,18 +220,13 @@ export default {
           this.cover = res.data.cover;
           this.type = res.data.type.title;
           this.material = res.data.material;
-          for (var i = 0; i < res.data.areas.length; i++) {
-            this.areas.push({
-              title: res.data.areas[i].title,
-              icon: res.data.areas[i].icon
-            });
-          }
+          this.areas = res.data.areas;
           this.categories = res.data.categories;
           this.categories_cover = res.data.category_cover;
           this.parameter = res.data.parameter;
         }
 
-        // 类似产品;
+        // 类似产品
         var allParams2 = "?id=" + this.$route.query.type_id;
         console.log(allParams2);
         requestType(allParams2).then(res => {
@@ -251,8 +246,10 @@ export default {
       this.mask = !this.mask;
     },
     Likes(ev) {
-      this.id = ev.target.dataset.id;
-      this.getProduct();
+      if (this.id != ev.target.dataset.id) {
+        this.id = ev.target.dataset.id;
+        this.getProduct();
+      }
     }
   },
   mounted: function() {
@@ -414,7 +411,7 @@ export default {
             margin-right: 0;
           }
           .item_title {
-            font-size: 1.5rem;
+            font-size: 1rem;
             color: #868379;
           }
           .item_img {

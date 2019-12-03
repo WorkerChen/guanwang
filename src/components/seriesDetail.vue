@@ -80,6 +80,16 @@ export default {
           this.list = res.data.products;
           this.type_id = res.data.id;
         }
+
+        if (res.data.products.length == 0) {
+          let that = this;
+          this.$alert("暂无产品信息", "消息", {
+            confirmButtonText: "返回",
+            callback: function() {
+              that.$router.back(-1);
+            }
+          });
+        }
       });
     }
   },

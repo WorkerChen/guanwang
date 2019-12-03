@@ -78,13 +78,22 @@ export default {
             type: "error"
           });
         } else {
+          console.log(res.data);
+          if (res.data.cover == "" || res.data.title == "") {
+            let that = this;
+            this.$alert("暂无产品信息", "消息", {
+              confirmButtonText: "返回",
+              callback: function() {
+                that.$router.back(-1);
+              }
+            });
+          }
           this.title = res.data.title;
           this.cover = res.data.cover;
           this.detail = res.data.detail;
           console.log(res.data.products);
           for (var i = 0; i < res.data.products.length; i++) {
             var product_id = res.data.products[i].product_id;
-            console.log(product_id);
             var allParams = "?id=" + product_id;
             requestProduct(allParams).then(res => {
               this.product_img.push(res.data.cover);

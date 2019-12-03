@@ -26,7 +26,9 @@
             id="icon"
           ></span>
           <span class="hide_text">
-            <router-link to="/">凝</router-link>
+            <router-link to="/">
+              <img src="../../static/img/ning.png" alt />
+            </router-link>
           </span>
         </div>
         <div>
@@ -202,7 +204,7 @@ export default {
     width: 12.5rem;
     padding-left: 1rem;
     // padding: 0 1.4rem;
-    background: #86837a;
+    background: #3e3b3f;
     animation: down 1s ease-in;
     opacity: 0.9;
 
@@ -213,16 +215,19 @@ export default {
       .hide_text {
         a {
           text-decoration: none;
-          color: #e0deda;
+          color: #86837a;
           font-weight: bolder;
           cursor: pointer;
-          font-size: 2rem;
-          vertical-align: middle;
+          vertical-align: bottom;
+          img {
+            display: inline-block;
+            width: 2rem;
+          }
         }
       }
       .glyphicon {
         vertical-align: middle;
-        font-size: 1.9rem;
+        font-size: 1.8rem;
         color: #e0deda;
         margin-right: 1rem;
       }
@@ -240,7 +245,7 @@ export default {
           .item {
             cursor: pointer;
             line-height: 5rem;
-            text-indent: 3rem;
+            text-indent: 3.3rem;
             color: #fff;
             &:hover {
               background: #cccccc;
