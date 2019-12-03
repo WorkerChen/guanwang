@@ -8,9 +8,7 @@
         <div class="pro_text" v-html="detail"></div>
         <div class="pro_img">
           <div class="item">
-            <router-link to="#">
-              <img :src="cover" alt />
-            </router-link>
+            <img :src="cover" alt />
           </div>
         </div>
         <!-- <div class="pro_use">
@@ -71,20 +69,27 @@ export default {
   },
   methods: {
     getlist() {
-      console.log(this.$route.params.id);
-      var allParams = "?id=" + this.$route.params.id;
+      console.log(this.$route.query.id);
+      var allParams = "?id=" + this.$route.query.id;
       requestProject(allParams).then(res => {
-        this.title = res.data.title;
-        this.cover = res.data.cover;
-        this.detail = res.data.detail;
-        console.log(res.data.products);
-        for (var i = 0; i < res.data.products.length; i++) {
-          var product_id = res.data.products[i].product_id;
-          console.log(product_id);
-          var allParams = "?id=" + product_id;
-          requestProduct(allParams).then(res => {
-            this.product_img.push(res.data.cover);
+        if (res.data == "{}") {
+          this.$message({
+            message: "请求无数据",
+            type: "error"
           });
+        } else {
+          this.title = res.data.title;
+          this.cover = res.data.cover;
+          this.detail = res.data.detail;
+          console.log(res.data.products);
+          for (var i = 0; i < res.data.products.length; i++) {
+            var product_id = res.data.products[i].product_id;
+            console.log(product_id);
+            var allParams = "?id=" + product_id;
+            requestProduct(allParams).then(res => {
+              this.product_img.push(res.data.cover);
+            });
+          }
         }
       });
     }

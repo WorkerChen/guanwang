@@ -32,6 +32,7 @@ export default {
       navShow: ""
     };
   },
+  mounted() {},
   created() {
     // 控制是否显示导航栏
     this.$bus.on("isShow", val => {

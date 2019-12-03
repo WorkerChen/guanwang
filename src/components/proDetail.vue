@@ -1,14 +1,22 @@
 <template>
   <div>
+    <!-- 图片遮罩层 -->
+    <div class="mask" v-if="mask">
+      <div class="mask_img">
+        <img v-bind:src="cover" alt />
+      </div>
+    </div>
     <!-- 内容 -->
+
     <Nav-component></Nav-component>
     <div class="content">
       <h1 class="pro_title">{{title}}</h1>
       <h1 class="pro_type">{{type}}</h1>
       <div class="detail_item">
-        <div class="detail_img">
-          <img v-bind:src="cover" alt />
+        <div class="detail_img" @click="fade">
+          <img v-bind:src="cover" alt id="mask" />
         </div>
+
         <div class="detail_text">
           <div class="material">
             <h1 class="mater_title">主要材料</h1>
@@ -33,14 +41,18 @@
           <!-- 使用区域 -->
           <div class="areas">
             <h1 class="areas_title">使用区域</h1>
-            <div class="areas_item"></div>
+            <div class="areas_item">
+              <div class="item" v-for="item in areas">
+                <div class="item_title">{{item.title}}</div>
+              </div>
+            </div>
           </div>
 
           <div class="likes">
             <div class="likes_title">类似产品</div>
             <div class="likes_item">
               <div class="item" v-for="item in proLink">
-                <img v-bind:src="item.cover" alt />
+                <img v-bind:src="item.cover" :data-id="item.id" @click="Likes($event)" />
               </div>
             </div>
           </div>
@@ -66,6 +78,7 @@
         </div>
       </div>
     </div>
+
     <!-- <el-row class="content">
       <el-row>
         <el-col class="content_header">
@@ -158,6 +171,7 @@ export default {
   name: "proDetail",
   data() {
     return {
+      id: "",
       title: "暂无数据",
       detail: "暂无数据",
       image: [],
@@ -168,50 +182,111 @@ export default {
       categories: [],
       categories_cover: "",
       parameter: "",
-      proLink: []
+      proLink: [],
+      mask: false
     };
   },
   components: {
     NavComponent
   },
   methods: {
+    getId() {
+      this.id = this.$route.query.id;
+    },
     getProduct() {
-      var allParams = "?id=" + this.$route.params.id;
+      var allParams = "?id=" + this.id;
+      console.log(allParams);
       requestProduct(allParams).then(res => {
-        this.title = res.data.title;
-        this.detail = res.data.description;
-        this.image = res.data.pictures;
-        this.cover = res.data.cover;
-        this.type = res.data.type.title;
-        this.material = res.data.material;
-        for (var i = 0; i < res.data.areas.length; i++) {
-          this.areas.push({
-            title: res.data.areas[i].title,
-            icon: res.data.areas[i].icon
+        // if ((res.data = "{}")) {
+        // }
+        if (res.data == "{}") {
+          this.$message({
+            message: "请求失败",
+            type: "error"
           });
+        } else {
+          this.title = res.data.title;
+          this.detail = res.data.description;
+          this.image = res.data.pictures;
+          this.cover = res.data.cover;
+          this.type = res.data.type.title;
+          this.material = res.data.material;
+          for (var i = 0; i < res.data.areas.length; i++) {
+            this.areas.push({
+              title: res.data.areas[i].title,
+              icon: res.data.areas[i].icon
+            });
+          }
+          this.categories = res.data.categories;
+          this.categories_cover = res.data.category_cover;
+          this.parameter = res.data.parameter;
         }
-        this.categories = res.data.categories;
-        this.categories_cover = res.data.category_cover;
-        this.parameter = res.data.parameter;
 
-        var allParams2 = "?id=" + this.$route.params.type_id;
+        // 类似产品
+        var allParams2 = "?id=" + this.$route.query.type_id;
         console.log(allParams2);
         requestType(allParams2).then(res => {
-          this.proLink = res.data.products;
+          if (res.data == "{}") {
+            this.$message({
+              message: "请求失败",
+              type: "error"
+            });
+          } else {
+            console.log(res.data.products);
+            this.proLink = res.data.products;
+          }
         });
       });
+    },
+    fade() {
+      this.mask = !this.mask;
+    },
+    Likes(ev) {
+      this.id = ev.target.dataset.id;
+      this.getProduct();
     }
   },
   mounted: function() {
+    this.getId();
     this.getProduct();
+
+    document.addEventListener("click", e => {
+      if (e.target.id == "mask") {
+        this.mask = true;
+      } else {
+        this.mask = false;
+      }
+    });
   }
 };
 </script>
 <style scoped lang="less">
+.mask {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  .mask_img {
+    height: 25rem;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    img {
+      height: 100%;
+    }
+  }
+}
 .content {
   width: 96rem;
   padding: 0 15rem;
   margin-top: 5.1rem;
+  position: relative;
+
   .pro_title {
     width: 100%;
     color: #86837a;
@@ -228,6 +303,7 @@ export default {
   .detail_item {
     margin-top: 2.5rem;
     display: flex;
+    position: relative;
     .detail_img {
       width: 22.3rem;
       height: 22.3rem;
@@ -238,6 +314,7 @@ export default {
         height: 100%;
       }
     }
+
     .detail_text {
       display: inline-block;
       width: 33rem;
@@ -313,9 +390,13 @@ export default {
     .areas {
       margin-top: 3rem;
       .areas_title {
-        font-size: 2rem;
+        width: 100%;
         color: #86837a;
+        font-size: 2rem;
         font-weight: bold;
+      }
+      .areas_item {
+        margin-top: 2.2rem;
       }
     }
     .likes {
@@ -325,13 +406,20 @@ export default {
         color: #86837a;
         font-weight: bold;
       }
-      .item {
-        margin-top: 2.2rem;
-        width: 4rem;
-        height: 4rem;
-        img {
-          width: 100%;
-          height: 100%;
+      .likes_item {
+        display: flex;
+        .item {
+          margin-top: 2.2rem;
+          width: 4rem;
+          height: 4rem;
+          margin-right: 0.6rem;
+          &:last-child {
+            margin-right: 0;
+          }
+          img {
+            width: 100%;
+            height: 100%;
+          }
         }
       }
     }

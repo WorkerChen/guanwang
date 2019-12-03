@@ -45,13 +45,20 @@ export default {
   },
   methods: {
     getMoment() {
-      console.log(this.$route.params.id);
-      var allParams = "?id=" + this.$route.params.id;
+      console.log(this.$route.query.id);
+      var allParams = "?id=" + this.$route.query.id;
       requestMoment(allParams).then(res => {
-        console.log(res.data);
-        this.title = res.data.title;
-        this.detail = res.data.detail;
-        this.cover = res.data.cover;
+        if (res.data == "{}") {
+          this.$message({
+            message: "请求失败",
+            type: "error"
+          });
+        } else {
+          console.log(res.data);
+          this.title = res.data.title;
+          this.detail = res.data.detail;
+          this.cover = res.data.cover;
+        }
       });
     }
   },

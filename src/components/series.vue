@@ -6,7 +6,7 @@
       <h1 class="series_title">全系列产品</h1>
       <div class="series_item">
         <div class="item" v-for="item in list" v-bind:key="item.id">
-          <router-link :to="{ name: 'SeriesType', params: { id: item.id }}">
+          <router-link :to="{ name: 'SeriesType', query: { id: item.id }}">
             <div class="mask">
               <div class="mask_text">{{item.title}}</div>
             </div>
@@ -61,12 +61,7 @@ export default {
       requestTypes(allParams).then(res => {
         this.list = res.data.data;
         this.count = res.data.count;
-        console.log(this.list);
       });
-    },
-    gotoDetail(id) {
-      console.log(id);
-      this.$router.push({ name: "SeriesType", params: { id: id } });
     }
   },
   created() {

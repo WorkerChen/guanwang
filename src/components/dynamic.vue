@@ -56,7 +56,7 @@ export default {
     },
     gotoDetail(id) {
       console.log(id);
-      this.$router.push({ name: "dynDetail", params: { id: id } });
+      this.$router.push({ name: "dynDetail", query: { id: id } });
     }
   },
   mounted: function() {

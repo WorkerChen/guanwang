@@ -5,7 +5,7 @@
       <div class="data_title">资源</div>
       <div class="data_item">
         <div class="item" v-for="item in list" v-bind:key="item.id">
-          <router-link :to="{ name: 'DataDetail', params: { id: item.id }}" class="link_img">
+          <router-link :to="{ name: 'DataDetail', query: { id: item.id }}" class="link_img">
             <div class="mask">
               <div class="mask_text">{{item.title}}</div>
             </div>
@@ -79,6 +79,7 @@ export default {
 <style scoped lang="less">
 .content {
   padding: 0 15rem;
+  width: 96rem;
   margin-top: 5.1rem;
   .data_title {
     width: 100%;

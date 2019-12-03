@@ -9,7 +9,7 @@
         <div class="item_img">
           <div class="img" v-for="item in list" v-bind:key="item.id">
             <router-link
-              :to="{ name: 'proDetail', params: { id: item.id,title ,type_id}}"
+              :to="{ name: 'proDetail', query: { id: item.id,title ,type_id}}"
               class="link_img"
             >
               <div class="mask">
@@ -65,14 +65,21 @@ export default {
   },
   methods: {
     getType() {
-      console.log(this.$route.params.id);
-      var allParams = "?id=" + this.$route.params.id;
+      console.log(this.$route.query.id);
+      var allParams = "?id=" + this.$route.query.id;
       requestType(allParams).then(res => {
         console.log(res.data);
-        this.title = res.data.title;
-        this.detail = res.data.description;
-        this.list = res.data.products;
-        this.type_id = res.data.id;
+        if (res.data == "{}") {
+          this.$message({
+            message: "请求失败",
+            type: "error"
+          });
+        } else {
+          this.title = res.data.title;
+          this.detail = res.data.description;
+          this.list = res.data.products;
+          this.type_id = res.data.id;
+        }
       });
     }
   },

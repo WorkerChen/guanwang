@@ -14,16 +14,16 @@
     <div class="product">
       <div class="series_all">
         <div class="series_img">
-          <a href>
+          <router-link to="/series">
             <img src="../../static/img/qxilie.jpg" />
-          </a>
+          </router-link>
         </div>
         <div class="series_text">
           <h1 class="text_title">全系列</h1>
           <div class="text">我们以工艺为起点，突破固有的经验，尝试将各种材料相结合，开发创新而实用的建筑材料及其衍生品。对探索的渴望将引领我们不断发现。</div>
         </div>
         <div class="series_flex">
-          <router-link :to="{ name: 'SeriesType', params: { id: top.id }}">
+          <router-link :to="{ name: 'SeriesType', query: { id: top.id }}">
             <div class="flex_img">
               <div class="mask">
                 <div class="mask_text">实验品</div>
@@ -33,16 +33,22 @@
           </router-link>
 
           <div class="flex_img">
-            <router-link to="/new"></router-link>
-            <div class="mask">
-              <div class="mask_text">新品</div>
-            </div>
+            <router-link to="/new">
+              <div class="mask">
+                <div class="mask_text">新品</div>
+              </div>
+            </router-link>
             <img :src="new_cover" />
           </div>
         </div>
         <div class="other">
-          <div class="other_img" v-for="item in adverts">
-            <img :src="item.href" />
+          <div class="other_img" v-for="item in adverts" :key="item.id ">
+            <img
+              :src="item.href"
+              :data-link="item.type"
+              @click="link_to($event) "
+              :data-id="item.param"
+            />
           </div>
           <!-- <div class="other_img">
             <img src="../../static/img/fang021.jpg" alt />
@@ -64,6 +70,9 @@ export default {
   name: "Home",
   data() {
     return {
+      count: 0,
+      limit: 10,
+      currentPage: 1,
       // Banner
       banner_herf: [],
       adverts: [],
@@ -75,13 +84,33 @@ export default {
   methods: {
     getBanners() {
       // banner
-      var allParams = "?language=1&limit=10&page=1";
+      var language = this.$i18n.locale == "zh" ? "1" : "2";
+      var allParams =
+        "?page=" +
+        this.currentPage +
+        "&limit=" +
+        this.limit +
+        "&language=" +
+        language;
       requestBanners(allParams).then(res => {
         console.log(res.data.data);
         this.banner_herf = res.data.data;
       });
       requestAdvers(allParams).then(res => {
         this.adverts = res.data.data;
+
+        // for (let i = 0; i < res.data.data.length; i++) {
+        //   if (res.data.data[i].type == 1) {
+        //     this.adverts[i].link = "proDetail";
+        //   } else if (res.data.data[i].type == 2) {
+        //     this.adverts[i].link = "ProjectDetail";
+        //   } else if ((res.data.data[i].type = 3)) {
+        //     this.adverts[i].link = "dynDetail";
+        //   } else if (res.data.data[i].type) {
+        //     this.adverts[i].link = "dataDetail";
+        //   }
+        // }
+        // console.log(this.adverts);
       });
       requestTop(allParams).then(res => {
         this.top = res.data;
@@ -91,6 +120,34 @@ export default {
         this.new = res.data.data;
         this.new_cover = res.data.data[0].cover;
       });
+    },
+
+    link_to(ev) {
+      var link = ev.target.dataset.link;
+      var id = ev.target.dataset.id;
+      if (link == 1) {
+        this.$router.push({
+          name: "proDetail",
+          query: { id: id }
+        });
+      } else if (link == 2) {
+        this.$router.push({
+          name: "ProjectDetail",
+          query: { id: id }
+        });
+        console.log(2);
+        return;
+      } else if (link == 3) {
+        this.$router.push({
+          name: "dynDetail",
+          query: { id: id }
+        });
+      } else if (link == 4) {
+        this.$router.push({
+          name: "dataDetail",
+          query: { id: id }
+        });
+      }
     }
   },
   components: {
@@ -98,6 +155,12 @@ export default {
   },
   mounted() {
     this.getBanners();
+  },
+  created() {
+    // 控制是否显示导航栏
+    this.$bus.on("ChangeLocation", val => {
+      this.getList();
+    });
   }
 };
 </script>

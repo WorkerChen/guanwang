@@ -5,7 +5,7 @@
       <h1 class="pro_title">项目</h1>
       <div class="pro_item">
         <div class="item" v-for="item in list" :key="item.id">
-          <router-link :to="{name: 'ProjectDetail', params: { id: item.id }}" class="img_link">
+          <router-link :to="{name: 'ProjectDetail', query: { id: item.id }}" class="img_link">
             <img v-bind:src="item.cover" />
           </router-link>
         </div>

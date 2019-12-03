@@ -34,18 +34,20 @@
         <div class="icon_item wechat">
           <i class="iconfont icon-weixin icon"></i>
           {{$t('contact.wechat')}}
-          <img src="../../static/img/WeChat.jpg" />
+          <img :src="wechat_bg" />
         </div>
         <div class="icon_item">
           <a href="https://www.instagram.com/ningsheng_/" target="_blank">
             <i class="iconfont icon-ins icon"></i>
             {{$t('contact.ins')}}
+            <img :src="ins_bg" />
           </a>
         </div>
         <div class="icon_item">
           <a href="https://weibo.com/ningshengspace" target="_blank">
             <i class="iconfont icon-weibo icon"></i>
             {{$t('contact.weibo')}}
+            <!-- <img :src="weibo_bg" /> -->
           </a>
         </div>
       </div>
@@ -119,22 +121,28 @@ export default {
   methods: {
     getConfigs() {
       requestConfigs().then(res => {
-        console.log(res);
-        let data = res.data;
-        console.log(data);
-        if (data) {
-          (this.buy = data.buy),
-            (this.bussiness = data.bussiness),
-            (this.email = data.email),
-            (this.eng_buy = data.eng_buy),
-            (this.ins_bg = data.ins_bg),
-            (this.ins_title = data.ins_title),
-            (this.media = data.media),
-            (this.phone = data.phone),
-            (this.wechat_bg = data.wechat_bg),
-            (this.wechat_title = data.wechat_title),
-            (this.weibo_bg = data.weibo_bg),
-            (this.weibo_title = data.weibo_title);
+        if (res.data == "{}") {
+          this.$message({
+            message: "请求失败",
+            type: "error"
+          });
+        } else {
+          let data = res.data;
+          console.log(data);
+          if (data) {
+            (this.buy = data.buy),
+              (this.bussiness = data.bussiness),
+              (this.email = data.email),
+              (this.eng_buy = data.eng_buy),
+              (this.ins_bg = data.ins_bg),
+              (this.ins_title = data.ins_title),
+              (this.media = data.media),
+              (this.phone = data.phone),
+              (this.wechat_bg = data.wechat_bg),
+              (this.wechat_title = data.wechat_title),
+              (this.weibo_bg = data.weibo_bg),
+              (this.weibo_title = data.weibo_title);
+          }
         }
       });
     }
@@ -202,13 +210,21 @@ export default {
         text-decoration: none;
         color: #86837b;
       }
-    }
-    .wechat {
       &:hover img {
         display: block;
       }
       img {
-        width: 11.5rem;
+        display: block;
+        margin-top: 2rem;
+        width: 11rem;
+        height: 11rem;
+        display: none;
+      }
+    }
+    .wechat {
+      img {
+        width: 11rem;
+        height: 11rem;
         display: none;
       }
     }

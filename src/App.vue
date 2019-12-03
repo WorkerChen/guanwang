@@ -50,5 +50,6 @@ a {
   font-family: "huipu", "huipu2", "huipu3", "huipu4", "huipu5";
   text-align: left;
   overflow: hidden;
+  user-select: none;
 }
 </style>

@@ -1,8 +1,11 @@
 <template name="component-name">
   <div>
     <NavComponent></NavComponent>
-
-    <el-row class="content">
+    <div class="content">
+      <div class="data_title">{{title}}</div>
+      <div class="data_item"></div>
+    </div>
+    <!-- <el-row class="content">
       <h1 class="detail_title">{{title}}</h1>
       <el-row :gutter="16" type="flex">
         <el-col :span="8" class="data_img">
@@ -12,7 +15,7 @@
           <img v-bind:src="cover" alt />
         </el-col>
       </el-row>
-    </el-row>
+    </el-row>-->
   </div>
 </template>
 <script>
@@ -32,13 +35,19 @@ export default {
   },
   methods: {
     getList() {
-      console.log(this.$route.params.id);
-      var allParams = "?id=" + this.$route.params.id;
+      console.log(this.$route.query.id);
+      var allParams = "?id=" + this.$route.query.id;
       requestData(allParams).then(res => {
-        console.log(res);
-        this.title = res.data.title;
-        this.detail = res.data.detail;
-        this.cover = res.data.cover;
+        if (res.data == "{}") {
+          this.$message({
+            message: "请求失败",
+            type: "error"
+          });
+        } else {
+          this.title = res.data.title;
+          this.detail = res.data.detail;
+          this.cover = res.data.cover;
+        }
       });
     }
     // gotoDetail(id){
@@ -51,8 +60,40 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style scoped lang="less">
 .content {
+  padding: 0 15rem;
+  width: 96rem;
+  margin-top: 5.1rem;
+  .data_title {
+    width: 100%;
+    font-size: 2.6rem;
+    color: #86837a;
+    font-weight: bolder;
+  }
+  .data_item {
+    margin-top: 8rem;
+    width: 100%;
+    display: flex;
+    .item {
+      width: 20rem;
+      height: 20rem;
+      margin-right: 2rem;
+      margin-bottom: 2rem;
+      &:nth-child(3n + 3) {
+        margin-right: 0;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
+</style>
+<style scoped>
+/* .content {
   padding: 0 16vw;
   margin-top: 0;
 }
@@ -104,5 +145,5 @@ export default {
 .data_img img {
   width: 100%;
   height: 100%;
-}
+} */
 </style>
