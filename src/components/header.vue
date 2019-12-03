@@ -20,14 +20,14 @@
       </div>
       <div class="float" v-if="isShow">
         <div class="float_header">
-          <span class="hide_text">
-            <router-link to="/">凝</router-link>
-          </span>
           <span
             class="glyphicon glyphicon-align-justify hide_icon"
             v-on:click="float_navShow"
             id="icon"
           ></span>
+          <span class="hide_text">
+            <router-link to="/">凝</router-link>
+          </span>
         </div>
         <div>
           <transition name="fade">
@@ -94,6 +94,7 @@ export default {
         this.$bus.emit("isShow", this.navShow);
       } else {
         this.isShow = false;
+        this.float_nav_show = false;
       }
     });
   },
@@ -183,7 +184,6 @@ export default {
             color: #868379;
             cursor: pointer;
             font-size: 1.4rem;
-
             &:nth-child(even):hover {
               color: #cccccc;
             }
@@ -196,10 +196,12 @@ export default {
   .float {
     font-size: 1.5rem;
     position: fixed;
-    top: 1rem;
-    right: 4.5rem;
+    top: 0;
+    right: 0rem;
     z-index: 999;
-    padding: 0 1.4rem;
+    width: 12.5rem;
+    padding-left: 1rem;
+    // padding: 0 1.4rem;
     background: #86837a;
     animation: down 1s ease-in;
     opacity: 0.9;
@@ -209,39 +211,40 @@ export default {
       height: 100%;
       line-height: 4rem;
       .hide_text {
-        margin-right: 0.5rem;
-
         a {
-          display: inline-block;
-          vertical-align: middle;
           text-decoration: none;
           color: #e0deda;
           font-weight: bolder;
           cursor: pointer;
+          font-size: 2rem;
+          vertical-align: middle;
         }
       }
       .glyphicon {
-        font-size: 1.4rem;
-
         vertical-align: middle;
-
+        font-size: 1.9rem;
         color: #e0deda;
+        margin-right: 1rem;
       }
     }
 
     .float_nav {
       width: 100%;
+      height: 40rem;
       .float_item {
         width: 100%;
         a {
           text-decoration: none;
-          font-size: 1rem;
+          font-size: 1.2rem;
           cursor: pointer;
           .item {
             cursor: pointer;
-            line-height: 3rem;
+            line-height: 5rem;
+            text-indent: 3rem;
             color: #fff;
-            text-align: center;
+            &:hover {
+              background: #cccccc;
+            }
           }
         }
       }
@@ -256,6 +259,30 @@ export default {
   100% {
     opacity: 1;
     padding: 0 1.3rem;
+  }
+}
+.fade-enter-active {
+  animation: openNav 0.8s ease-in-out;
+}
+.fade-leave-active {
+  animation: closeNav 0.8s ease-in-out;
+}
+@keyframes openNav {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes closeNav {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    height: 0;
+    opacity: 0;
   }
 }
 </style>

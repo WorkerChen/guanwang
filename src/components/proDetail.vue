@@ -42,8 +42,17 @@
           <div class="areas">
             <h1 class="areas_title">使用区域</h1>
             <div class="areas_item">
+              <!-- <div class="item" v-for="item in areas">
+                <div class="item_title">{{item.title}}</div>
+                <div class="item_img">
+                  <img :src="item.icon" alt />
+                </div>
+              </div>-->
               <div class="item" v-for="item in areas">
                 <div class="item_title">{{item.title}}</div>
+                <div class="item_img">
+                  <img :src="item.icon" alt />
+                </div>
               </div>
             </div>
           </div>
@@ -52,7 +61,7 @@
             <div class="likes_title">类似产品</div>
             <div class="likes_item">
               <div class="item" v-for="item in proLink">
-                <img v-bind:src="item.cover" :data-id="item.id" @click="Likes($event)" />
+                <img :src="item.cover" />
               </div>
             </div>
           </div>
@@ -68,7 +77,7 @@
           <div class="contact">
             对于价格、可用性、起订量、货期和销售条款
             等请
-            <a href="/contact">联络我们</a>
+            <router-link to="/contact">联络我们</router-link>
           </div>
         </div>
       </div>
@@ -222,7 +231,7 @@ export default {
           this.parameter = res.data.parameter;
         }
 
-        // 类似产品
+        // 类似产品;
         var allParams2 = "?id=" + this.$route.query.type_id;
         console.log(allParams2);
         requestType(allParams2).then(res => {
@@ -397,6 +406,28 @@ export default {
       }
       .areas_item {
         margin-top: 2.2rem;
+        .item {
+          display: inline-block;
+          width: 10rem;
+          margin-right: 2.4rem;
+          &:last-child {
+            margin-right: 0;
+          }
+          .item_title {
+            font-size: 1.5rem;
+            color: #868379;
+          }
+          .item_img {
+            margin-top: 2rem;
+            height: 5rem;
+            width: 100%;
+
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
       }
     }
     .likes {
@@ -439,6 +470,7 @@ export default {
       margin-top: 2rem;
       a {
         color: #fecc3f;
+        text-decoration: none;
       }
     }
   }
