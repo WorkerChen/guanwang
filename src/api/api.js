@@ -56,7 +56,7 @@ let hosturl = 'http://ns.ns-space.cn/api'
 export default hosturl
 
 //
-export const requestConfigs = params => { return axios.get(`${hosturl}/configs`, params).then(res => res.data) } //
+export const requestConfigs = params => { return axios.get(`${hosturl}/configs` + params).then(res => res.data) } //
 
 export const requestDocument = params => { return axios.get(`${hosturl}/document` + `${params}`).then(res => res.data) } //
 

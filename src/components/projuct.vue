@@ -71,15 +71,21 @@ export default {
         "&limit=" +
         this.limit +
         "&language=" +
-        language;
+        language +
+        "sort=1";
       requesProject(allParams).then(res => {
+        if (res.data == "{}") {
+          let that = this;
+          this.$alert("暂无产品信息", "消息", {
+            confirmButtonText: "返回",
+            callback: function() {
+              that.$router.back(-1);
+            }
+          });
+        }
         this.count = res.data.count;
         this.list = res.data.data;
       });
-    },
-    gotoDetail(id) {
-      console.log(id);
-      this.$router.push({ name: "ProjectDetail", params: { id: id } });
     }
   },
   mounted: function() {

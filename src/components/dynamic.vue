@@ -48,7 +48,8 @@ export default {
         "&limit=" +
         this.limit +
         "&language=" +
-        language;
+        language +
+        "sort=1";
       requestMoments(allParams).then(res => {
         this.list = res.data.data;
         this.count = res.data.count;

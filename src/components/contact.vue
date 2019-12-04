@@ -120,7 +120,8 @@ export default {
   },
   methods: {
     getConfigs() {
-      requestConfigs().then(res => {
+      var allparams = "?sort=1";
+      requestConfigs(allparams).then(res => {
         if (res.data == "{}") {
           this.$message({
             message: "请求失败",

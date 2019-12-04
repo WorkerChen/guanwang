@@ -54,16 +54,17 @@ export default {
         "&limit=" +
         this.limit +
         "&language=" +
-        language;
+        language +
+        "sort=1";
       requestDatas(allParams).then(res => {
         this.list = res.data.data;
         this.count = res.data.count;
       });
-    },
-    gotoDetail(id) {
-      console.log(id);
-      this.$router.push({ name: "dynDetail", params: { id: id } });
     }
+    // gotoDetail(id) {
+    //   console.log(id);
+    //   this.$router.push({ name: "dynDetail", params: { id: id } });
+    // }
   },
   mounted: function() {
     this.getList();

@@ -416,7 +416,6 @@ export default {
           }
           .item_img {
             margin-top: 2rem;
-            height: 5rem;
             width: 100%;
 
             img {

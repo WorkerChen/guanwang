@@ -42,6 +42,7 @@ export default {
     getDocument() {
       var language = this.$i18n.locale;
       var allParams = language == "zh" ? "?code=about_cn" : "?code=about_en";
+      var allParams = allParams + "&sort=1";
       requestDocument(allParams).then(res => {
         let data = res.data;
 

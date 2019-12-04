@@ -69,6 +69,16 @@ export default {
       var allParams = "?id=" + this.$route.query.id;
       requestType(allParams).then(res => {
         console.log(res.data);
+
+        if (res.data.products.length == 0) {
+          let that = this;
+          this.$alert("暂无产品信息", "消息", {
+            confirmButtonText: "返回",
+            callback: function() {
+              that.$router.back(-1);
+            }
+          });
+        }
         if (res.data == "{}") {
           this.$message({
             message: "请求失败",
@@ -79,16 +89,6 @@ export default {
           this.detail = res.data.description;
           this.list = res.data.products;
           this.type_id = res.data.id;
-        }
-
-        if (res.data.products.length == 0) {
-          let that = this;
-          this.$alert("暂无产品信息", "消息", {
-            confirmButtonText: "返回",
-            callback: function() {
-              that.$router.back(-1);
-            }
-          });
         }
       });
     }
