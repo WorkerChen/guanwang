@@ -11,7 +11,7 @@
     <Nav-component></Nav-component>
     <div class="content">
       <h1 class="pro_title">{{title}}</h1>
-      <h1 class="pro_type">{{type}}</h1>
+      <h1 class="pro_type">{{sub_title}}</h1>
       <div class="detail_item">
         <div class="detail_img" @click="fade">
           <img v-bind:src="cover" alt id="mask" />
@@ -182,6 +182,7 @@ export default {
     return {
       id: "",
       title: "暂无数据",
+      sub_title: "暂无数据",
       detail: "暂无数据",
       image: [],
       type: "",
@@ -224,6 +225,7 @@ export default {
           this.categories = res.data.categories;
           this.categories_cover = res.data.category_cover;
           this.parameter = res.data.parameter;
+          this.sub_title = res.data.sub_title;
         }
 
         // 类似产品
