@@ -6,7 +6,7 @@
     <div class="banner">
       <el-carousel arrow="never" height="45rem">
         <el-carousel-item v-for="item in banner_herf">
-          <img :src="item.href" />
+          <img :src="item.href" :data-href="item.link" @click="link_to" />
         </el-carousel-item>
       </el-carousel>
     </div>
@@ -43,12 +43,7 @@
         </div>
         <div class="other">
           <div class="other_img" v-for="item in adverts" :key="item.id ">
-            <img
-              :src="item.href"
-              :data-link="item.type"
-              @click="link_to($event) "
-              :data-id="item.param"
-            />
+            <img :src="item.href" :data-href="item.link" @click="link_to" />
           </div>
           <!-- <div class="other_img">
             <img src="../../static/img/fang021.jpg" alt />
@@ -65,6 +60,7 @@ import { requestBanners } from "../api/api";
 import { requestAdvers } from "../api/api";
 import { requestTop } from "../api/api";
 import { requestNew } from "../api/api";
+import { Link } from "element-ui";
 
 export default {
   name: "Home",
@@ -123,31 +119,40 @@ export default {
     },
 
     link_to(ev) {
-      var link = ev.target.dataset.link;
-      var id = ev.target.dataset.id;
-      if (link == 1) {
-        this.$router.push({
-          name: "proDetail",
-          query: { id: id }
-        });
-      } else if (link == 2) {
-        this.$router.push({
-          name: "ProjectDetail",
-          query: { id: id }
-        });
-        console.log(2);
-        return;
-      } else if (link == 3) {
-        this.$router.push({
-          name: "dynDetail",
-          query: { id: id }
-        });
-      } else if (link == 4) {
-        this.$router.push({
-          name: "dataDetail",
-          query: { id: id }
-        });
+      var link = ev.target.dataset.href;
+
+      if (link == undefined) {
+        this.$alert("链接为空");
+        return false;
       }
+      window.location.href = link;
+      // var XMLHTTP = link.substring(0, 4);
+
+      // var link = ev.target.dataset.link;
+      // var id = ev.target.dataset.id;
+      // if (link == 1) {
+      //   this.$router.push({
+      //     name: "proDetail",
+      //     query: { id: id }
+      //   });
+      // } else if (link == 2) {
+      //   this.$router.push({
+      //     name: "ProjectDetail",
+      //     query: { id: id }
+      //   });
+      //   console.log(2);
+      //   return;
+      // } else if (link == 3) {
+      //   this.$router.push({
+      //     name: "dynDetail",
+      //     query: { id: id }
+      //   });
+      // } else if (link == 4) {
+      //   this.$router.push({
+      //     name: "dataDetail",
+      //     query: { id: id }
+      //   });
+      // }
     }
   },
   components: {
