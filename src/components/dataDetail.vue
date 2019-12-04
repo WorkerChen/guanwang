@@ -3,7 +3,16 @@
     <NavComponent></NavComponent>
     <div class="content">
       <div class="data_title">{{title}}</div>
-      <div class="data_item"></div>
+      <div class="data_item">
+        <div class="item" v-for="item in list">
+          <a :href="item.file_link">
+            <div class="mask">
+              <div class="mask_text">{{item.title}}</div>
+            </div>
+            <img v-bind:src="item.cover" alt />
+          </a>
+        </div>
+      </div>
     </div>
     <!-- <el-row class="content">
       <h1 class="detail_title">{{title}}</h1>
@@ -20,7 +29,7 @@
 </template>
 <script>
 import NavComponent from "./Nav";
-import { requestData } from "../api/api";
+import { requestDatas } from "../api/api";
 export default {
   name: "seriesDetail",
   components: {
@@ -29,24 +38,22 @@ export default {
   data() {
     return {
       id: 0,
-      title: "",
-      detail: ""
+      list: []
     };
   },
   methods: {
     getList() {
       console.log(this.$route.query.id);
-      var allParams = "?id=" + this.$route.query.id;
-      requestData(allParams).then(res => {
+      this.title = this.$route.query.title;
+      var allParams = "?type_id=" + this.$route.query.id;
+      requestDatas(allParams).then(res => {
         if (res.data == "{}") {
           this.$message({
             message: "请求失败",
             type: "error"
           });
         } else {
-          this.title = res.data.title;
-          this.detail = res.data.detail;
-          this.cover = res.data.cover;
+          this.list = res.data.data;
         }
       });
     }
@@ -74,19 +81,44 @@ export default {
   .data_item {
     margin-top: 8rem;
     width: 100%;
-    display: flex;
     .item {
+      display: inline-block;
       width: 20rem;
       height: 20rem;
       margin-right: 2rem;
       margin-bottom: 2rem;
+      position: relative;
       &:nth-child(3n + 3) {
         margin-right: 0;
       }
-
       img {
         width: 100%;
         height: 100%;
+      }
+
+      &:hover .mask {
+        display: block;
+        opacity: 0.5;
+        animation: fade 2s;
+      }
+      .mask {
+        transition: all 2s;
+        display: none;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        position: absolute;
+        opacity: 0.6;
+        .mask_text {
+          width: 100%;
+          height: 100%;
+          display: block;
+          font-size: 2.2rem;
+          font-weight: bolder;
+          text-align: center;
+          line-height: 20rem;
+          color: #fff;
+        }
       }
     }
   }

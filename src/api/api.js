@@ -58,7 +58,7 @@ export default hosturl
 //
 export const requestConfigs = params => { return axios.get(`${hosturl}/configs` + params).then(res => res.data) } //
 
-export const requestDocument = params => { return axios.get(`${hosturl}/document` + `${params}`).then(res => res.data) } //
+// export const requestDocument = params => { return axios.get(`${hosturl}/documents` + `${params}`).then(res => res.data) } //
 
 export const requestMoments = params => { return axios.get(`${hosturl}/moments` + `${params}`).then(res => res.data) } //
 
@@ -85,3 +85,5 @@ export const requestAdvers = params => { return axios.get(`${hosturl}/adverts` +
 export const requestTop = params => { return axios.get(`${hosturl}/top/type` + `${params}`).then(res => res.data) }
 
 export const requestNew = params => { return axios.get(`${hosturl}/products` + `${params}`).then(res => res.data) }
+
+export const requestDataType = params => { return axios.get(`${hosturl}/data/types` + `${params}`).then(res => res.data) }

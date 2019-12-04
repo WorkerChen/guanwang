@@ -4,12 +4,15 @@
     <div class="content">
       <div class="data_title">资源</div>
       <div class="data_item">
-        <div class="item" v-for="item in list" v-bind:key="item.id">
-          <router-link :to="{ name: 'DataDetail', query: { id: item.id }}" class="link_img">
+        <div class="item" v-for="item in list" v-bind:key="item.type_id">
+          <router-link
+            :to="{ name: 'DataDetail', query: { id: item.id,title:item.title}}"
+            class="link_img"
+          >
             <div class="mask">
               <div class="mask_text">{{item.title}}</div>
             </div>
-            <img v-bind:src="item.cover" alt />
+            <img v-bind:src="item.href" alt />
           </router-link>
         </div>
       </div>
@@ -31,7 +34,7 @@
 </template>
 <script>
 import NavComponent from "./Nav";
-import { requestDatas } from "../api/api";
+import { requestDataType } from "../api/api";
 export default {
   name: "seriesDetail",
   components: {
@@ -56,7 +59,7 @@ export default {
         "&language=" +
         language +
         "sort=1";
-      requestDatas(allParams).then(res => {
+      requestDataType(allParams).then(res => {
         this.list = res.data.data;
         this.count = res.data.count;
       });
