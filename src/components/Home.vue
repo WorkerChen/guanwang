@@ -15,7 +15,7 @@
       <div class="series_all">
         <div class="series_img">
           <router-link to="/series">
-            <img src="../../static/img/qxilie.jpg" />
+            <img :src="all_bg" />
           </router-link>
         </div>
         <div class="series_text">
@@ -28,7 +28,7 @@
               <div class="mask">
                 <div class="mask_text">实验品</div>
               </div>
-              <img :src="top.image" />
+              <img :src="test_bg" />
             </div>
           </router-link>
 
@@ -38,7 +38,7 @@
                 <div class="mask_text">新品</div>
               </div>
             </router-link>
-            <img :src="new_cover" />
+            <img :src="new_bg" />
           </div>
         </div>
         <div class="other">
@@ -56,6 +56,7 @@
 
 <script >
 import NavComponent from "./Nav";
+import { requestConfigs } from "../api/api";
 import { requestBanners } from "../api/api";
 import { requestAdvers } from "../api/api";
 import { requestTop } from "../api/api";
@@ -69,12 +70,15 @@ export default {
       count: 0,
       limit: 10,
       currentPage: 1,
+      all_bg: "",
+      test_bg: "",
       // Banner
       banner_herf: [],
       adverts: [],
       top: [],
       new: [],
-      new_cover: []
+      new_cover: [],
+      new_bg: []
     };
   },
   methods: {
@@ -115,6 +119,11 @@ export default {
       requestNew(allParams_new).then(res => {
         this.new = res.data.data;
         this.new_cover = res.data.data[0].cover;
+      });
+      requestConfigs(allParams).then(res => {
+        this.test_bg = res.data.test_bg;
+        this.new_bg = res.data.new_bg;
+        this.all_bg = res.data.all_bg;
       });
     },
 
