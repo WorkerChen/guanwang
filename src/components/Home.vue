@@ -200,6 +200,7 @@ export default {
     width: 49rem;
     margin-right: 2.2rem;
     display: inline-block;
+    height: 30rem;
     img {
       width: 100%;
       height: 100%;
