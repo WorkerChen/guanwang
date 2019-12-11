@@ -19,8 +19,8 @@
           </router-link>
         </div>
         <div class="series_text">
-          <h1 class="text_title">全系列</h1>
-          <div class="text">我们以工艺为起点，突破固有的经验，尝试将各种材料相结合，开发创新而实用的建筑材料及其衍生品。对探索的渴望将引领我们不断发现。</div>
+          <h1 class="text_title">{{all_title}}</h1>
+          <div class="text">{{all_content}}</div>
         </div>
         <div class="series_flex">
           <router-link :to="{ name: 'SeriesType', query: { id: top.id }}">
@@ -72,6 +72,8 @@ export default {
       currentPage: 1,
       all_bg: "",
       test_bg: "",
+      all_title: "",
+      all_content: "",
       // Banner
       banner_herf: [],
       adverts: [],
@@ -124,6 +126,8 @@ export default {
         this.test_bg = res.data.test_bg;
         this.new_bg = res.data.new_bg;
         this.all_bg = res.data.all_bg;
+        this.all_content = res.data.all_content;
+        this.all_title = res.data.all_title;
       });
     },
 
