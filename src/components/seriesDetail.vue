@@ -170,6 +170,17 @@ export default {
   }
 }
 </style>
+<style>
+.text p span {
+  width: 100%;
+  display: block;
+  padding: 0 12.4rem;
+}
+.text p img {
+  width: 100%;
+  height: 100%;
+}
+</style>
 <style scoped>
 /* .mask {
   position: absolute;

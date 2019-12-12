@@ -72,6 +72,7 @@ export default {
   padding: 0 15rem;
   width: 96rem;
   margin-top: 5.1rem;
+  overflow: hidden;
   .dyn_title {
     font-size: 2.5rem;
     color: #86837a;
@@ -81,9 +82,13 @@ export default {
     width: 100%;
     margin-top: 2.4rem;
     .text {
-      padding: 0 13.4rem;
       display: inline-block;
       margin: 0 auto;
+      p {
+        img {
+          width: 100%;
+        }
+      }
     }
     .item_img {
       margin-top: 5rem;
@@ -98,5 +103,16 @@ export default {
       }
     }
   }
+}
+</style>
+<style>
+.text p span {
+  width: 100%;
+  display: block;
+  padding: 0 12.4rem;
+}
+.text p img {
+  width: 100%;
+  height: 100%;
 }
 </style>
