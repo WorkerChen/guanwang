@@ -87,88 +87,6 @@
         </div>
       </div>
     </div>
-
-    <!-- <el-row class="content">
-      <el-row>
-        <el-col class="content_header">
-          <el-col class="pro_title" :span="24">{{title}}</el-col>
-          <el-col class="pro_type" :span="24">{{type}}</el-col>
-        </el-col>
-        <el-col>
-          <el-col :span="8" class="pro_img" :xs="24">
-            <img v-bind:src="cover" alt />
-          </el-col>
-          <el-col :span="12" :offset="4" class="pro_left" :xs="{span:24,offset:0}">
-            <el-row class="item_one">
-              <h1 class="item_title">主要材料</h1>
-              <el-col class="item">{{material}}</el-col>
-            </el-row>
-
-            <el-row class="item_one">
-              <h1 class="item_title">规格</h1>
-              <el-col class="text" :span="18">
-                <el-col v-for="item in categories" class="item">
-                  <div class="title">{{item.title}}:</div>
-                  <div class="details">
-                    <span>123123</span>
-                    <span>123123</span>
-                  </div>
-                </el-col>
-              </el-col>
-              <el-col
-                class="pro_img"
-                :span="6"
-                :offset="8"
-                :md="{offset:0}"
-                :sm="{offset:0}"
-                :xs="{offset:0}"
-              >
-                <img v-bind:src="categories_cover" alt />
-              </el-col>
-            </el-row>
-
-            <el-row class="item_one">
-              <el-col class="item">其他颜色和纹理可根据要求定制</el-col>
-            </el-row>
-
-            <el-row class="item_one">
-              <h1 class="item_title">使用区域</h1>
-              <el-col class="areas" v-for="item in areas">
-                <div class="areas_title">{{item.title}}：</div>
-                <div class="araes_img">
-                  <img v-bind:src="item.icon" alt />
-                </div>
-              </el-col>
-            </el-row>
-
-            <el-row class="item_one">
-              <h1 class="item_title">类似产品</h1>
-              <el-row :gutter="5" class="pro_like" type="flex">
-                <el-col :span="4" :xs="8" v-for="item in proLink">
-                  <div class="proLink">
-                    <img v-bind:src="item" alt />
-                  </div>
-                </el-col>
-              </el-row>
-            </el-row>
-
-            <el-row class="item_one">
-              <a :href="cover" class="pro_down">下载图片</a>
-              <a :href="parameter" class="pro_down">下载技术参数表</a>
-              <el-col class="pro_text">
-                对于价格、可用性、起订量、货期和销售条款等请
-                <router-link to="/contact" class="pro_link">联络我们</router-link>
-              </el-col>
-            </el-row>
-          </el-col>
-        </el-col>
-        <el-col class="pro_pic">
-          <el-col v-for="item in image">
-            <img v-bind:src="item.href" alt />
-          </el-col>
-        </el-col>
-      </el-row>
-    </el-row>-->
   </div>
 </template>
 <script>
@@ -475,9 +393,10 @@ export default {
   .pic_img {
     display: block;
     width: 100%;
-
     margin-top: 7.8rem;
     .item_img {
+      height: 54rem;
+      margin-bottom: 1rem;
       img {
         width: 100%;
         height: 100%;
