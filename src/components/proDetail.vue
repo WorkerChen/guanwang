@@ -478,7 +478,6 @@ export default {
 
     margin-top: 7.8rem;
     .item_img {
-      height: 37.5rem;
       img {
         width: 100%;
         height: 100%;

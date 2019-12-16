@@ -11,14 +11,19 @@
             <img :src="cover" alt />
           </div>
         </div>
-        <!-- <div class="pro_use">
+        <div class="pro_use">
           <div class="user_title">使用的产品</div>
           <div class="user_img">
-            <div class="item" v-for="item in product_img">
-              <img v-bind:src="item" alt />
+            <div class="covers" v-for="item in products" :key="item.id">
+              <router-link :to="{ name: 'proDetail', query: { id: item.info.id,title ,type_id}}">
+                <div class="mask">
+                  <div class="mask_text">{{item.info.title}}</div>
+                </div>
+                <img :src="item.info.cover" alt />
+              </router-link>
             </div>
           </div>
-        </div>-->
+        </div>
       </div>
     </div>
     <!-- <el-row class="content">
@@ -49,7 +54,6 @@
 <script>
 import NavComponent from "./Nav";
 import { requestProject } from "../api/api";
-import { requestProduct } from "../api/api";
 export default {
   name: "ProjectDetail",
   data() {
@@ -59,9 +63,7 @@ export default {
       title: "",
       detail: "",
       products: [],
-      cover: "",
-
-      product_img: []
+      cover: ""
     };
   },
   components: {
@@ -78,7 +80,6 @@ export default {
             type: "error"
           });
         } else {
-          console.log(res.data);
           if (res.data.cover == "" || res.data.title == "") {
             let that = this;
             this.$alert("暂无产品信息", "消息", {
@@ -91,14 +92,7 @@ export default {
           this.title = res.data.title;
           this.cover = res.data.cover;
           this.detail = res.data.detail;
-          console.log(res.data.products);
-          for (var i = 0; i < res.data.products.length; i++) {
-            var product_id = res.data.products[i].product_id;
-            var allParams = "?id=" + product_id;
-            requestProduct(allParams).then(res => {
-              this.product_img.push(res.data.cover);
-            });
-          }
+          this.products = res.data.products;
         }
       });
     }
@@ -139,6 +133,70 @@ export default {
         }
       }
     }
+
+    .pro_use {
+      margin-top: 5.7rem;
+      .user_title {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #86837a;
+      }
+      .user_img {
+        margin-top: 5.7rem;
+        width: 100%;
+        .covers {
+          display: inline-block;
+          width: 14rem;
+          height: 14rem;
+          overflow: hidden;
+          margin-right: 2.5rem;
+          position: relative;
+          &:last-child {
+            display: inline-block;
+            width: 14rem;
+            height: 14rem;
+            overflow: hidden;
+            margin-right: 0;
+          }
+          &:hover .mask {
+            display: block;
+            opacity: 0.5;
+            animation: fade 2s;
+          }
+          .mask {
+            transition: all 2s;
+            display: none;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            position: absolute;
+            opacity: 0.6;
+            .mask_text {
+              width: 100%;
+              height: 100%;
+              display: block;
+              font-size: 2.2rem;
+              font-weight: bolder;
+              text-align: center;
+              line-height: 14rem;
+              color: #fff;
+            }
+          }
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.5;
   }
 }
 </style>
