@@ -15,7 +15,7 @@
           <div class="user_title">使用的产品</div>
           <div class="user_img">
             <div class="covers" v-for="item in products" :key="item.id">
-              <router-link :to="{ name: 'proDetail', query: { id: item.info.id,title ,type_id}}">
+              <router-link :to="{ name: 'proDetail', query: { id: item.info.id,title }}">
                 <div class="mask">
                   <div class="mask_text">{{item.info.title}}</div>
                 </div>
@@ -144,8 +144,9 @@ export default {
       .user_img {
         margin-top: 5.7rem;
         width: 100%;
+        display: flex;
+        flex-wrap: wrap;
         .covers {
-          display: inline-block;
           width: 14rem;
           height: 14rem;
           overflow: hidden;

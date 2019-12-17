@@ -355,6 +355,7 @@ export default {
       }
       .likes_item {
         display: flex;
+        flex-wrap: wrap;
         .item {
           margin-top: 2.2rem;
           width: 4rem;
@@ -395,11 +396,10 @@ export default {
     width: 100%;
     margin-top: 7.8rem;
     .item_img {
-      height: 54rem;
       margin-bottom: 1rem;
+      overflow: hidden;
       img {
         width: 100%;
-        height: 100%;
       }
     }
   }
