@@ -1,7 +1,11 @@
 import axios from 'axios'
 import qs from 'qs'
-import { Message } from 'element-ui';
-import { MessageBox } from 'element-ui';
+import {
+    Message
+} from 'element-ui';
+import {
+    MessageBox
+} from 'element-ui';
 import router from '../router/index'
 
 axios.defaults.baseURL = '/api'
@@ -56,35 +60,67 @@ let hosturl = 'http://ns.ns-space.cn/api'
 export default hosturl
 
 //
-export const requestConfigs = params => { return axios.get(`${hosturl}/configs` + params).then(res => res.data) } //
+export const requestConfigs = params => {
+    return axios.get(`${hosturl}/configs` + `${params}`).then(res => res.data)
+} //
 
 
-// export const requestDocument = params => { return axios.get(`${hosturl}/documents` + `${params}`).then(res => res.data) } //
+export const requestDocument = params => {
+    return axios.get(`${hosturl}/document` + `${params}`).then(res => res.data)
+} //
 
-export const requestMoments = params => { return axios.get(`${hosturl}/moments` + `${params}`).then(res => res.data) } //
+export const requestMoments = params => {
+    return axios.get(`${hosturl}/moments` + `${params}`).then(res => res.data)
+} //
 
-export const requestMoment = params => { return axios.get(`${hosturl}/moment` + `${params}`).then(res => res.data) } //
+export const requestMoment = params => {
+    return axios.get(`${hosturl}/moment` + `${params}`).then(res => res.data)
+} //
 
-export const requestBanners = params => { return axios.get(`${hosturl}/banners` + `${params}`).then(res => res.data) }
+export const requestBanners = params => {
+    return axios.get(`${hosturl}/banners` + `${params}`).then(res => res.data)
+}
 
-export const requestTypes = params => { return axios.get(`${hosturl}/types` + `${params}`).then(res => res.data) }
+export const requestTypes = params => {
+    return axios.get(`${hosturl}/types` + `${params}`).then(res => res.data)
+}
 
-export const requestType = params => { return axios.get(`${hosturl}/type` + `${params}`).then(res => res.data) }
+export const requestType = params => {
+    return axios.get(`${hosturl}/type` + `${params}`).then(res => res.data)
+}
 
-export const requestProduct = params => { return axios.get(`${hosturl}/product` + `${params}`).then(res => res.data) }
+export const requestProduct = params => {
+    return axios.get(`${hosturl}/product` + `${params}`).then(res => res.data)
+}
 
-export const requestDatas = params => { return axios.get(`${hosturl}/data/documents` + `${params}`).then(res => res.data) }
+export const requestDatas = params => {
+    return axios.get(`${hosturl}/data/documents` + `${params}`).then(res => res.data)
+}
 
-export const requestData = params => { return axios.get(`${hosturl}/data/document` + `${params}`).then(res => res.data) }
+export const requestData = params => {
+    return axios.get(`${hosturl}/data/document` + `${params}`).then(res => res.data)
+}
 
-export const requesProject = params => { return axios.get(`${hosturl}/projects` + `${params}`).then(res => res.data) }
+export const requesProject = params => {
+    return axios.get(`${hosturl}/projects` + `${params}`).then(res => res.data)
+}
 
-export const requestProject = params => { return axios.get(`${hosturl}/project` + `${params}`).then(res => res.data) }
+export const requestProject = params => {
+    return axios.get(`${hosturl}/project` + `${params}`).then(res => res.data)
+}
 
-export const requestAdvers = params => { return axios.get(`${hosturl}/adverts` + `${params}`).then(res => res.data) }
+export const requestAdvers = params => {
+    return axios.get(`${hosturl}/adverts` + `${params}`).then(res => res.data)
+}
 
-export const requestTop = params => { return axios.get(`${hosturl}/top/type` + `${params}`).then(res => res.data) }
+export const requestTop = params => {
+    return axios.get(`${hosturl}/top/type` + `${params}`).then(res => res.data)
+}
 
-export const requestNew = params => { return axios.get(`${hosturl}/products` + `${params}`).then(res => res.data) }
+export const requestNew = params => {
+    return axios.get(`${hosturl}/products` + `${params}`).then(res => res.data)
+}
 
-export const requestDataType = params => { return axios.get(`${hosturl}/data/types` + `${params}`).then(res => res.data) }
+export const requestDataType = params => {
+    return axios.get(`${hosturl}/data/types` + `${params}`).then(res => res.data)
+}
