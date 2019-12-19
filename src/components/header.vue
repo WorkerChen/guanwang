@@ -163,7 +163,7 @@ export default {
         .Nav_text {
           position: absolute !important;
           bottom: 0 !important;
-          font-size: 1.5rem;
+          font-size: 1rem;
           line-height: 1.5rem;
           overflow: hidden;
           vertical-align: bottom;
