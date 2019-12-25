@@ -166,7 +166,7 @@ export default {
           font-size: 1rem;
           line-height: 1.5rem;
           overflow: hidden;
-          vertical-align: bottom;
+          vertical-align: middle;
 
           .glyphicon {
             width: 2.3rem;
@@ -218,7 +218,7 @@ export default {
           color: #86837a;
           font-weight: bolder;
           cursor: pointer;
-          vertical-align: bottom;
+          vertical-align: middle;
           img {
             display: inline-block;
             width: 2rem;

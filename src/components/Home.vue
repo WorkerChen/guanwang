@@ -100,19 +100,6 @@ export default {
       });
       requestAdvers(allParams).then(res => {
         this.adverts = res.data.data;
-
-        // for (let i = 0; i < res.data.data.length; i++) {
-        //   if (res.data.data[i].type == 1) {
-        //     this.adverts[i].link = "proDetail";
-        //   } else if (res.data.data[i].type == 2) {
-        //     this.adverts[i].link = "ProjectDetail";
-        //   } else if ((res.data.data[i].type = 3)) {
-        //     this.adverts[i].link = "dynDetail";
-        //   } else if (res.data.data[i].type) {
-        //     this.adverts[i].link = "dataDetail";
-        //   }
-        // }
-        // console.log(this.adverts);
       });
       requestTop(allParams).then(res => {
         this.top = res.data;
@@ -134,38 +121,11 @@ export default {
     link_to(ev) {
       var link = ev.target.dataset.href;
 
-      if (link == undefined) {
+      if (link == "") {
         this.$alert("链接为空");
         return false;
       }
       window.location.href = link;
-      // var XMLHTTP = link.substring(0, 4);
-
-      // var link = ev.target.dataset.link;
-      // var id = ev.target.dataset.id;
-      // if (link == 1) {
-      //   this.$router.push({
-      //     name: "proDetail",
-      //     query: { id: id }
-      //   });
-      // } else if (link == 2) {
-      //   this.$router.push({
-      //     name: "ProjectDetail",
-      //     query: { id: id }
-      //   });
-      //   console.log(2);
-      //   return;
-      // } else if (link == 3) {
-      //   this.$router.push({
-      //     name: "dynDetail",
-      //     query: { id: id }
-      //   });
-      // } else if (link == 4) {
-      //   this.$router.push({
-      //     name: "dataDetail",
-      //     query: { id: id }
-      //   });
-      // }
     }
   },
   components: {
