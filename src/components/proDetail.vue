@@ -81,9 +81,11 @@
           </div>
         </div>
       </div>
-      <div class="pic_img" v-for="item in image">
-        <div class="item_img">
-          <img :src="item.href" alt />
+      <div class="pro_pic">
+        <div class="pic_img" v-for="item in image">
+          <div class="item_img">
+            <img :src="item.href" alt />
+          </div>
         </div>
       </div>
     </div>
@@ -144,22 +146,23 @@ export default {
           this.categories_cover = res.data.category_cover;
           this.parameter = res.data.parameter;
           this.sub_title = res.data.sub_title;
+          this.proLink = res.data.similar;
         }
 
         // 类似产品
-        var allParams2 = "?id=" + this.$route.query.type_id;
-        console.log(allParams2);
-        requestType(allParams2).then(res => {
-          if (res.data == "{}") {
-            this.$message({
-              message: "请求失败",
-              type: "error"
-            });
-          } else {
-            console.log(res.data.products);
-            this.proLink = res.data.products;
-          }
-        });
+        // var allParams2 = "?id=" + this.$route.query.type_id;
+        // console.log(allParams2);
+        // requestType(allParams2).then(res => {
+        //   if (res.data == "{}") {
+        //     this.$message({
+        //       message: "请求失败",
+        //       type: "error"
+        //     });
+        //   } else {
+        //     console.log(res.data.products);
+        //     this.proLink = res.data.products;
+        //   }
+        // });
       });
     },
     fade() {
@@ -391,15 +394,17 @@ export default {
       }
     }
   }
-  .pic_img {
-    display: block;
-    width: 100%;
+  .pro_pic {
     margin-top: 7.8rem;
-    .item_img {
-      margin-bottom: 1rem;
-      overflow: hidden;
-      img {
-        width: 100%;
+    .pic_img {
+      display: block;
+      width: 100%;
+      .item_img {
+        margin-bottom: 2rem;
+        overflow: hidden;
+        img {
+          width: 100%;
+        }
       }
     }
   }
