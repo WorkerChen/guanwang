@@ -132,18 +132,24 @@ export default {
 
       if (type == 1) {
         if (param) {
+          // 首页
           this.$router.push({ name: "proDetail", query: { id: param } });
         }
       } else if (type == 2) {
         if (param) {
+          // 项目
           this.$router.push({ name: "ProjectDetail", query: { id: param } });
         }
       } else if (type == 3) {
         if (param) {
+          // 记录
           this.$router.push({ name: "dynDetail", query: { id: param } });
         }
       } else if (type == 4) {
-        console.log("资料");
+        if (param) {
+          // 记录
+          this.$router.push({ name: "DataDetail", query: { id: param } });
+        }
       }
       if (type == 5) {
         // 外链

@@ -131,6 +131,14 @@ export default {
   width: 100%;
   height: 100%;
 }
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
 </style>
 <style scoped>
 /* .content {
