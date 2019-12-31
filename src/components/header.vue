@@ -17,11 +17,15 @@
                   <img src="../../static/img/ning.png" alt style="width:100%; height:100%" />
                 </router-link>
               </div>
-              <span
-                class="glyphicon glyphicon-arrow-left"
-                style="color:#fff;margin-left:1.5rem;display:none"
-                @click="back"
-              ></span>
+              <!-- class="glyphicon glyphicon-arrow-left" -->
+              <span style="color:#fff;margin-left:1.5rem;display:none;width:1.4rem;">
+                <img
+                  src="../../static/img/left.png"
+                  alt
+                  style="width:100%;cursor: pointer;"
+                  @click="back"
+                />
+              </span>
               <a @click="changeType('zh')">中</a>
               <a>/</a>
               <a @click="changeType('en')">EN</a>
