@@ -1,6 +1,5 @@
 <template name="component-name">
   <div>
-    <nav-component></nav-component>
     <div class="content">
       <h1 class="pro_title">记录</h1>
       <div class="pro_item">
@@ -24,13 +23,10 @@
   </div>
 </template>
 <script>
-import NavComponent from "./Nav";
 import { requestMoments } from "../api/api";
 export default {
   name: "dynamic",
-  components: {
-    NavComponent
-  },
+
   data() {
     return {
       count: 0,

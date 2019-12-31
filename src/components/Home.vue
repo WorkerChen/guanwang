@@ -1,12 +1,10 @@
 <template>
   <div>
-    <nav-component></nav-component>
-
     <!-- banner -->
     <div class="banner">
-      <el-carousel arrow="never" height="45rem">
-        <el-carousel-item v-for="item in banner_herf">
-          <img :src="item.href" :data-href="item.link" @click="link_to" />
+      <el-carousel arrow="never" height="46rem" :interval="6000">
+        <el-carousel-item v-for="item in banner_herf" :key="item.id">
+          <img :src="item.href" :data-link="item.link" @click="banner_link" />
         </el-carousel-item>
       </el-carousel>
     </div>
@@ -15,6 +13,10 @@
       <div class="series_all">
         <div class="series_img">
           <router-link to="/series">
+            <div class="mask">
+              <div class="mask_text">全系列</div>
+            </div>
+
             <img :src="all_bg" />
           </router-link>
         </div>
@@ -43,11 +45,15 @@
         </div>
         <div class="other">
           <div class="other_img" v-for="item in adverts" :key="item.id ">
-            <img :src="item.href" :data-href="item.link" @click="link_to" />
+            <img
+              ref="imgInfo"
+              :src="item.href"
+              :data-type="item.type"
+              :data-link="item.link"
+              :data-param="item.param"
+              @click="link_to"
+            />
           </div>
-          <!-- <div class="other_img">
-            <img src="../../static/img/fang021.jpg" alt />
-          </div>-->
         </div>
       </div>
     </div>
@@ -55,13 +61,13 @@
 </template>
 
 <script >
-import NavComponent from "./Nav";
 import { requestConfigs } from "../api/api";
 import { requestBanners } from "../api/api";
 import { requestAdvers } from "../api/api";
 import { requestTop } from "../api/api";
 import { requestNew } from "../api/api";
 import { Link } from "element-ui";
+import router from "../router";
 
 export default {
   name: "Home",
@@ -93,7 +99,8 @@ export default {
         "&limit=" +
         this.limit +
         "&language=" +
-        language;
+        language +
+        "&sort=1";
       requestBanners(allParams).then(res => {
         console.log(res.data.data);
         this.banner_herf = res.data.data;
@@ -119,20 +126,69 @@ export default {
     },
 
     link_to(ev) {
-      var link = ev.target.dataset.href;
+      var type = ev.target.dataset.type;
+      var link = ev.target.dataset.link;
+      var param = ev.target.dataset.param;
 
+      if (type == 1) {
+        if (param) {
+          this.$router.push({ name: "proDetail", query: { id: param } });
+        }
+      } else if (type == 2) {
+        if (param) {
+          this.$router.push({ name: "ProjectDetail", query: { id: param } });
+        }
+      } else if (type == 3) {
+        if (param) {
+          this.$router.push({ name: "dynDetail", query: { id: param } });
+        }
+      } else if (type == 4) {
+        console.log("资料");
+      }
+      if (type == 5) {
+        // 外链
+        if (link == "") {
+          this.$alert("链接为空");
+          return false;
+        }
+        window.location.href = link;
+      } else {
+        return;
+      }
+    },
+    banner_link(ev) {
+      var link = ev.target.dataset.link;
       if (link == "") {
         this.$alert("链接为空");
         return false;
       }
       window.location.href = link;
+    },
+    handleScroll() {
+      let scrollTop =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
+      // console.log(scrollTop); //页面滚动距离
+      let scrollImg = this.$refs.imgInfo;
+      for (let i = 0; i < scrollImg.length; i++) {
+        // console.log(scrollImg[i].offsetTop);
+        let offsetImg_top =
+          scrollImg[i].offsetTop - scrollImg[i].clientHeight - 50;
+        // console.log(offsetImg_top);
+        if (scrollTop > offsetImg_top) {
+          let difference = scrollTop - offsetImg_top;
+          let half = difference / 20 + "px";
+          // console.log(half);
+          scrollImg[i].style.transform = `translateY(${half})`;
+        }
+      }
     }
   },
-  components: {
-    NavComponent
-  },
+
   mounted() {
     this.getBanners();
+    window.addEventListener("scroll", this.handleScroll);
   },
   created() {
     // 控制是否显示导航栏
@@ -142,6 +198,7 @@ export default {
   }
 };
 </script>
+
 <style scoped lang="less">
 .banner {
   width: 100%;
@@ -149,21 +206,48 @@ export default {
   img {
     width: 100%;
     height: 100%;
+    cursor: pointer;
   }
 }
 .product {
   padding: 0 15rem;
   width: 96rem;
 
-  margin-top: 9.4rem;
+  margin-top: 6.4rem;
   .series_img {
     width: 49rem;
     margin-right: 2.2rem;
     display: inline-block;
     height: 30rem;
+    position: relative;
     img {
       width: 100%;
       height: 100%;
+    }
+    &:hover .mask {
+      display: block;
+      opacity: 0.5;
+      animation: fade 2s;
+    }
+    .mask {
+      transition: all 2s;
+      // display: none;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      position: absolute;
+      opacity: 0.6;
+      display: none;
+
+      .mask_text {
+        display: inline-block;
+        font-size: 2.2rem;
+        font-weight: bolder;
+        color: #fff;
+        position: absolute;
+        bottom: 1.5rem;
+        right: 1.6rem;
+      }
     }
   }
   .series_text {
@@ -185,6 +269,7 @@ export default {
       font-size: 1rem;
       color: #868379;
       line-height: 3rem;
+      position: relative;
     }
   }
   .series_flex {
@@ -233,16 +318,22 @@ export default {
     }
   }
   .other {
-    margin-top: 8.8rem;
+    margin-top: 1.6rem;
     width: 100%;
     .other_img {
       height: 30rem;
+      overflow: hidden;
+
       &:nth-child(odd) {
         margin-bottom: 3rem;
       }
       img {
+        margin-top: -2rem;
+        top: 0;
         width: 100%;
-        height: 100%;
+        height: 32rem;
+        cursor: pointer;
+        transition: 1s;
       }
     }
   }

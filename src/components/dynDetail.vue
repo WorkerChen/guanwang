@@ -1,6 +1,5 @@
 <template>
   <div>
-    <NavComponent></NavComponent>
     <div class="content">
       <h1 class="dyn_title">{{title}}</h1>
       <div class="dyn_item">
@@ -27,14 +26,8 @@
   </div>
 </template>
 <script>
-import NavComponent from "./Nav";
-
 import { requestMoment } from "../api/api";
 export default {
-  name: "seriesDetail",
-  components: {
-    NavComponent
-  },
   data() {
     return {
       id: 0,

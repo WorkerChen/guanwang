@@ -1,6 +1,5 @@
 <template name="component-name">
   <div>
-    <NavComponent></NavComponent>
     <div class="content">
       <div class="data_title">{{title}}</div>
       <div class="data_item">
@@ -28,13 +27,10 @@
   </div>
 </template>
 <script>
-import NavComponent from "./Nav";
 import { requestDatas } from "../api/api";
 export default {
   name: "seriesDetail",
-  components: {
-    NavComponent
-  },
+
   data() {
     return {
       id: 0,

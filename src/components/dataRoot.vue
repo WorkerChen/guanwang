@@ -1,6 +1,5 @@
 <template>
   <div>
-    <NavComponent></NavComponent>
     <div class="content">
       <div class="data_title">资源</div>
       <div class="data_item">
@@ -33,13 +32,10 @@
   </div>
 </template>
 <script>
-import NavComponent from "./Nav";
 import { requestDataType } from "../api/api";
 export default {
   name: "seriesDetail",
-  components: {
-    NavComponent
-  },
+
   data() {
     return {
       count: 0,

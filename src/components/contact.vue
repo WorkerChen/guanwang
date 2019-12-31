@@ -1,7 +1,5 @@
 <template>
   <div>
-    <nav-component></nav-component>
-
     <div class="content">
       <h1 class="con_title">{{$t('contact.name')}}</h1>
       <div class="con_item">
@@ -95,13 +93,9 @@
   </div>
 </template>
 <script>
-import NavComponent from "./Nav";
 import { requestConfigs } from "../api/api";
 export default {
   name: "seriesDetail",
-  components: {
-    NavComponent
-  },
   data() {
     return {
       bussiness: "",

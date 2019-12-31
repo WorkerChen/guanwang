@@ -1,7 +1,5 @@
 <template>
   <div>
-    <nav-component></nav-component>
-
     <div class="content">
       <h1 class="series_title">全系列产品</h1>
       <div class="series_item">
@@ -32,14 +30,10 @@
   </div>
 </template>
 <script>
-import NavComponent from "./Nav";
 import { requestTypes } from "../api/api";
 export default {
   name: "Series",
 
-  components: {
-    NavComponent
-  },
   data() {
     return {
       count: 0,

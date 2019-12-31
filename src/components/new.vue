@@ -1,7 +1,6 @@
 <template>
   <div>
     <!-- 内容 -->
-    <nav-component></nav-component>
     <div class="content">
       <div class="new_title">新品</div>
       <div class="new_item">
@@ -19,7 +18,6 @@
 </template>
  
 <script>
-import NavComponent from "./Nav";
 import { requestNew } from "../api/api";
 
 export default {
@@ -39,9 +37,7 @@ export default {
       });
     }
   },
-  components: {
-    NavComponent
-  },
+
   mounted() {
     this.getlist();
   }

@@ -1,7 +1,6 @@
 <template>
   <div>
     <!-- 内容 -->
-    <nav-component></nav-component>
     <div class="content">
       <h1 class="about_title">{{$t('about.name')}}</h1>
       <div class="about_text">
@@ -26,13 +25,10 @@
   </div>
 </template>
 <script>
-import NavComponent from "./Nav";
 import { requestDocument } from "../api/api";
 export default {
   name: "seriesDetail",
-  components: {
-    NavComponent
-  },
+
   data() {
     return {
       detail: ""

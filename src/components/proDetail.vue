@@ -8,7 +8,6 @@
     </div>
     <!-- 内容 -->
 
-    <Nav-component></Nav-component>
     <div class="content">
       <h1 class="pro_title">{{title}}</h1>
       <h1 class="pro_type">{{sub_title}}</h1>
@@ -92,7 +91,6 @@
   </div>
 </template>
 <script>
-import NavComponent from "./Nav";
 import { requestProduct } from "../api/api";
 import { requestType } from "../api/api";
 
@@ -116,9 +114,7 @@ export default {
       mask: false
     };
   },
-  components: {
-    NavComponent
-  },
+
   methods: {
     getId() {
       this.id = this.$route.query.id;

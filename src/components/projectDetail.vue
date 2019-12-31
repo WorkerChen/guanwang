@@ -1,7 +1,6 @@
 <template>
   <div>
     <!-- 内容 -->
-    <nav-component></nav-component>
     <div class="content">
       <div class="pro_title">{{title}}</div>
       <div class="pro_detail">
@@ -52,7 +51,6 @@
 </template>
  
 <script>
-import NavComponent from "./Nav";
 import { requestProject } from "../api/api";
 export default {
   name: "ProjectDetail",
@@ -66,9 +64,7 @@ export default {
       cover: ""
     };
   },
-  components: {
-    NavComponent
-  },
+
   methods: {
     getlist() {
       console.log(this.$route.query.id);

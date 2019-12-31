@@ -7,34 +7,28 @@
             <img src="../../static/img/logo.png" alt />
           </router-link>
         </div>
+
         <div class="Nav">
-          <div class="Nav_item">
+          <div class="Nav_item" ref="float">
             <div class="Nav_text">
               <span class="glyphicon glyphicon-align-justify" id="icon" v-on:click="menu"></span>
+              <div class="ning" style="display:none;width:1.8rem; margin-left:1rem ;options:0">
+                <router-link to="/">
+                  <img src="../../static/img/ning.png" alt style="width:100%; height:100%" />
+                </router-link>
+              </div>
+              <span
+                class="glyphicon glyphicon-arrow-left"
+                style="color:#fff;margin-left:1.5rem;display:none"
+                @click="back"
+              ></span>
               <a @click="changeType('zh')">中</a>
               <a>/</a>
               <a @click="changeType('en')">EN</a>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="float" v-if="isShow">
-        <div class="float_header">
-          <span
-            class="glyphicon glyphicon-align-justify hide_icon"
-            v-on:click="float_navShow"
-            id="icon"
-          ></span>
-          <span class="hide_text">
-            <router-link to="/">
-              <img src="../../static/img/ning.png" alt />
-            </router-link>
-          </span>
-        </div>
-        <div>
-          <transition name="fade">
-            <div class="float_nav" v-if="float_nav_show">
-              <div class="float_item">
+            <div class="hover" ref="hover"></div>
+            <transition name="Menu">
+              <div class="nav_item" v-show="navShow" ref="Menu">
                 <router-link to="/series">
                   <div class="item">{{$t('nav.product')}}</div>
                 </router-link>
@@ -54,15 +48,16 @@
                   <div class="item">{{$t('nav.about')}}</div>
                 </router-link>
               </div>
-            </div>
-          </transition>
+            </transition>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-import NavComponent from "./Nav";
+import { log } from "util";
+import { Menu } from "element-ui";
 export default {
   name: "headerComponents",
   data() {
@@ -83,40 +78,88 @@ export default {
     });
     // 获取header高度
     this.clientHeight = document.getElementById("header").offsetHeight;
-    // 获取滚动条高度
-    window.addEventListener("scroll", () => {
-      let top =
-        document.documentElement.scrollTop ||
-        document.body.scrollTop ||
-        window.pageYOffset;
-      // 判断滚动条高度是否超过头部
-      if (top > this.clientHeight) {
-        this.isShow = true;
-        this.navShow = false;
-        this.$bus.emit("isShow", this.navShow);
-      } else {
-        this.isShow = false;
-        this.float_nav_show = false;
-      }
-    });
+    // 监听浏览器滚动事件
+    window.addEventListener("scroll", this.float);
   },
   methods: {
     menu: function() {
       this.navShow = !this.navShow;
-      this.$bus.emit("isShow", this.navShow);
+      var Menu = this.$refs.Menu;
+      let offscroll =
+        document.documentElement.scrollTop ||
+        document.body.scrollTop ||
+        window.pageYOffset;
+      if (offscroll > this.clientHeight) {
+        Menu.style.width = "14rem";
+        Menu.style.marginTop = "5.7rem";
+        Menu.style.transition = "2s ";
+      } else {
+        Menu.style.width = "12.5rem";
+        Menu.style.marginTop = "5.7rem";
+        Menu.style.transition = "2s";
+      }
     },
-    float_navShow: function() {
-      this.float_nav_show = !this.float_nav_show;
-    },
+
     changeType(type) {
       localStorage.setItem("locale", type);
       this.$i18n.locale = type;
       this.$bus.emit("ChangeLocation", type);
-    }
-  },
+    },
+    back() {
+      this.$router.go(-1);
+    },
 
-  components: {
-    NavComponent
+    float() {
+      let offscroll =
+        document.documentElement.scrollTop ||
+        document.body.scrollTop ||
+        window.pageYOffset;
+      let top = offscroll;
+      var float = this.$refs.float;
+      let float_a = float.children[0].children;
+      let float_hover = float.children[1];
+      var Menu = this.$refs.Menu;
+      // 判断滚动条高度是否超过头部
+      if (top > this.clientHeight) {
+        float.style = "position:fixed;top:1rem;";
+        for (let i = 0; i < float_a.length; i++) {
+          if (i > 2) {
+            float_a[i].style.display = "none";
+            float_a[i].style.transition = "2s";
+            float_a[i].style.options = "1";
+          }
+          float_a[i].style.color = "#fff";
+          float_a[1].style.display = "inline-block";
+          float_a[2].style.display = "inline-block";
+        }
+        float_hover.style.width = "14rem";
+        float_hover.style.transition = "2s";
+        if (Menu) {
+          Menu.style.width = "14rem";
+          Menu.style.marginTop = "5.7rem";
+          Menu.style.transition = "2s";
+        }
+      } else {
+        for (let i = 0; i < float_a.length; i++) {
+          if (i > 2) {
+            float_a[i].style.display = "inline-block";
+            float_a[i].style.transition = "2s";
+            float_a[i].style.options = "0";
+          }
+          float_a[i].style.color = "#868379";
+          float_a[1].style.display = "none";
+          float_a[1].style.options = "1";
+          float_a[i].style.transition = "2s";
+          float_a[2].style.display = "none";
+        }
+        float_hover.style.width = "0";
+        if (Menu) {
+          Menu.style.width = "12.5rem";
+          Menu.style.marginTop = "5.7rem";
+          Menu.style.transition = "1s";
+        }
+      }
+    }
   }
 };
 </script>
@@ -146,11 +189,12 @@ export default {
     }
 
     .Nav {
-      display: inline-block;
       right: 0;
       width: 8rem;
       height: 4.5rem;
       float: right;
+      display: block;
+      z-index: 999;
       &::after {
         clear: both;
       }
@@ -159,21 +203,23 @@ export default {
         width: 8rem;
         height: 4.5rem;
         position: relative;
+        z-index: 999;
 
         .Nav_text {
-          position: absolute !important;
-          bottom: 0 !important;
+          position: absolute;
+          bottom: 0rem;
           font-size: 1rem;
           line-height: 1.5rem;
-          overflow: hidden;
-          vertical-align: middle;
+          width: 14rem;
+          z-index: 999;
 
           .glyphicon {
             width: 2.3rem;
-            line-height: 1.5rem;
+            line-height: 1.6rem;
             color: #868379;
             overflow: hidden;
             vertical-align: bottom;
+            transition: 2s;
             &::before {
               line-height: 1.5rem;
               cursor: pointer;
@@ -191,66 +237,17 @@ export default {
             }
           }
         }
-      }
-    }
-  }
 
-  .float {
-    font-size: 1.5rem;
-    position: fixed;
-    top: 0;
-    right: 0rem;
-    z-index: 999;
-    width: 12.5rem;
-    padding-left: 1rem;
-    // padding: 0 1.4rem;
-    background: #3e3b3f;
-    animation: down 1s ease-in;
-    opacity: 0.9;
-
-    .float_header {
-      width: 100%;
-      height: 100%;
-      line-height: 4rem;
-      .hide_text {
-        a {
-          text-decoration: none;
-          color: #86837a;
-          font-weight: bolder;
-          cursor: pointer;
-          vertical-align: middle;
-          img {
-            display: inline-block;
-            width: 2rem;
-          }
-        }
-      }
-      .glyphicon {
-        vertical-align: middle;
-        font-size: 1.8rem;
-        color: #e0deda;
-        margin-right: 1rem;
-      }
-    }
-
-    .float_nav {
-      width: 100%;
-      height: 40rem;
-      .float_item {
-        width: 100%;
-        a {
-          text-decoration: none;
-          font-size: 1.2rem;
-          cursor: pointer;
-          .item {
-            cursor: pointer;
-            line-height: 5rem;
-            text-indent: 3.3rem;
-            color: #fff;
-            &:hover {
-              background: #cccccc;
-            }
-          }
+        .hover {
+          position: absolute !important;
+          bottom: -1.2rem !important;
+          left: -1.4rem;
+          height: 100%;
+          font-size: 1rem;
+          width: 0;
+          height: 4rem;
+          background: #3c393c;
+          opacity: 0.5;
         }
       }
     }
@@ -259,18 +256,18 @@ export default {
 @keyframes down {
   0% {
     padding: 0;
-    opacity: 0;
   }
   100% {
-    opacity: 1;
     padding: 0 1.3rem;
   }
 }
-.fade-enter-active {
-  animation: openNav 0.8s ease-in-out;
+.Menu-enter-active {
+  transition-delay: 3s;
+  animation: openNav 2s ease-in-out;
 }
-.fade-leave-active {
-  animation: closeNav 0.8s ease-in-out;
+.Menu-leave-active {
+  transition-delay: 3s;
+  animation: closeNav 2s ease-in-out;
 }
 @keyframes openNav {
   0% {
@@ -287,9 +284,48 @@ export default {
   }
   100% {
     height: 0;
-    opacity: 0;
   }
 }
 </style>
+
 <style scoped>
+.nav_item {
+  position: fixed;
+  right: -4rem;
+  margin-top: 5rem;
+  background-color: #f5f6f6;
+  width: 12.5rem;
+  height: 35rem;
+  overflow: hidden;
+  opacity: 0.9;
+  right: 0;
+  top: 1rem;
+  z-index: 999;
+}
+.nav_item .item {
+  text-indent: 3rem;
+  line-height: 5rem;
+  color: #868379;
+  font-size: 1.2rem;
+  cursor: pointer;
+  opacity: 1;
+  z-index: 999;
+}
+
+.nav_item .item:hover {
+  background-color: #cccccc;
+}
+.nav_item .item:active {
+  background-color: #cccccc;
+}
+
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+.router-link-active {
+  text-decoration: none;
+}
 </style>

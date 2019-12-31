@@ -1,7 +1,6 @@
 <template>
   <div>
     <!-- 内容 -->
-    <nav-component></nav-component>
     <div class="content">
       <h1 class="detail_title">{{title}}</h1>
       <div class="detail_item">
@@ -48,13 +47,10 @@
   </div>
 </template>
 <script>
-import NavComponent from "./Nav";
 import { requestType } from "../api/api";
 export default {
   name: "seriesDetail",
-  components: {
-    NavComponent
-  },
+
   data() {
     return {
       title: "",

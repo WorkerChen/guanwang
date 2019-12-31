@@ -1,6 +1,5 @@
 <template name="component-name">
   <div>
-    <nav-component></nav-component>
     <div class="content">
       <h1 class="pro_title">项目</h1>
       <div class="pro_item">
@@ -47,7 +46,6 @@
   </div>
 </template>
 <script>
-import NavComponent from "./Nav";
 import { requesProject } from "../api/api";
 export default {
   name: "seriesDetail",
@@ -59,9 +57,7 @@ export default {
       list: []
     };
   },
-  components: {
-    NavComponent
-  },
+
   methods: {
     getProject() {
       var language = this.$i18n.locale == "zh" ? "1" : "2";
