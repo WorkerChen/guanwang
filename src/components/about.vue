@@ -4,7 +4,7 @@
     <div class="content">
       <h1 class="about_title">{{$t('about.name')}}</h1>
       <div class="about_text">
-        <div v-html="detail">{{detail}}</div>
+        <div v-html="detail" class="text">{{detail}}</div>
       </div>
     </div>
     <!-- <el-row class="content">
@@ -61,30 +61,40 @@ export default {
 </script>
 <style scoped lang="less">
 .content {
-  padding: 0 23.8rem;
-  margin-top: 2.5rem;
-
   .about_title {
     color: #868379;
     display: inline-block;
     margin: 0 auto;
     font-size: 2.5rem;
-    width: 10rem;
     font-weight: bold;
     text-align: center;
     width: 100%;
   }
   .about_text {
-    width: 100%;
+    width: 96rem;
     font-size: 1rem;
     margin-top: 6rem;
     color: #868379;
     line-height: 2rem;
     font-weight: 500;
+    .text {
+      display: inline-block;
+      margin: 0 auto;
+    }
   }
   .about_img {
     margin-top: 5rem;
     width: 100%;
   }
+}
+</style>
+<style>
+.text {
+  width: 100%;
+  display: block;
+  padding: 0 12.4rem;
+}
+.text p img {
+  width: 100%;
 }
 </style>
