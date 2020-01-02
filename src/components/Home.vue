@@ -276,6 +276,7 @@ export default {
       color: #868379;
       line-height: 3rem;
       position: relative;
+      padding: inherit;
     }
   }
   .series_flex {
