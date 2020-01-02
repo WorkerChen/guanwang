@@ -332,7 +332,7 @@ export default {
       overflow: hidden;
 
       &:nth-child(odd) {
-        margin-bottom: 3rem;
+        margin-bottom:1.6rem;
       }
       img {
         margin-top: -2rem;
