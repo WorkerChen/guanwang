@@ -87,7 +87,7 @@ export default {
     .item {
       display: inline-block;
       width: 32rem;
-      height: 28rem;
+      height: 32rem;
       margin-right: 1rem;
       margin-bottom: 1rem;
       position: relative;
@@ -115,7 +115,7 @@ export default {
           font-size: 2.2rem;
           font-weight: bolder;
           text-align: center;
-          line-height: 28rem;
+          line-height: 30rem;
           color: #fff;
         }
       }
