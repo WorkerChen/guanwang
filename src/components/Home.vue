@@ -4,7 +4,8 @@
     <div class="banner">
       <el-carousel arrow="never" height="46rem" :interval="6000">
         <el-carousel-item v-for="item in banner_herf" :key="item.id">
-          <img :src="item.href" :data-link="item.link" @click="banner_link" />
+          <img :src="item.href" :data-link="item.link" :data-type="item.type"
+              :data-param="item.param" @click="banner_link" />
         </el-carousel-item>
       </el-carousel>
     </div>
@@ -163,12 +164,41 @@ export default {
       }
     },
     banner_link(ev) {
+      var type = ev.target.dataset.type;
       var link = ev.target.dataset.link;
-      if (link == "") {
-        this.$alert("链接为空");
-        return false;
+      var param = ev.target.dataset.param;
+
+      if (type == 1) {
+        if (param) {
+          // 首页
+          this.$router.push({ name: "proDetail", query: { id: param } });
+        }
+      } else if (type == 2) {
+        if (param) {
+          // 项目
+          this.$router.push({ name: "ProjectDetail", query: { id: param } });
+        }
+      } else if (type == 3) {
+        if (param) {
+          // 记录
+          this.$router.push({ name: "dynDetail", query: { id: param } });
+        }
+      } else if (type == 4) {
+        if (param) {
+          // 记录
+          this.$router.push({ name: "DataDetail", query: { id: param } });
+        }
       }
-      window.location.href = link;
+      if (type == 5) {
+        // 外链
+        if (link == "") {
+          this.$alert("链接为空");
+          return false;
+        }
+        window.location.href = link;
+      } else {
+        return;
+      }
     },
     handleScroll() {
       let scrollTop =
