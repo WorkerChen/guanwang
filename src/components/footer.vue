@@ -23,8 +23,8 @@
             <span>粤ICP备19135826号-1</span>
           </div>
           <div class="icon">
-            <a  target="_blank">
-              <i class="iconfont">&#xe634;</i>
+            <a  target="_blank" class="wechat">
+              <i class="iconfont ">&#xe634;</i>
               <img src="http://111.230.135.20/uploads/7da1a711e64a491816c3863b572131d2.jpg" />
             </a>
             <a href="https://www.instagram.com/ningsheng_/" target="_blank">
@@ -129,7 +129,8 @@ export default {};
           cursor: pointer;
         }
       };
-      &:hover img {
+      .wechat{
+        &:hover img {
        display: inline-grid;
       };
       img {
@@ -140,6 +141,7 @@ export default {};
     position: fixed;
     bottom: 6rem;
     right: 19rem;
+      }
       }
     }
   }
