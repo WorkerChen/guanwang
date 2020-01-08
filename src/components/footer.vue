@@ -108,6 +108,7 @@ export default {};
       display: inline;
       font-size: 0.9rem;
       vertical-align: bottom;
+      padding: 0;
       color: #e1dedb;
       span {
         margin-left: 1.8rem;
