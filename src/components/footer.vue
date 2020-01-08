@@ -24,13 +24,16 @@
           </div>
           <div class="icon">
             <a href="../../static/img/WeChat.jpg" target="_blank">
-              <i class="iconfont">&#xe628;</i>
+              <i class="iconfont">&#xe634;</i>
             </a>
             <a href="https://www.instagram.com/ningsheng_/" target="_blank">
-              <i class="iconfont">&#xe639;</i>
+              <i class="iconfont">&#xe607;</i>
             </a>
             <a href="https://weibo.com/ningshengspace" target="_blank">
-              <i class="iconfont">&#xe63d;</i>
+              <i class="iconfont">&#xe60c;</i>
+            </a>
+            <a href="https://www.pinterest.co.uk/ningsheng_/" target="_blank">
+              <i class="iconfont">&#xe60a;</i>
             </a>
           </div>
         </div>
@@ -120,6 +123,7 @@ export default {};
         text-decoration: none;
         .iconfont {
           font-size: 2rem;
+          margin-left: 0.2rem;
           cursor: pointer;
         }
       }

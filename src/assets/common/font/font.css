@@ -32,3 +32,12 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'iconfont';  /* project id 1603518 */
+    src: url('//at.alicdn.com/t/font_1603518_0hviyub1nbpa.eot');
+    src: url('//at.alicdn.com/t/font_1603518_0hviyub1nbpa.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_1603518_0hviyub1nbpa.woff2') format('woff2'),
+    url('//at.alicdn.com/t/font_1603518_0hviyub1nbpa.woff') format('woff'),
+    url('//at.alicdn.com/t/font_1603518_0hviyub1nbpa.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_1603518_0hviyub1nbpa.svg#iconfont') format('svg');
+  }
