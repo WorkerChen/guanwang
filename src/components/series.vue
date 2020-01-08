@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="content">
-      <h1 class="series_title">全系列产品</h1>
+      <h1 class="series_title">{{$t('product.name')}}</h1>
       <div class="series_item">
         <div class="item" v-for="item in list" v-bind:key="item.id">
           <router-link :to="{ name: 'SeriesType', query: { id: item.id }}">

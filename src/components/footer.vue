@@ -10,7 +10,7 @@
             <a href="/contact">{{$t('footer.contact')}}</a>
           </div>
           <div class="item_link">
-            <a href="/join">{{$t('footer.join')}}</a>
+            <a href="/contact">{{$t('footer.join')}}</a>
           </div>
 
           <div class="item_link">
@@ -23,8 +23,9 @@
             <span>粤ICP备19135826号-1</span>
           </div>
           <div class="icon">
-            <a href="../../static/img/WeChat.jpg" target="_blank">
+            <a  target="_blank">
               <i class="iconfont">&#xe634;</i>
+              <img src="http://111.230.135.20/uploads/7da1a711e64a491816c3863b572131d2.jpg" />
             </a>
             <a href="https://www.instagram.com/ningsheng_/" target="_blank">
               <i class="iconfont">&#xe607;</i>
@@ -127,6 +128,18 @@ export default {};
           margin-left: 0.2rem;
           cursor: pointer;
         }
+      };
+      &:hover img {
+       display: inline-grid;
+      };
+      img {
+            display: none;
+    /* margin-top: 2rem; */
+    width: 11rem;
+    height: 11rem;
+    position: fixed;
+    bottom: 6rem;
+    right: 19rem;
       }
     }
   }

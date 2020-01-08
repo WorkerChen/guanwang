@@ -1,7 +1,7 @@
 <template name="component-name">
   <div>
     <div class="content">
-      <h1 class="pro_title">记录</h1>
+      <h1 class="pro_title">{{$t('moments.name')}}</h1>
       <div class="pro_item">
         <div class="item" v-for="item in list" v-bind:key="item.id">
           <img v-bind:src="item.cover" alt @click="gotoDetail(item.id)" />

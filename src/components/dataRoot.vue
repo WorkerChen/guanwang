@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="content">
-      <div class="data_title">资源</div>
+      <div class="data_title">{{$t('nav.data')}}</div>
       <div class="data_item">
         <div class="item" v-for="item in list" v-bind:key="item.type_id">
           <router-link

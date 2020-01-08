@@ -64,7 +64,8 @@ export default {
   .about_title {
     color: #868379;
     display: inline-block;
-    margin: 0 auto;
+    // margin: 0 auto;
+    margin-top: 5rem;
     font-size: 2.5rem;
     font-weight: bold;
     text-align: center;
@@ -73,7 +74,7 @@ export default {
   .about_text {
     width: 96rem;
     font-size: 1rem;
-    margin-top: 6rem;
+    margin-top: 5rem;
     color: #868379;
     line-height: 2rem;
     font-weight: 500;

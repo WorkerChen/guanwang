@@ -19,7 +19,13 @@
            "media": "Business & Press",
            "wechat":"Wechat",
            "ins":"Instagram",
-           "weibo":"Weibo"
+           "weibo":"Weibo",
+           "mail":"Email",
+           "tel":"Tel",
+           "buy_tel":"Retail",
+           "eng_tel":"Professional",
+           "bus":"Business",
+           "media2":"Press"
        },
        "product" : {
            "name":"All collections"
@@ -32,5 +38,10 @@
        },
        "data":{
            "name":"Downloads"
+       },
+       "home":{
+           "all":"All Collections",
+           "exp":"Experiment",
+           "pro":" New Product"
        }
   }

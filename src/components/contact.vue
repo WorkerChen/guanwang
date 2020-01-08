@@ -6,24 +6,24 @@
         <div class="item">
           <div class="item_title">{{$t('contact.join')}}</div>
           <div class="item_text">
-            <div class="text">邮箱：{{email}}</div>
-            <div class="text">电话：{{phone}}</div>
+            <div class="text">{{$t('contact.mail')}}：{{email}}</div>
+            <div class="text">{{$t('contact.tel')}}：{{phone}}</div>
           </div>
         </div>
 
         <div class="item">
           <div class="item_title">{{$t('contact.buy')}}</div>
           <div class="item_text">
-            <div class="text">零售电话:{{buy}}</div>
-            <div class="text">工程购买:{{eng_buy}}</div>
+            <div class="text">{{$t('contact.buy_tel')}}:{{buy}}</div>
+            <div class="text">{{$t('contact.eng_tel')}}:{{eng_buy}}</div>
           </div>
         </div>
 
         <div class="item">
           <div class="item_title">{{$t('contact.media')}}</div>
           <div class="item_text">
-            <div class="text">商务合作:{{bussiness}}</div>
-            <div class="text">媒体合作:{{media}}</div>
+            <div class="text">{{$t('contact.bus')}}:{{bussiness}}</div>
+            <div class="text">{{$t('contact.media2')}}:{{media}}</div>
           </div>
         </div>
       </div>

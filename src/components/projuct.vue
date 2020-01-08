@@ -1,7 +1,7 @@
 <template name="component-name">
   <div>
     <div class="content">
-      <h1 class="pro_title">项目</h1>
+      <h1 class="pro_title">{{$t('nav.project')}}</h1>
       <div class="pro_item">
         <div class="item" v-for="item in list" :key="item.id">
           <router-link :to="{name: 'ProjectDetail', query: { id: item.id }}" class="img_link">

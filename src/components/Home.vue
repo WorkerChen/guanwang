@@ -15,21 +15,21 @@
         <div class="series_img">
           <router-link to="/series">
             <div class="mask">
-              <div class="mask_text">全系列</div>
+              <div class="mask_text">{{$t('home.all')}}</div>
             </div>
 
             <img :src="all_bg" />
           </router-link>
         </div>
         <div class="series_text">
-          <h1 class="text_title">{{all_title}}</h1>
-          <div class="text">{{all_content}}</div>
+          <h1 class="text_title">{{this.$i18n.locale == "zh"?all_title:en_title}}</h1>
+          <div class="text">{{this.$i18n.locale == "zh"?all_content:en_content}}</div>
         </div>
         <div class="series_flex">
           <router-link :to="{ name: 'SeriesType', query: { id: top.id }}">
             <div class="flex_img">
               <div class="mask">
-                <div class="mask_text">实验品</div>
+                <div class="mask_text">{{$t('home.exp')}}</div>
               </div>
               <img :src="test_bg" />
             </div>
@@ -38,7 +38,7 @@
           <div class="flex_img">
             <router-link to="/new">
               <div class="mask">
-                <div class="mask_text">新品</div>
+                <div class="mask_text">{{$t('home.pro')}}</div>
               </div>
             </router-link>
             <img :src="new_bg" />
@@ -87,7 +87,9 @@ export default {
       top: [],
       new: [],
       new_cover: [],
-      new_bg: []
+      new_bg: [],
+      en_title: "",
+      en_content: "",
     };
   },
   methods: {
@@ -123,6 +125,8 @@ export default {
         this.all_bg = res.data.all_bg;
         this.all_content = res.data.all_content;
         this.all_title = res.data.all_title;
+        this.en_title = res.data.en_title;
+        this.en_content = res.data.en_content;
       });
     },
 
