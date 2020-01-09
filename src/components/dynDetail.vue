@@ -77,6 +77,7 @@ export default {
     .text {
       display: inline-block;
       margin: 0 auto;
+      padding: 0;
       p {
         img {
           width: 100%;

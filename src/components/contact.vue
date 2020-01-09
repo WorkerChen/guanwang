@@ -175,9 +175,9 @@ export default {
       font-size: 1rem;
       .item_text {
         margin-top: 3rem;
-
         .text {
           line-height: 2.4rem;
+          padding: 0;
         }
       }
     }
