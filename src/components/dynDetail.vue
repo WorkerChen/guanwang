@@ -4,11 +4,11 @@
       <h1 class="dyn_title">{{title}}</h1>
       <div class="dyn_item">
         <div class="text" v-html="detail"></div>
-        <div class="item_img">
+        <!-- <div class="item_img">
           <div class="item">
             <img :src="cover" alt />
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <!-- <el-row class="content">
@@ -74,6 +74,7 @@ export default {
   .dyn_item {
     width: 100%;
     margin-top: 2.4rem;
+    color: #86837a;
     .text {
       display: inline-block;
       margin: 0 auto;
@@ -85,6 +86,7 @@ export default {
       }
     }
     .item_img {
+      
       margin-top: 5rem;
       width: 100%;
       .item {

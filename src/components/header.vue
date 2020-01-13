@@ -35,13 +35,15 @@
               <div class="nav_item" v-show="navShow" ref="Menu">
                 <router-link to="/series">
                   <div class="item">{{$t('nav.product')}}</div>
+                <router-link to="/dynamic">
+                  <div class="item">{{$t('nav.moments')}}</div>
+                </router-link>
+                
                 </router-link>
                 <router-link to="/projuct">
                   <div class="item">{{$t('nav.project')}}</div>
                 </router-link>
-                <router-link to="/dynamic">
-                  <div class="item">{{$t('nav.moments')}}</div>
-                </router-link>
+                
                 <router-link to="/dataRoot">
                   <div class="item">{{$t('nav.data')}}</div>
                 </router-link>

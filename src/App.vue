@@ -50,6 +50,14 @@ a {
   font-family: "huipu", "huipu2", "huipu3", "huipu4", "huipu5";
   text-align: left;
   overflow: hidden;
+  /* line-height: 20px; */
   user-select: none;
+}
+body {
+  line-height: 2em;
+  
+}
+p{
+  margin-block-end: 0em;
 }
 </style>

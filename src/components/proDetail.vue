@@ -32,10 +32,10 @@
               </div>
             </div>
 
-            <div class="cate_img">
+            <!-- <div class="cate_img">
               <img v-bind:src="categories_cover" alt />
-            </div>
-            <div class="other">其他规格尺寸和厚度可根据要求定制</div>
+            </div> -->
+            <div class="other">{{category_text}}</div>
           </div>
           <!-- 使用区域 -->
           <div class="areas">
@@ -65,9 +65,9 @@
             </div>
           </div>
 
-          <div class="down_img">
+          <!-- <div class="down_img">
             <a :href="cover" target="_blank">点击下载图片</a>
-          </div>
+          </div> -->
 
           <div class="down_excel">
             <a :href="parameter">下载参数表</a>
@@ -109,6 +109,7 @@ export default {
       areas: [],
       categories: [],
       categories_cover: "",
+      category_text: "",
       parameter: "",
       proLink: [],
       mask: false
@@ -140,6 +141,7 @@ export default {
           this.areas = res.data.areas;
           this.categories = res.data.categories;
           this.categories_cover = res.data.category_cover;
+          this.category_text = res.data.category_text;
           this.parameter = res.data.parameter;
           this.sub_title = res.data.sub_title;
           this.proLink = res.data.similar;
@@ -278,7 +280,7 @@ export default {
           position: relative;
           .item {
             width: 100%;
-            margin-bottom: 3rem;
+            margin-bottom: 1.4rem;
             font-size: 1rem;
             color: #86837a;
             .title {
@@ -384,6 +386,8 @@ export default {
     }
     .contact {
       margin-top: 2rem;
+      color: #86837a;
+    font-size: 1rem;
       a {
         color: #fecc3f;
         text-decoration: none;

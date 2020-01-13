@@ -88,19 +88,22 @@ export default {
     width: 100%;
     margin-top: 2.4rem;
     .type_text {
-      padding: 0 13.4rem;
+      color: #86837a;
+      padding-left: 13.4rem;
+      padding-right: 1rem;
       display: inline-block;
       margin: 0 auto;
+      width: 100%;
     }
     .type_img {
       margin-top: 5rem;
       width: 100%;
       .img_item {
         display: inline-block;
-        width: 32.5rem;
+        width: 32rem;
         margin-bottom: 1rem;
         position: relative;
-        height: 28rem;
+        height: 32rem;
         &:hover .mask {
           display: block;
           opacity: 0.5;

@@ -108,6 +108,7 @@ export default {
     width: 100%;
     margin-top: 2.4rem;
     .item_text {
+      color: #86837a;
       padding: 0 13.4rem;
       display: inline-block;
       margin: 0 auto;
