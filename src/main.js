@@ -10,7 +10,7 @@ import Bus from 'vue-bus'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueI18n from 'vue-i18n'
-
+import '../static/css/modifyP.css'
 import 'bootstrap3/dist/css/bootstrap.min.css'
 import 'bootstrap3/dist/fonts/glyphicons-halflings-regular.ttf'
 import 'bootstrap3/dist/fonts/glyphicons-halflings-regular.eot'
