@@ -80,6 +80,7 @@ export default {
       margin: 0 auto;
       padding: 0;
       p {
+        
         img {
           width: 100%;
         }
@@ -110,5 +111,10 @@ export default {
 .text p img {
   width: 100%;
   height: 100%;
+}
+p {
+   
+    margin-block-end: 0em;
+    
 }
 </style>

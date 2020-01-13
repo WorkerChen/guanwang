@@ -177,6 +177,11 @@ export default {
   width: 100%;
   height: 100%;
 }
+p {
+   
+    margin-block-end: 0em;
+    
+}
 </style>
 <style scoped>
 /* .mask {

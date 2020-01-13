@@ -147,6 +147,11 @@ export default {
     }
   }
 }
+p {
+   
+    margin-block-end: 0em;
+    
+}
 </style>
 
 <style scoped>
