@@ -178,7 +178,7 @@ export default {
   height: 100%;
 }
 p {
-   
+   margin: 0 0 0 10px;
     margin-block-end: 0em;
     
 }

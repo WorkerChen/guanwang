@@ -150,7 +150,7 @@ export default {
 p {
    
     margin-block-end: 0em;
-    
+    margin: 0 0 0 10px;
 }
 </style>
 
