@@ -51,11 +51,12 @@ a {
   text-align: left;
   overflow: hidden;
   /* line-height: 20px; */
+  line-height: 2em;
   user-select: none;
 }
-body {
-  line-height: 2em;
-}
+/* body {
+  
+} */
 p{
   margin-block-end: 0em;
 }
