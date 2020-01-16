@@ -19,6 +19,7 @@
            "media": "Business & Press",
            "wechat":"Wechat",
            "ins":"Instagram",
+           "pin":"Pinterest",
            "weibo":"Weibo",
            "mail":"Email",
            "tel":"Tel",
@@ -28,7 +29,15 @@
            "media2":"Press"
        },
        "product" : {
-           "name":"All collections"
+           "name":"All collections",
+           "material":"Main material",
+            "spec":"Specification",
+            "area": "Area to use",
+            "similar":"Similar products",
+            "download":"Download Range & Technical Sheet",
+            "detail":"For price/availability/minimum order quantities/special finishes/sales term, etc. please",
+            "contact":"contact us"
+           
        },
        "about":{
            "name":"About us"

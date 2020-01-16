@@ -18,11 +18,11 @@
 
         <div class="detail_text">
           <div class="material">
-            <h1 class="mater_title">主要材料</h1>
+            <h1 class="mater_title">{{$t('product.material')}}</h1>
             <div class="mater_value">{{material}}</div>
           </div>
           <div class="cate">
-            <div class="cate_title">规格</div>
+            <div class="cate_title">{{$t('product.spec')}}</div>
             <div class="cate_item">
               <div v-for="item in categories" class="item">
                 <div class="title">{{item.title}}：</div>
@@ -39,7 +39,7 @@
           </div>
           <!-- 使用区域 -->
           <div class="areas">
-            <h1 class="areas_title">使用区域</h1>
+            <h1 class="areas_title">{{$t('product.area')}}</h1>
             <div class="areas_item">
               <!-- <div class="item" v-for="item in areas">
                 <div class="item_title">{{item.title}}</div>
@@ -57,7 +57,7 @@
           </div>
 
           <div class="likes">
-            <div class="likes_title">类似产品</div>
+            <div class="likes_title">{{$t('product.similar')}}</div>
             <div class="likes_item">
               <div class="item" v-for="item in proLink">
                 <img v-bind:src="item.cover" :data-id="item.id" @click="Likes($event)" />
@@ -70,13 +70,12 @@
           </div> -->
 
           <div class="down_excel">
-            <a :href="parameter">下载参数表</a>
+            <a :href="parameter">{{$t('product.download')}}</a>
           </div>
 
           <div class="contact">
-            对于价格、可用性、起订量、货期和销售条款
-            等请
-            <router-link to="/contact">联络我们</router-link>
+            {{$t('product.detail')}}
+            <router-link to="/contact">{{$t('product.contact')}}</router-link>
           </div>
         </div>
       </div>

@@ -30,23 +30,31 @@
 
       <div class="con_icon">
         <div class="icon_item wechat">
-          <i class="iconfont icon-weixin icon"></i>
+          <i class="iconfont icon">&#xe634;</i>
           {{$t('contact.wechat')}}
           <img :src="wechat_bg" />
         </div>
         <div class="icon_item">
           <a href="https://www.instagram.com/ningsheng_/" target="_blank">
-            <i class="iconfont icon-ins icon"></i>
+            <i class="iconfont icon">&#xe607;</i>
             {{$t('contact.ins')}}
             <img :src="ins_bg" />
           </a>
         </div>
         <div class="icon_item">
           <a href="https://weibo.com/ningshengspace" target="_blank">
-            <i class="iconfont icon-weibo icon"></i>
+            <i class="iconfont icon">&#xe60c;</i>
             {{$t('contact.weibo')}}
             <!-- <img :src="weibo_bg" /> -->
           </a>
+        </div>
+        <div class="icon_item">
+          <a href="https://www.pinterest.co.uk/ningsheng_/" target="_blank">
+            <i class="iconfont  icon">&#xe60a;</i>
+            {{$t('contact.pin')}}
+            <!-- <img :src="weibo_bg" /> -->
+          </a>
+          
         </div>
       </div>
     </div>

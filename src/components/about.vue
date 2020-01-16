@@ -61,6 +61,10 @@ export default {
 </script>
 <style scoped lang="less">
 .content {
+    padding: 0 15rem;
+    width: 96rem;
+    // margin-top: 5.1rem;
+    // overflow: hidden;
   .about_title {
     color: #868379;
     display: inline-block;
@@ -72,7 +76,7 @@ export default {
     width: 100%;
   }
   .about_text {
-    width: 96rem;
+    width: 100%;
     font-size: 1rem;
     margin-top: 5rem;
     color: #868379;
@@ -81,6 +85,7 @@ export default {
     .text {
       display: inline-block;
       margin: 0 auto;
+      padding: 0;
     }
   }
   .about_img {

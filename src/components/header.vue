@@ -247,13 +247,14 @@ export default {
         .hover {
           position: absolute !important;
           bottom: -1.2rem !important;
-          left: -1.4rem;
+          left: -1.5rem;
           height: 100%;
           font-size: 1rem;
           width: 0;
           height: 4rem;
-          background: #3c393c;
-          opacity: 0.5;
+          // background: #3c393c;
+          background: #868379;
+          // opacity: 0.5;
         }
       }
     }

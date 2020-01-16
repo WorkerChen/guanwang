@@ -35,3 +35,6 @@
   content: "\e62b";
 }
 
+.icon-pin:before {
+  content: "\e63d";
+}

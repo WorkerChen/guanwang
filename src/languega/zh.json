@@ -20,6 +20,7 @@
         "wechat": "微信公众号",
         "ins": "Instagram",
         "weibo": "微博",
+        "pin":"Pinterest",
         "mail":"邮箱",
         "tel":"电话",
         "buy_tel":"零售电话",
@@ -28,7 +29,14 @@
         "media2":"媒体合作"
     },
     "product": {
-        "name": "全系列产品"
+        "name": "全系列产品",
+        "material":"主要材料",
+        "spec":"规格",
+        "area": "使用区域",
+        "similar":"类似产品",
+        "download":"下载参数表",
+        "detail":"对于价格、可用性、起订量、货期和销售条款 等请",
+        "contact":"联络我们"
     },
     "about": {
         "name": "关于我们"

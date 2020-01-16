@@ -2,7 +2,8 @@
   <div>
     <!-- 内容 -->
     <div class="content">
-      <div class="pro_title">{{title}}</div>
+      <!-- <div class="pro_title">{{title}}</div> -->
+      <h1 class="pro_title">{{title}}</h1>
       <div class="pro_detail">
         <div class="pro_text" v-html="detail"></div>
         <div class="pro_img">
@@ -113,9 +114,11 @@ export default {
     width: 100%;
     margin-top: 2.4rem;
     .pro_text {
-      padding: 0 13.4rem;
+      // padding: 0 13.4rem;
       display: inline-block;
       margin: 0 auto;
+      width: 100%;
+      color: #86837a;
     }
     .pro_img {
       margin-top: 5rem;
