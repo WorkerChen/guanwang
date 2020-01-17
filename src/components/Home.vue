@@ -339,8 +339,8 @@ export default {
         font-size: 2.2rem;
         font-weight: bolder;
         color: #fff;
-        position: absolute;
-        bottom: 1.5rem;
+        position: absolute;  
+        bottom: 6px;
         right: 1.6rem;
       }
     }
@@ -437,7 +437,7 @@ export default {
           font-weight: bolder;
           color: #fff;
           position: absolute;
-          bottom: 1.5rem;
+          bottom: 6px;
           right: 1.6rem;
         }
       }
