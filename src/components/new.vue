@@ -55,13 +55,16 @@ export default {
   }
   .new_item {
     margin-top: 7rem;
-    display: flex;
+    // display: flex;
+        width: 100%;
+
     .item {
-      width: 33%;
-      height: 20rem;
+      width: 21rem;
+      height: 21rem;
       margin-right: 1rem;
       margin-bottom: 1rem;
       position: relative;
+      display: inline-block;
       &:nth-child(3n + 3) {
         margin-right: 0;
       }

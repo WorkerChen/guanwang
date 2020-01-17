@@ -98,7 +98,7 @@ export default {
 .text {
   width: 100%;
   display: block;
-  padding: 0 12.4rem;
+  padding: 0;
 }
 .text p img {
   width: 100%;

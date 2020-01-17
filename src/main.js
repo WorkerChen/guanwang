@@ -16,6 +16,7 @@ import 'bootstrap3/dist/fonts/glyphicons-halflings-regular.ttf'
 import 'bootstrap3/dist/fonts/glyphicons-halflings-regular.eot'
 import '../static/css/iconfont/iconfont.css'
 import '../static/css/font-awesome-4.7.0/css/font-awesome.min.css'
+import { prototype } from 'node-notifier/notifiers/notificationcenter'
 
 
 Vue.use(VueAxios, axios);
@@ -23,6 +24,21 @@ Vue.use(VueI18n)
 Vue.use(ElementUI)
 Vue.use(Bus)
 
+
+Vue.prototype.isPc = function() {
+    var userAgentInfo = navigator.userAgent;
+    var Agents = ["Android", "iPhone",
+                "SymbianOS", "Windows Phone",
+                "iPad", "iPod"];
+    var flag = true;
+    for (var v = 0; v < Agents.length; v++) {
+        if (userAgentInfo.indexOf(Agents[v]) > 0) {
+            flag = false;
+            break;
+        }
+    }
+    return flag;
+}
 
 Vue.config.productionTip = false
 

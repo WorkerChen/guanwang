@@ -6,11 +6,11 @@
       <h1 class="pro_title">{{title}}</h1>
       <div class="pro_detail">
         <div class="pro_text" v-html="detail"></div>
-        <div class="pro_img">
+        <!-- <div class="pro_img">
           <div class="item">
             <img :src="cover" alt />
           </div>
-        </div>
+        </div> -->
         <div class="pro_use">
           <div class="user_title">使用的产品</div>
           <div class="user_img">
@@ -207,6 +207,10 @@ export default {
   padding: 0 12.4rem;
 }
 .text p img {
+  width: 100%;
+  height: 100%;
+}
+.pro_text p img {
   width: 100%;
   height: 100%;
 }

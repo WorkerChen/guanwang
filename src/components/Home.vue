@@ -15,6 +15,7 @@
         <div class="series_img">
           <router-link to="/series">
             <div class="mask">
+              <!-- <div class="mask_text">{{isPc?"PC":"Mobile"}}</div> -->
               <div class="mask_text">{{$t('home.all')}}</div>
             </div>
 
@@ -90,6 +91,7 @@ export default {
       new_bg: [],
       en_title: "",
       en_content: "",
+      // isPc:this.isPc()
     };
   },
   methods: {
@@ -227,6 +229,7 @@ export default {
   },
 
   mounted() {
+    console.log(this.isPc());
     this.getBanners();
     window.addEventListener("scroll", this.handleScroll);
   },
