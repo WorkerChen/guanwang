@@ -30,10 +30,10 @@ Vue.prototype.isPc = function() {
     var Agents = ["Android", "iPhone",
                 "SymbianOS", "Windows Phone",
                 "iPad", "iPod"];
-    var flag = true;
+    var flag = 1;
     for (var v = 0; v < Agents.length; v++) {
         if (userAgentInfo.indexOf(Agents[v]) > 0) {
-            flag = false;
+            flag = 2;
             break;
         }
     }

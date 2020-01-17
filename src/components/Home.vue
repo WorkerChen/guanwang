@@ -27,16 +27,26 @@
         </div>
         <div class="series_flex">
           <router-link :to="{ name: 'SeriesType', query: { id: top.id }}">
-            <div class="flex_img">
-              <div class="mask" >
+            
+            <div class="flex_img" v-if="this.isPc()==1">
+            
+              <div class="mask">
                 <div class="mask_text">{{$t('home.exp')}}</div>
               </div>
-              
-              <img :src="test_bg" />
-            </div>
+            
+            <img :src="test_bg" />
+          </div>
+          <div class="flex_img_mobile" v-if="this.isPc()==2">
+            
+              <div class="mask">
+                <div class="mask_text">{{$t('home.exp')}}</div>
+              </div>
+            
+            <img :src="test_bg" />
+          </div>
           </router-link>
 
-          <div class="flex_img" v-show="this.isPc==true">
+          <div class="flex_img" v-if="this.isPc()==1">
             <router-link to="/new">
               <div class="mask">
                 <div class="mask_text">{{$t('home.pro')}}</div>
@@ -44,7 +54,7 @@
             </router-link>
             <img :src="new_bg" />
           </div>
-          <div class="flex_img_mobile" v-show="this.isPc==false">
+          <div class="flex_img_mobile" v-if="this.isPc()==2">
             <router-link to="/new">
               <div class="mask">
                 <div class="mask_text">{{$t('home.pro')}}</div>
@@ -300,7 +310,18 @@ export default {
         right: 1.6rem;
       }
     }
-    .mask_mobile {
+  }
+  .series_img_mobile {
+    width: 49rem;
+    margin-right: 2.2rem;
+    display: inline-block;
+    height: 30rem;
+    position: relative;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    .mask {
       transition: all 2s;
       // display: none;
       width: 100%;
@@ -310,7 +331,7 @@ export default {
       // opacity: 0.6;
       // display: none;
 
-      .mask_mobile_text {
+      .mask_text {
         display: inline-block;
         font-size: 2.2rem;
         font-weight: bolder;
@@ -393,6 +414,7 @@ export default {
       height: 27.4rem;
       overflow: hidden;
       position: relative;
+      display:block
 
       &:first-child {
         margin-right: 1.6rem;
