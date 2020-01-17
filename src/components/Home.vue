@@ -12,12 +12,19 @@
     <!-- 产品 -->
     <div class="product">
       <div class="series_all">
-        <div class="series_img">
+        <div class="series_img" v-if="this.isPc()==1">
           <router-link to="/series">
             <div class="mask">
               <div class="mask_text">{{$t('home.all')}}</div>
             </div>
-
+            <img :src="all_bg" />
+          </router-link>
+        </div>
+        <div class="series_img_mobile" v-if="this.isPc()==2">
+          <router-link to="/series">
+            <div class="mask">
+              <div class="mask_text">{{$t('home.all')}}</div>
+            </div>
             <img :src="all_bg" />
           </router-link>
         </div>
