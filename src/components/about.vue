@@ -60,6 +60,9 @@ export default {
 };
 </script>
 <style scoped lang="less">
+span{
+      padding: 0;
+}
 .content {
     padding: 0 15rem;
     width: 96rem;
@@ -86,6 +89,9 @@ export default {
       display: inline-block;
       margin: 0 auto;
       padding: 0;
+      p span{
+      padding: 0;
+      }
     }
   }
   .about_img {
@@ -102,5 +108,11 @@ export default {
 }
 .text p img {
   width: 100%;
+}
+.text p span{
+      padding: 0;
+}
+span{
+      padding: 0;
 }
 </style>
