@@ -25,27 +25,23 @@
           <h1 class="text_title">{{this.$i18n.locale == "zh"?all_title:en_title}}</h1>
           <div class="text">{{this.$i18n.locale == "zh"?all_content:en_content}}</div>
         </div>
-        <div class="series_flex">
-          <router-link :to="{ name: 'SeriesType', query: { id: top.id }}">
-            
+         <div class="series_flex">
             <div class="flex_img" v-if="this.isPc()==1">
-            
+             <router-link :to="{ name: 'SeriesType', query: { id: top.id }}">
               <div class="mask">
                 <div class="mask_text">{{$t('home.exp')}}</div>
               </div>
-            
+             </router-link>
             <img :src="test_bg" />
           </div>
           <div class="flex_img_mobile" v-if="this.isPc()==2">
-            
+              <router-link :to="{ name: 'SeriesType', query: { id: top.id }}">
               <div class="mask">
                 <div class="mask_text">{{$t('home.exp')}}</div>
               </div>
-            
+             </router-link>
             <img :src="test_bg" />
           </div>
-          </router-link>
-
           <div class="flex_img" v-if="this.isPc()==1">
             <router-link to="/new">
               <div class="mask">
@@ -414,8 +410,7 @@ export default {
       height: 27.4rem;
       overflow: hidden;
       position: relative;
-      display:block
-
+      display:block;
       &:first-child {
         margin-right: 1.6rem;
       }
