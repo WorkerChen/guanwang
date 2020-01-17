@@ -15,7 +15,6 @@
         <div class="series_img">
           <router-link to="/series">
             <div class="mask">
-              <!-- <div class="mask_text">{{isPc?"PC":"Mobile"}}</div> -->
               <div class="mask_text">{{$t('home.all')}}</div>
             </div>
 
@@ -29,14 +28,23 @@
         <div class="series_flex">
           <router-link :to="{ name: 'SeriesType', query: { id: top.id }}">
             <div class="flex_img">
-              <div class="mask">
+              <div class="mask" >
                 <div class="mask_text">{{$t('home.exp')}}</div>
               </div>
+              
               <img :src="test_bg" />
             </div>
           </router-link>
 
-          <div class="flex_img">
+          <div class="flex_img" v-show="this.isPc==true">
+            <router-link to="/new">
+              <div class="mask">
+                <div class="mask_text">{{$t('home.pro')}}</div>
+              </div>
+            </router-link>
+            <img :src="new_bg" />
+          </div>
+          <div class="flex_img_mobile" v-show="this.isPc==false">
             <router-link to="/new">
               <div class="mask">
                 <div class="mask_text">{{$t('home.pro')}}</div>
@@ -292,6 +300,26 @@ export default {
         right: 1.6rem;
       }
     }
+    .mask_mobile {
+      transition: all 2s;
+      // display: none;
+      width: 100%;
+      height: 100%;
+      // background: #000;
+      position: absolute;
+      // opacity: 0.6;
+      // display: none;
+
+      .mask_mobile_text {
+        display: inline-block;
+        font-size: 2.2rem;
+        font-weight: bolder;
+        color: #fff;
+        position: absolute;
+        bottom: 1.5rem;
+        right: 1.6rem;
+      }
+    }
   }
   .series_text {
     float: right;
@@ -344,6 +372,40 @@ export default {
         position: absolute;
         opacity: 0.6;
         display: none;
+
+        .mask_text {
+          display: inline-block;
+          font-size: 2.2rem;
+          font-weight: bolder;
+          color: #fff;
+          position: absolute;
+          bottom: 1.5rem;
+          right: 1.6rem;
+        }
+      }
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .flex_img_mobile {
+      width: 32.2rem;
+      height: 27.4rem;
+      overflow: hidden;
+      position: relative;
+
+      &:first-child {
+        margin-right: 1.6rem;
+      }
+      .mask {
+        transition: all 2s;
+        // display: none;
+        width: 100%;
+        height: 100%;
+        // background: #000;
+        position: absolute;
+        // opacity: 0.6;
+        // display: none;
 
         .mask_text {
           display: inline-block;
