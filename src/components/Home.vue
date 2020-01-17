@@ -340,7 +340,7 @@ export default {
         font-weight: bolder;
         color: #fff;
         position: absolute;
-        bottom:0.5rem;
+        bottom:20px;
         right: 1.6rem;
       }
     }
@@ -437,7 +437,7 @@ export default {
           font-weight: bolder;
           color: #fff;
           position: absolute;
-          bottom: 0.5rem;
+          bottom:20px;
           right: 1.6rem;
         }
       }
