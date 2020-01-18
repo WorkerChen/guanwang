@@ -1,7 +1,8 @@
 <template>
   <div>
     <div class="content">
-      <h1 class="dyn_title">{{title}}</h1>
+      <h1 class="dyn_title" v-if="this.isPc()==1">{{title}}</h1>
+      <h1 class="dyn_title_mobile" v-if="this.isPc()==2">{{title}}</h1>
       <div class="dyn_item">
         <div class="text" v-html="detail"></div>
         <!-- <div class="item_img">
@@ -68,6 +69,11 @@ export default {
   overflow: hidden;
   .dyn_title {
     font-size: 2.5rem;
+    color: #86837a;
+    font-weight: bolder;
+  }
+  .dyn_title_mobile {
+    font-size: 4rem;
     color: #86837a;
     font-weight: bolder;
   }

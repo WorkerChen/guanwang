@@ -2,10 +2,12 @@
   <div>
     <!-- 内容 -->
     <div class="content">
-      <h1 class="detail_title">{{title}}</h1>
+      <h1 class="detail_title" v-if="this.isPc()==1">{{title}}</h1>
+      <h1 class="detail_title_mobile" v-if="this.isPc()==2">{{title}}</h1>
       <div class="detail_item">
         <div class="item_text" v-html="detail"></div>
-        <div class="item_img">
+        
+        <div class="item_img" v-if="this.isPc()==1">
           <div class="img" v-for="item in list" v-bind:key="item.id">
             <router-link
               :to="{ name: 'proDetail', query: { id: item.id,title ,type_id}}"
@@ -18,6 +20,21 @@
             </router-link>
           </div>
         </div>
+        
+        <div class="item_img_mobile" v-if="this.isPc()==2">
+          <div class="img" v-for="item in list" v-bind:key="item.id">
+            <router-link
+              :to="{ name: 'proDetail', query: { id: item.id,title ,type_id}}"
+              class="link_img"
+            >
+              <div class="mask">
+                <div class="mask_text">{{item.title}}</div>
+              </div>
+              <img v-bind:src="item.cover" alt />
+            </router-link>
+          </div>
+        </div>
+
       </div>
     </div>
     <!-- 
@@ -104,12 +121,18 @@ export default {
     color: #86837a;
     font-weight: bolder;
   }
+  .detail_title_mobile {
+    font-size: 4rem;
+    color: #86837a;
+    font-weight: bolder;
+  }
   .detail_item {
     width: 100%;
     margin-top: 2.4rem;
     .item_text {
       color: #86837a;
-      padding: 0 13.4rem;
+          padding-left: 13.4rem;
+    width: 100%;
       display: inline-block;
       margin: 0 auto;
     }
@@ -139,6 +162,43 @@ export default {
           background: #000;
           position: absolute;
           opacity: 0.6;
+          .mask_text {
+            width: 100%;
+            height: 100%;
+            display: block;
+            font-size: 2.2rem;
+            font-weight: bolder;
+            text-align: center;
+            line-height: 20rem;
+            color: #fff;
+          }
+        }
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+    .item_img_mobile {
+      margin-top: 5rem;
+      .img {
+        display: inline-block;
+        width: 20rem;
+        height: 20rem;
+        margin-right: 2rem;
+        margin-bottom: 2rem;
+        position: relative;
+        overflow: hidden;
+        &:nth-child(3n + 3) {
+          margin-right: 0;
+        }
+        
+        .mask {
+          
+          width: 100%;
+          height: 100%;
+          
+          position: absolute;
           .mask_text {
             width: 100%;
             height: 100%;

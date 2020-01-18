@@ -3,9 +3,9 @@
     <!-- 内容 -->
     <div class="content">
       <div class="new_title">新品</div>
-      <div class="new_item">
+      <div class="new_item" v-if="this.isPc()==1">
         <div class="item" v-for="item in new_list">
-          <router-link :to="{ name: 'proDetail', params: { id: item.id}}" class="link_img">
+          <router-link :to="{ name: 'proDetail', query: { id: item.id}}" class="link_img">
             <div class="mask">
               <div class="mask_text">{{item.title}}</div>
             </div>
@@ -13,7 +13,20 @@
           </router-link>
         </div>
       </div>
+
+      <div class="new_item_mobile" v-if="this.isPc()==2">
+        <div class="item" v-for="item in new_list">
+          <router-link :to="{ name: 'proDetail', query: { id: item.id}}" class="link_img">
+            <div class="mask">
+              <div class="mask_text">{{item.title}}</div>
+            </div>
+            <img :src="item.cover" alt />
+          </router-link>
+        </div>
+      </div>
+    
     </div>
+    
   </div>
 </template>
  
@@ -98,6 +111,48 @@ export default {
       }
     }
   }
+
+  .new_item_mobile {
+    margin-top: 7rem;
+    // display: flex;
+        width: 100%;
+
+    .item {
+      width: 21rem;
+      height: 21rem;
+      margin-right: 1rem;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+      &:nth-child(3n + 3) {
+        margin-right: 0;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+      }
+      
+      .mask {
+       
+        width: 100%;
+        height: 100%;
+        
+        position: absolute;
+        
+        .mask_text {
+          width: 100%;
+          height: 100%;
+          display: block;
+          font-size: 2.2rem;
+          font-weight: bolder;
+          text-align: center;
+          line-height: 20rem;
+          color: #fff;
+        }
+      }
+    }
+  }
+  
 }
 @keyframes fade {
   0% {

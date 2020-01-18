@@ -3,10 +3,21 @@
 
     <!-- 内容 -->
     <div class="content">
-      <h1 class="type_title">{{title}}</h1>
+      <h1 class="type_title" v-if="this.isPc()==1">{{title}}</h1>
+      <h1 class="type_title_mobile" v-if="this.isPc()==2">{{title}}</h1>
       <div class="type_detail">
         <div v-html="detail" class="type_text"></div>
-        <div class="type_img">
+        <div class="type_img" v-if="this.isPc()==1">
+          <div class="img_item" v-for="item in list" v-bind:key="item.id">
+            <router-link :to="{ name: 'seriesDetail', query: { id: item.id }}" class="link_img">
+              <div class="mask">
+                <div class="mask_text">{{item.title}}</div>
+              </div>
+              <img v-bind:src="item.image" alt />
+            </router-link>
+          </div>
+        </div>
+        <div class="type_img_mobile" v-if="this.isPc()==2">
           <div class="img_item" v-for="item in list" v-bind:key="item.id">
             <router-link :to="{ name: 'seriesDetail', query: { id: item.id }}" class="link_img">
               <div class="mask">
@@ -84,6 +95,11 @@ export default {
     color: #86837a;
     font-weight: bolder;
   }
+  .type_title_mobile {
+    font-size: 4rem;
+    color: #86837a;
+    font-weight: bolder;
+  }
   .type_detail {
     width: 100%;
     margin-top: 2.4rem;
@@ -120,6 +136,43 @@ export default {
           background: #000;
           position: absolute;
           opacity: 0.6;
+          .mask_text {
+            width: 100%;
+            height: 100%;
+            display: block;
+            font-size: 2.2rem;
+            font-weight: bolder;
+            text-align: center;
+            line-height: 28rem;
+            color: #fff;
+          }
+        }
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+    .type_img_mobile {
+      margin-top: 5rem;
+      width: 100%;
+      .img_item {
+        display: inline-block;
+        width: 32rem;
+        margin-bottom: 1rem;
+        position: relative;
+        height: 32rem;
+        
+        &:nth-child(odd) {
+          margin-right: 1rem;
+        }
+        .mask {
+          
+          width: 100%;
+          height: 100%;
+          
+          position: absolute;
+          
           .mask_text {
             width: 100%;
             height: 100%;

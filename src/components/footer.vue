@@ -146,4 +146,10 @@ export default {};
     }
   }
 }
+@media all and (orientation : portrait){ 
+
+.footer {
+  height: 15rem;
+}
+} 
 </style>

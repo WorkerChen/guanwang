@@ -272,6 +272,7 @@ export default {
     height: 100%;
     cursor: pointer;
   }
+  
 }
 .product {
   padding: 0 15rem;
@@ -340,8 +341,9 @@ export default {
         font-weight: bolder;
         color: #fff;
         position: absolute;  
-        bottom: 2px;
         right: 1.6rem;
+
+          bottom: 0%
       }
     }
   }
@@ -437,8 +439,9 @@ export default {
           font-weight: bolder;
           color: #fff;
           position: absolute;
-          bottom: 2px;
           right: 1.6rem;
+          // padding-bottom: -10px;
+          bottom: 0%
         }
       }
       img {
@@ -483,9 +486,21 @@ export default {
 .el-carousel__button {
   width: 3rem;
   height: 0.5rem;
+  margin-bottom: 0px
+  /* right: 0; */
 }
 .el-carousel__container {
   width: 100%;
   height: 45rem;
 }
+
+@media all and (orientation : portrait){ 
+
+.el-carousel__indicators--horizontal {
+    height: 20px;
+}
+
+} 
+
+
 </style>

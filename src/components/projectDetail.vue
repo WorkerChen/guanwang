@@ -3,7 +3,8 @@
     <!-- 内容 -->
     <div class="content">
       <!-- <div class="pro_title">{{title}}</div> -->
-      <h1 class="pro_title">{{title}}</h1>
+      <h1 class="pro_title" v-if="this.isPc()==1">{{title}}</h1>
+      <h1 class="pro_title_mobile" v-if="this.isPc()==2">{{title}}</h1>
       <div class="pro_detail">
         <div class="pro_text" v-html="detail"></div>
         <!-- <div class="pro_img">
@@ -107,6 +108,11 @@ export default {
   margin-top: 5.1rem;
   .pro_title {
     font-size: 2.5rem;
+    color: #86837a;
+    font-weight: bolder;
+  }
+  .pro_title_mobile {
+    font-size:4rem;
     color: #86837a;
     font-weight: bolder;
   }

@@ -2,7 +2,17 @@
   <div>
     <div class="content">
       <h1 class="series_title">{{$t('product.name')}}</h1>
-      <div class="series_item">
+      <div class="series_item" v-if="this.isPc()==1">
+        <div class="item" v-for="item in list" v-bind:key="item.id">
+          <router-link :to="{ name: 'SeriesType', query: { id: item.id }}">
+            <div class="mask">
+              <div class="mask_text">{{item.title}}</div>
+            </div>
+            <img v-bind:src="item.image" alt />
+          </router-link>
+        </div>
+      </div>
+      <div class="series_item_mobile"  v-if="this.isPc()==2">
         <div class="item" v-for="item in list" v-bind:key="item.id">
           <router-link :to="{ name: 'SeriesType', query: { id: item.id }}">
             <div class="mask">
@@ -108,6 +118,41 @@ export default {
         background: #000;
         position: absolute;
         opacity: 0.6;
+        .mask_text {
+          width: 100%;
+          height: 100%;
+          display: block;
+          font-size: 2.2rem;
+          font-weight: bolder;
+          text-align: center;
+          line-height: 30rem;
+          color: #fff;
+        }
+      }
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  .series_item_mobile {
+    margin-top: 5rem;
+    .item {
+      display: inline-block;
+      width: 32rem;
+      height: 32rem;
+      margin-right: 1rem;
+      margin-bottom: 1rem;
+      position: relative;
+
+      .mask {
+        // transition: all 2s;
+        // display: none;
+        width: 100%;
+        height: 100%;
+        // background: #000;
+        position: absolute;
+        // opacity: 0.6;
         .mask_text {
           width: 100%;
           height: 100%;
