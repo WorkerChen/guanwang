@@ -23,6 +23,10 @@ import Contact from '@/components/contact'
 
 import New from '@/components/new'
 
+import experiment from '@/components/experiment'
+
+import expDetail from '@/components/expDetail'
+
 Vue.use(Router)
 
 export default new Router({
@@ -84,5 +88,14 @@ export default new Router({
         path: '/new',
         name: 'New',
         component: New
-    }]
+    }, {
+        path: '/Experiment',
+        name: 'Experiment',
+        component: experiment
+    }, {
+        path: '/Experiment/detail',
+        name: 'expDetail',
+        component: expDetail
+    }
+]
 })

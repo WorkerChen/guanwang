@@ -34,7 +34,7 @@
         </div>
          <div class="series_flex">
             <div class="flex_img" v-if="this.isPc()==1">
-             <router-link :to="{ name: 'SeriesType', query: { id: top.id }}">
+             <router-link :to="{ name: 'Experiment'}">
               <div class="mask">
                 <div class="mask_text">{{$t('home.exp')}}</div>
               </div>
@@ -42,7 +42,7 @@
             <img :src="test_bg" />
           </div>
           <div class="flex_img_mobile" v-if="this.isPc()==2">
-              <router-link :to="{ name: 'SeriesType', query: { id: top.id }}">
+              <router-link :to="{ name: 'Experiment'}">
               <div class="mask">
                 <div class="mask_text">{{$t('home.exp')}}</div>
               </div>

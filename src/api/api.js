@@ -124,3 +124,14 @@ export const requestNew = params => {
 export const requestDataType = params => {
     return axios.get(`${hosturl}/data/types` + `${params}`).then(res => res.data)
 }
+
+export const requesetExperimentConfig = params => {
+    return axios.get(`${hosturl}/experiment/config` + `${params}`).then(res => res.data)
+}
+
+export const requesetExperiments = params => {
+    return axios.get(`${hosturl}/experiments` + `${params}`).then(res => res.data)
+}
+export const requesetExperiment = params => {
+    return axios.get(`${hosturl}/experiment` + `${params}`).then(res => res.data)
+}
