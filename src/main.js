@@ -5,6 +5,7 @@ import App from './App'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
+import 'babel-polyfill'
 import router from './router'
 import Bus from 'vue-bus'
 import axios from 'axios'
