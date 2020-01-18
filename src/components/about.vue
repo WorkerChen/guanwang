@@ -115,4 +115,7 @@ span{
 span{
       padding: 0;
 }
+.ql-size-huge{
+  padding: 0;
+}
 </style>
