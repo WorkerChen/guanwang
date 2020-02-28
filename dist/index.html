@@ -1,1 +1,19 @@
-<!DOCTYPE html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>凝生ningsheng</title><link href=/static/css/app.969c35dcaaa90a4c3d82e5eed74f4445.css rel=stylesheet></head><body><div id=App></div><script type=text/javascript src=/static/js/manifest.2ae2e69a05c33dfc65f8.js></script><script type=text/javascript src=/static/js/vendor.31bdcda53e6be38c9c85.js></script><script type=text/javascript src=/static/js/app.7fa1e574ca962b7cbd36.js></script></body></html>
+<!DOCTYPE html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>凝生ningsheng</title><script>(function (doc, win) {
+            var docEl = doc.documentElement,
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth;
+                        if (!clientWidth) return;
+                        /*设置一个屏幕最大宽度临界值，当大于这个宽度时，字体也不放大了*/
+                        if(clientWidth>=640){
+                            docEl.style.fontSize = '85px';
+                        }else{
+                            /*750是设计稿的宽度，100是基数为了方便换算，也可以为20，或者浏览器默认值16(px)*/
+                            docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+                        }
+                    };
+
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);</script><link href=/static/css/app.0898edbb137df59c50b7365ea941e4ab.css rel=stylesheet></head><body><div id=App></div><script type=text/javascript src=/static/js/manifest.2ae2e69a05c33dfc65f8.js></script><script type=text/javascript src=/static/js/vendor.31bdcda53e6be38c9c85.js></script><script type=text/javascript src=/static/js/app.6eb0e1a92b865e94f655.js></script></body></html>

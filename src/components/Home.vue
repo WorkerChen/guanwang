@@ -2,7 +2,7 @@
   <div>
     <!-- banner -->
     <div class="banner">
-      <el-carousel arrow="never" height="46rem" :interval="6000">
+      <el-carousel arrow="never"  :interval="6000">
         <el-carousel-item v-for="item in banner_herf" :key="item.id">
           <img :src="item.href" :data-link="item.link" :data-type="item.type"
               :data-param="item.param" @click="banner_link" />
@@ -266,13 +266,13 @@ export default {
 <style scoped lang="less">
 .banner {
   width: 100%;
-  height: 45rem;
+  height:calc(100vw * 0.56);
+  // height: 45rem;
   img {
     width: 100%;
     height: 100%;
     cursor: pointer;
   }
-  
 }
 .product {
   padding: 0 15rem;
@@ -491,7 +491,8 @@ export default {
 }
 .el-carousel__container {
   width: 100%;
-  height: 45rem;
+  height:calc(100vw * 0.56);
+  /* height: 45rem; */
 }
 
 @media all and (orientation : portrait){ 

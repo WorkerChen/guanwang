@@ -144,7 +144,9 @@ export default {
       margin-right: 1rem;
       margin-bottom: 1rem;
       position: relative;
-
+&:nth-child(even) {
+        margin-right: 0;
+      }
       .mask {
         // transition: all 2s;
         // display: none;

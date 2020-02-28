@@ -4,7 +4,7 @@
     <div class="content">
       <h1 class="about_title">{{$t('about.name')}}</h1>
       <div class="about_text">
-        <div v-html="detail" class="text">{{detail}}</div>
+        <div v-html="detail" class="text"></div>
       </div>
     </div>
     <!-- <el-row class="content">
