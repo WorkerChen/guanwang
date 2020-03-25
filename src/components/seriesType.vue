@@ -6,7 +6,8 @@
       <h1 class="type_title" v-if="this.isPc()==1">{{title}}</h1>
       <h1 class="type_title_mobile" v-if="this.isPc()==2">{{title}}</h1>
       <div class="type_detail">
-        <div v-html="detail" class="type_text"></div>
+        <div v-html="detail" class="type_text" v-if="this.isPc()==1"></div>
+        <div v-html="detail" class="type_text_mobile" v-if="this.isPc()==2"></div>
         <div class="type_img" v-if="this.isPc()==1">
           <div class="img_item" v-for="item in list" v-bind:key="item.id">
             <router-link :to="{ name: 'seriesDetail', query: { id: item.id }}" class="link_img">
@@ -111,6 +112,15 @@ export default {
       margin: 0 auto;
       width: 100%;
     }
+    .type_text_mobile {
+      color: #86837a;
+      padding-left: 13.4rem;
+      padding-right: 1rem;
+      display: inline-block;
+      margin: 0 auto;
+      width: 100%;
+      font-size: 4rem;
+    }
     .type_img {
       margin-top: 5rem;
       width: 100%;
@@ -177,7 +187,7 @@ export default {
             width: 100%;
             height: 100%;
             display: block;
-            font-size: 2.2rem;
+            font-size: 4rem;
             font-weight: bolder;
             text-align: center;
             line-height: 28rem;
